@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^(.*)\.php5 $1.php [R=301,L]
+RewriteRule ^(.*)\.php5 $1.php [L]
