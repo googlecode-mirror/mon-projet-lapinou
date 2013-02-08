@@ -1,0 +1,112 @@
+/* Liste */
+#menu, #menu ul {
+        padding : 0; /* pas de marge intérieure */
+        margin : 0; /* ni extérieure */
+	list-style : none; /* on supprime le style par défaut de la liste */
+        line-height : 25px; /* on définit une hauteur pour chaque élément */
+        text-align : center; /* on centre le texte qui se trouve dans la liste */
+}
+ /* Ensemble du menu */
+#menu {
+        font-weight : bold; /* on met le texte en gras */
+        font-family : Arial; /* on utilise Arial, c'est plus beau ^^ */
+        font-size : 14px; /* hauteur du texte : 12 pixels */
+	width:100%;
+}
+ /* Contenu des listes */
+#menu a {
+        display : block; /* on change le type d'élément, les liens deviennent des balises de type block */
+        padding : 0; /* aucune marge intérieure */
+        background : #1D702D; /* couleur de fond */       
+        color : #fff; /* couleur du texte */
+        text-decoration : none; /* on supprime le style par défaut des liens (la plupart du temps = souligné) */
+        width : 160px; /* largeur */
+}
+ /* Elements des listes */ 
+#menu li {
+        float : left;
+        border-right : 1px solid transparent; /* on met une bordure transparente à droite de chaque élément */
+}
+ /* Sous-listes */
+#menu li ul 
+{
+        position: absolute; /* Position absolue */
+        width: 144px; /* Largeur des sous-listes */
+        left: -999em; /* Hop, on envoie loin du champ de vision */
+}
+ 
+ /* Éléments de sous-listes */
+#menu li ul li {
+        border-top : 1px solid transparent; 
+}
+  
+
+
+#menu a:hover /* Lorsque la souris passe sur un des liens */   
+{
+        color: #009533; /* On passe le texte en noir... */
+        background: #fff; /* ... et au contraire, le fond en blanc */
+}
+#menu li:hover ul ul, #menu li.sfhover ul ul /* Sous-sous-listes lorsque la souris passe sur un élément de liste */
+{
+        left: -999em; /* On expédie les sous-sous-listes hors du champ de vision */
+}
+ 
+#menu li:hover ul, #menu li li:hover ul, #menu li.sfhover ul, #menu li li.sfhover ul  /* Sous-listes lorsque la souris passe sur un élément de liste ET sous-sous-lites lorsque la souris passe sur un élément de sous-liste */
+{
+        left: auto; /* Repositionnement normal */
+        min-height: 0; /* Corrige un bug sous IE */
+}
+
+
+.retour {
+	clear:left;
+}
+
+
+body {
+	
+	background-color:#FFDA8C; /*#B5E655 vert*/
+	
+}
+
+
+footer {
+	color:#009533;
+	width: 100%;
+	clear: both;
+	position: absolute;
+	bottom: 0;
+}
+footer a {
+	color:#009533;
+}
+header div {
+	width:100%;
+	height:150px;
+}
+div.bandeau img {
+	float:left;
+}
+h1 {
+	text-align:center;
+	color:#FF5900;
+}
+section.contenu {
+	width:70%;
+	min-height:100%;
+	float:left;
+	position:relative;
+}
+.droite {
+	float:right;
+	position:relative;
+}
+section.droite div {
+	width:200px;
+	height:200px;
+	border: 1px solid;
+	margin-right:30px;
+	margin-top:50px;
+}
+	
