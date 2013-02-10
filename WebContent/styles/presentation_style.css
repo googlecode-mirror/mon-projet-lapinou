@@ -78,37 +78,33 @@ header div {
 	width:100%;
 	height:150px;
 }
-.corps {
+#corps {
 	
 }
-section.contenu {
+div#contenu {
 	width:80%;
 	border:1px solid;
-	position:relative;
-	
+	;
+		
 }
-.droite {
+#droite {
 	float:right;
 	height:100%;
 	
 }
-section.droite div {
+div#droite div {
 	width:200px;
 	/*height:200px;*/
 	border: 1px solid;
 	margin-right:30px;
 	margin-top:50px;
-	
-
 }
-footer {
+#footer {
 	color:#009533;
 	width: 100%;
-	
-	position: absolute;
 	bottom:0; 
 }
-footer a {
+div#footer a {
 	color:#009533;
 }
 
