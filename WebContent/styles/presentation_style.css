@@ -57,33 +57,12 @@
         left: auto; /* Repositionnement normal */
         min-height: 0; /* Corrige un bug sous IE */
 }
-
-
-.retour {
-	clear:left;
+html, body {
+    height: 100%;
 }
-
-
 body {
-	
 	background-color:#FFDA8C; /*#B5E655 vert*/
 	
-}
-
-
-footer {
-	color:#009533;
-	width: 100%;
-	clear: both;
-	position: absolute;
-	bottom: 0;
-}
-footer a {
-	color:#009533;
-}
-header div {
-	width:100%;
-	height:150px;
 }
 div.bandeau img {
 	float:left;
@@ -92,21 +71,50 @@ h1 {
 	text-align:center;
 	color:#FF5900;
 }
+.retour {
+	clear:left;
+}
+header div {
+	width:100%;
+	height:150px;
+}
+.corps {
+	
+}
 section.contenu {
-	width:70%;
-	min-height:100%;
-	float:left;
+	width:80%;
+	border:1px solid;
 	position:relative;
+	
 }
 .droite {
 	float:right;
-	position:relative;
+	height:100%;
+	
 }
 section.droite div {
 	width:200px;
-	height:200px;
+	/*height:200px;*/
 	border: 1px solid;
 	margin-right:30px;
 	margin-top:50px;
+	
+
 }
+footer {
+	color:#009533;
+	width: 100%;
+	
+	position: absolute;
+	bottom:0; 
+}
+footer a {
+	color:#009533;
+}
+
+
+
+
+
+
 	
