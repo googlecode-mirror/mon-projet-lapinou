@@ -9,7 +9,7 @@
 	/*** ulterieurement en include config.inc.php ***/
 	$hostDB = 'localhost';
 	$userDB = 'root';
-	$passwd = 'caneton';
+	$passwd = '';
 	$dataBase = 'LAPI.NET';
 	$liendb = null;
 	/***************************************/
