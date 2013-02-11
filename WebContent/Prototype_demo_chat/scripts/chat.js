@@ -11,6 +11,7 @@
 var conversations = {}; //hash table des conversations suivies
 var dateConsult = {}; //rappel des conversations precedantes
 var courant; //nom de la conversation courante affichee
+var tri = []; // pour trier les conversations
 
 /**********************************
  * assurer la compatibilite entre *
@@ -55,7 +56,9 @@ function switch_conversation( nom ){
 	var connectes =$('amis');
 	connectes.update('');//effacer la liste
 	
-	for (var n in conversations) {
+	for (var i = 0; i < tri.length; i++) { 
+		
+		n = tri[i];
 		
 		//liste
 		//ajout dans la liste
@@ -124,7 +127,7 @@ function ecouter(){
 			}
 		
 			var plusRecent = null;
-			var dateMessPlusRecent =0;
+			var dateMessPlusRecent ='0';
 			
 			//pour chaque connecte
 			xmlDoc.select('ami').each( function (ami){
@@ -134,6 +137,7 @@ function ecouter(){
 				if( ami.down('conversation') ){
 						//contient le message le plus recent ?
 					var temps = ami.down('date').innerHTML;
+
 					if( temps > dateMessPlusRecent){
 						dateMessPlusRecent = temps;
 						plusRecent = ami.down('nom').innerHTML;
@@ -170,7 +174,7 @@ function ecouter(){
 			});
 
 			//tri
-			var tri = []; //new array
+			tri = []; //new array
 			for (var c in conversations) {
 				tri.push( c );        
 			}
