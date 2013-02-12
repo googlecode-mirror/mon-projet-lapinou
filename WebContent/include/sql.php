@@ -25,14 +25,24 @@ if ($serveur=="arnould.f.free.fr") {
 	$bd_con =  mysql_connect($hote,$user,$passe);
 	if ($bd_con===null)
 		die("la connexion à $hote n'a pas pu avoir lieu.");
-	else 
+	else {
+		mysql_set_charset('utf8',$bd_con);
 		$bdd=mysql_select_db($base);
+	}
 
 function requete($req) {
 	$rep=mysql_query($req);
 	$resultat=null;
 	while ($res=mysql_fetch_array($rep))
 		$resultat[]=$res;
+	return $resultat;
+}		
+		
+function requete_per_ligne($req) {
+	$rep=mysql_query($req);
+	$resultat=null;
+	if ($res=mysql_fetch_array($rep))
+		$resultat=$res;
 	return $resultat;
 }		
 		
@@ -43,7 +53,7 @@ function requete_champ_unique($req) {
 		$resultat=$res[0];
 	return $resultat;
 }
-		
+
 //echo $bdd;
 				
 //	echo phpinfo();
