@@ -15,9 +15,11 @@ function loadXMLDoc(url,no) {
   }
   xmlhttp.onreadystatechange=function() {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)   {
-    txt="<table border='1'><tr><th>Sujet</th><th>Date</th><th>Sujet</th><th>Auteur</th></tr>";
+    txt="<table border='1'><tr><th>Sujet</th><th>Date</th><th>Auteur</th></tr>";
+//	alert ('retour : '+xmlhttp.responseText);
 	x=xmlhttp.responseXML.documentElement.getElementsByTagName("message");
-    for (i=0;i<x.length;i++) {
+	for (i=0;i<x.length;i++) {
+		txt=txt+"<tr>\n";
       xx=x[i].getElementsByTagName("titre");
       {
         try {
@@ -34,7 +36,7 @@ function loadXMLDoc(url,no) {
           txt=txt + "<td>&nbsp;</td>";
         }
       }
-      xx=x[i].getElementsByTagName("infos");
+      xx=x[i].getElementsByTagName("nom");
       {
         try {
           txt=txt + "<td>" + xx[0].firstChild.nodeValue + "</td>";
@@ -42,12 +44,15 @@ function loadXMLDoc(url,no) {
           txt=txt + "<td>&nbsp;</td>";
         }
       }
+		txt=txt+"</tr>\n";
  
     }
+//	alert ('retour : '+txt);
     document.getElementById('li'+no).innerHTML=document.getElementById('li'+no).innerHTML+txt;
   }
   }
   xmlhttp.open("GET",url,true);
+  xmlhttp.setRequestHeader('Content-Type',  'text/xml');
   xmlhttp.send();
 }
 

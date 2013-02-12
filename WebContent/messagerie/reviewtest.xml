@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archive>
+<review>
+<review_id>1</review_id>
+<filmtitle>Test</filmtitle>
+<director>Director 1</director>
+<producer>Producer 1</producer>
+<filmyear>2001</filmyear>
+<reviewtitle>Review Title 1</reviewtitle>
+<caption>Review Caption 1</caption>
+<reviewday>15</reviewday>
+<reviewmonth>1</reviewmonth>
+<reviewyear>2009</reviewyear>
+</review>
+<review>
+<review_id>2</review_id>
+<filmtitle>Test 2</filmtitle>
+<director>Director 2</director>
+<producer>Producer 2</producer>
+<filmyear>2002</filmyear>
+<reviewtitle>Review Title 2</reviewtitle>
+<caption>Review Caption 2</caption>
+<reviewday>16</reviewday>
+<reviewmonth>2</reviewmonth>
+<reviewyear>2009</reviewyear>
+</review>
+</archive>
