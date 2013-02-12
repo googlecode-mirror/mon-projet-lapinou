@@ -15,8 +15,8 @@ if ($serveur=="arnould.f.free.fr") {
 	} else 
 		if ($serveur=="localhost") {
 			$hote="localhost";
-			$user="root";
-			$passe="";
+			$user="lapinou";
+			$passe="L4p1nG4r0u";
 			$base="lapinou";
 		} else {
 			die("Pas d'information de connexion pour ce serveur !");
@@ -27,8 +27,25 @@ if ($serveur=="arnould.f.free.fr") {
 		die("la connexion à $hote n'a pas pu avoir lieu.");
 	else 
 		$bdd=mysql_select_db($base);
-echo $bdd;
+
+function requete($req) {
+	$rep=mysql_query($req);
+	$resultat=null;
+	while ($res=mysql_fetch_array($rep))
+		$resultat[]=$res;
+	return $resultat;
+}		
+		
+function requete_champ_unique($req) {
+	$rep=mysql_query($req);
+	$resultat=null;
+	if ($res=mysql_fetch_row($rep))
+		$resultat=$res[0];
+	return $resultat;
+}
+		
+//echo $bdd;
 				
-	echo phpinfo();
+//	echo phpinfo();
 
 ?>
