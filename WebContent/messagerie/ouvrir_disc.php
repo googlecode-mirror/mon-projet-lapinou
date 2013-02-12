@@ -1,21 +1,28 @@
 <?php
+//echo phpinfo();
+//die("meerde");
 
-include sql.php
+echo "<pre>";
+print_r($_REQUEST);
+print_r($_POST);
+print_r($_GET);
+echo "</pre>";
+
+include_once "include/sql.php";
 
 function echec($message) {
 //!!! à développer
 if (isset($bdd))
   mysql_close($bdd);
-die "<div><dl><dt>Echec</dt><dd>$message</dd></dl></div>");	
+die ("<div><dl><dt>Echec</dt><dd>$message</dd></dl></div>");	
 }
 
-print_r($_REQUEST);
-//récupérer les données transmise
-$lapin=$_request["lapin"];
-$intitule=$_request["intitule"];
-$texte=$_request["texte"];
-$dest=$_request["id_profil"];
-$auteur=$_request["sid"];	//!!! il s'agit en fait de l'id_profil transmis par la session
+//récupérer les données transmises
+$lapin=$_REQUEST["lapin"];
+$intitule=$_REQUEST["intitule"];
+$texte=$_REQUEST["texte"];
+$dest=$_REQUEST["id_profil"];
+$auteur=$_REQUEST["sid"];	//!!! il s'agit en fait de l'id_profil transmis par la session
 
 echo "contrôle";
 // contrôle
@@ -33,28 +40,60 @@ if ($texte===null || trim($texte)=="")
 	echo "liens entre profils";
 //!!! il peut sans doute y avoir injection mysql ici !
 //!!! prévoir la création d'une discussion avec le propriétaire directement (donc $lapin="") => autre champ qui signale la page d'envoi
-$req="select id_profil, id_lapin from Profil natural join Lapin where id_profil=$dest and nomL=$lapin";
-$ids=requete($req);
+$req="select id_profil, id_lapin from Profil natural join Lapin where id_profil=$dest and nomL='$lapin'";
+$ids=requete_per_ligne($req);
 if ($ids===null)
-	echec("Lapin et propriétaire non liés ou inconnus !");
+	echec("Lapin et propriétaire non liés ou inconnus !".$req);
+echo "<pre>";
+print_r($ids);
+echo "</pre>";
+
 $req="select id_profil from Profil where id_profil=$auteur";
 $idAok=requete_champ_unique($req);
 if ($idAok===null)
 	echec("Auteur inconnu !");
 
 //à partir d'ici le formulaire est correctement rempli
-echo "transaction";
+echo "transaction ".mysql_client_encoding();
 //ajout de la discussion
 //!!! il faudrait pouvoir bloquer les transactions (+ commit) jusqu'à réception du nouvel id
 //!!! attention ! pour pouvoir avoir accès à last_insert_id, la connexion doit être persistente !
-	$req="START TRANSACTION;
-	insert into Discussion (sujet,intitule,auteur,dest) value ('$lapin','$intitule',$idAok,".$ids[0].");
-	insert into Message value (null,'$intitule','$texte',LAST_INSERT_ID(),$auteur);
-	commit; ";
-if (requete($req))
+
+/*les bouts de code suivants sont tous présentés comme permettant les transactions, mais
+ * - cela provoque systématiquement une erreur dans php
+ * - PMA ne tient pas compte de la transaction, malgré le paramètre persistent, et commit de suite
+ * - la ligne de commande pas mieux, que ce soit begin, start transaction ou set autocommit=0 !
+ * 
+ * il n'est donc pas possible de définir des transactions et des requêtes de source différentes peuvent interférer entre elles ! */
+
+/*mysql_query("SET AUTOCOMMIT=0");
+	$req=" BEGIN";
+	requete($req);
+echo mysql_error().$req; 
+	$req="insert into Discussion (sujet,intitule,auteur,dest) value ('$lapin','$intitule',$idAok,".$ids[0].");insert into Message value (null,'$intitule','$texte',LAST_INSERT_ID(),$auteur);COMMIT"; */
+
+//pour rechercher l'id de l'insertion il faut savoir depuis quand l'insertion s'est faite
+	$req="select now()";
+	$date=requete_champ_unique($req);
+	mysql_error();
+	$req="insert into Discussion (sujet,intitule,auteur,dest) value ('$lapin','$intitule',$idAok,".$ids[0].")";
+	$res=requete($req);
+	if (mysql_errno())
+		echec("$res erreur : ".mysql_error().$req);
+//puisqu'on ne peut garantir qu'il n'y a pas eu d'autre insertion entre les deux, LAST_INSERT_ID() ne peut être utilisée
+//on recherche donc la discussion créée avec ces paramètres depuis quelques secondes;
+	$req="select id_disc from Discussion where sujet='$lapin' and intitule='$intitule' and auteur=$idAok and dest=".$ids[0]." and date>='$date'";
+	$id_d=requete_champ_unique($req);
+	//Rq : il ne faut SURTOUT PAS tenter d'affecter un retour en comparant ave une valeur : $var=fonction()==null ne met pas le résultat de fonction dans var mais rien (pas même false ou true apparemment) !
+	if ($id_d==null)
+		echec("erreur : ".mysql_error().$req);
+		echo $id_d;
+	$req="insert into Message value (null,'$intitule','$texte',$id_d,$auteur)";
+//	$req=mysql_real_escape_string($req);
+if (requete($req)==null)
   echo "discussion lancée !";
 else
-  echec("erreur : ".mysql_error());
+  echec("erreur : ".mysql_error().$req);
   
   echo "fin";
 ?>
