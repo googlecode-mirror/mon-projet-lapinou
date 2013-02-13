@@ -6,12 +6,8 @@
 <link rel="stylesheet" type="text/css" href="styles/presentation_style.css" />
 
 </head>
-<body style="background-image:url(img/logo-coeurT.jpg);
-	background-position : left bottom; 
-	background-repeat: no-repeat;
-	background-size : 10%;
-">
-
+<body>
+<div class="corps">
 <header>
 <div class="bandeau">
 <br>
@@ -70,10 +66,38 @@
          
 </ul>
 
-<br class="retour">
-<div id="corps">
+<br class="retour" />
+<br />
+
+<section id="contenu">
+	<h2>Présentation</h2>
+<br /> 
+<p>
+<div class="colonne"> 
+	<h3>Accueil</h3>
+	<p></p>
+</div>
+<div class="colonne"> 
+	<h3>les news</h3> 
+	<p></p>
+</div>
+<div class="colonne"> 
+	<h3>les événements</h3>
+	<p></p>
+</p>
+</section>
+
 <div id="droite">
-<div id="connexion"><p> connexion</p>
+<div id="connexion">
+	<form>
+	<fieldset>
+		<legend>Connexion</legend>
+		<label>Nom d'utilisateur :</label><input type="text" name="user"> 	
+		<br>
+		<label>Password :</label><input type="password" name="pass">
+		<br>
+		<input type="submit" value="Connexion" />
+	</form>
 </div>
 <div id="messagerie"><p> messagerie</p>
 </div>
@@ -81,32 +105,13 @@
 </div>
 </div>
 
-<section id="contenu">
-<p>contenu<br> 
+<br class="retour" />
 
-Victus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.<br>
+<br />
+<br />
 
-Et prima post Osdroenam quam, ut dictum est, ab hac descriptione discrevimus, Commagena, nunc Euphratensis, clementer adsurgit, Hierapoli, vetere Nino et Samosata civitatibus amplis inlustris.<br>
+<footer>
 
-His cognitis Gallus ut serpens adpetitus telo vel saxo iamque spes extremas opperiens et succurrens saluti suae quavis ratione colligi omnes iussit armatos et cum starent attoniti, districta dentium acie stridens adeste inquit viri fortes mihi periclitanti vobiscum.
-Victus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.<br>
-
-Et prima post Osdroenam quam, ut dictum est, ab hac descriptione discrevimus, Commagena, nunc Euphratensis, clementer adsurgit, Hierapoli, vetere Nino et Samosata civitatibus amplis inlustris.<br>
-
-His cognitis Gallus ut serpens adpetitus telo vel saxo iamque spes extremas opperiens et succurrens saluti suae quavis ratione colligi omnes iussit armatos et cum starent attoniti, districta dentium acie stridens adeste inquit viri fortes mihi periclitanti vobiscum.
-Victus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.<br>
-
-Et prima post Osdroenam quam, ut dictum est, ab hac descriptione discrevimus, Commagena, nunc Euphratensis, clementer adsurgit, Hierapoli, vetere Nino et Samosata civitatibus amplis inlustris.<br>
-
-His cognitis Gallus ut serpens adpetitus telo vel saxo iamque spes extremas opperiens et succurrens saluti suae quavis ratione colligi omnes iussit armatos et cum starent attoniti, districta dentium acie stridens adeste inquit viri fortes mihi periclitanti vobiscum.
-
-</p>
-</section>
-
-</div>
-
-<div id="footer">
-<center>
 	<img src="img/barre-lapin.gif"  alt="barre" title="barre lapin"/><img>
 	<br>
 	<a href="#" target="_blank" title="Aller à l'accueil">Accueil</a>
@@ -116,8 +121,10 @@ His cognitis Gallus ut serpens adpetitus telo vel saxo iamque spes extremas oppe
 	<a href="#" target="_blank" title="Qui sommes nous">Qui sommes-nous ?</a>
 	<span class="portal-pipe">|</span>
 	<a href="#" target="_blank" title="Administration">Administration</a>
-</center>
+
+</footer>
 </div>
+
 </body>
 </html>
 

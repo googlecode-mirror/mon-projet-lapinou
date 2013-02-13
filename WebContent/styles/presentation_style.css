@@ -1,17 +1,38 @@
-/* Liste */
+html, body {
+    height: 100%;
+}
+body {
+	background-color:#FFDA8C; /*#B5E655 vert*/
+	
+}
+/*Bandeau Titre*/
+header div {
+	width:100%;
+	height:150px;
+}
+div.bandeau img {
+	float:left;
+}
+h1 {
+	text-align:center;
+	color:#FF5900;
+}
+/* Menu Liste */
 #menu, #menu ul {
-        padding : 0; /* pas de marge intérieure */
-        margin : 0; /* ni extérieure */
-	list-style : none; /* on supprime le style par défaut de la liste */
+        padding : 0; 
+        margin:0;
+		list-style : none; /* on supprime le style par défaut de la liste */
         line-height : 25px; /* on définit une hauteur pour chaque élément */
         text-align : center; /* on centre le texte qui se trouve dans la liste */
 }
  /* Ensemble du menu */
 #menu {
+		margin-left:50px;
+		margin-right:50px;
         font-weight : bold; /* on met le texte en gras */
         font-family : Arial; /* on utilise Arial, c'est plus beau ^^ */
         font-size : 14px; /* hauteur du texte : 12 pixels */
-	width:100%;
+		width:100%;
 }
  /* Contenu des listes */
 #menu a {
@@ -28,8 +49,8 @@
         border-right : 1px solid transparent; /* on met une bordure transparente à droite de chaque élément */
 }
  /* Sous-listes */
-#menu li ul 
-{
+#menu li ul {
+		
         position: absolute; /* Position absolue */
         width: 144px; /* Largeur des sous-listes */
         left: -999em; /* Hop, on envoie loin du champ de vision */
@@ -38,73 +59,80 @@
  /* Éléments de sous-listes */
 #menu li ul li {
         border-top : 1px solid transparent; 
+        
 }
-  
-
-
-#menu a:hover /* Lorsque la souris passe sur un des liens */   
-{
-        color: #009533; /* On passe le texte en noir... */
-        background: #fff; /* ... et au contraire, le fond en blanc */
+/* Lorsque la souris passe sur un des liens */ 
+#menu a:hover   {
+        color: #009533; 
+        background: #fff; 
 }
-#menu li:hover ul ul, #menu li.sfhover ul ul /* Sous-sous-listes lorsque la souris passe sur un élément de liste */
-{
+/* Sous-sous-listes lorsque la souris passe sur un élément de liste */
+#menu li:hover ul ul, #menu li.sfhover ul ul {
         left: -999em; /* On expédie les sous-sous-listes hors du champ de vision */
 }
- 
-#menu li:hover ul, #menu li li:hover ul, #menu li.sfhover ul, #menu li li.sfhover ul  /* Sous-listes lorsque la souris passe sur un élément de liste ET sous-sous-lites lorsque la souris passe sur un élément de sous-liste */
-{
+ /* Sous-listes lorsque la souris passe sur un élément de liste ET sous-sous-lites lorsque la souris passe sur un élément de sous-liste */
+#menu li:hover ul, #menu li li:hover ul, #menu li.sfhover ul, #menu li li.sfhover ul {
         left: auto; /* Repositionnement normal */
-        min-height: 0; /* Corrige un bug sous IE */
 }
-html, body {
-    height: 100%;
+/*déblocage du float left*/
+.retour {
+	clear:both;
 }
-body {
-	background-color:#FFDA8C; /*#B5E655 vert*/
-	
+.corps {
+	position:relative;
+	min-height: 100%
 }
-div.bandeau img {
+/*contenu des pages*/
+#contenu {
+	width:79%;
+	/*border:1px solid;*/
+	margin-left:30px;
 	float:left;
 }
-h1 {
-	text-align:center;
-	color:#FF5900;
-}
-.retour {
-	clear:left;
-}
-header div {
-	width:100%;
-	height:150px;
-}
-#corps {
+p {
 	
+	padding: 10px;
 }
-div#contenu {
-	width:80%;
-	border:1px solid;
-	;
-		
+h2 {
+	color:#FF5900;
+	text-align:center;
 }
+.colonne { 
+	float : left;  
+	width : 272px; 
+	border-right : 1px dashed #009533; 
+	padding : 0 1% 1% 1%; 
+	text-align:justify;
+}
+
+/*menu sur la droite*/
 #droite {
 	float:right;
 	height:100%;
 	
+	
 }
 div#droite div {
 	width:200px;
-	/*height:200px;*/
-	border: 1px solid;
+	/*height:200px;
+	*/
 	margin-right:30px;
 	margin-top:50px;
 }
-#footer {
+#messagerie, #tchat {
+	border: 1px solid;
+}
+
+/*pied de page*/
+footer {
+	position:absolute;
 	color:#009533;
 	width: 100%;
 	bottom:0; 
+	text-align: center;
+	
 }
-div#footer a {
+footer a {
 	color:#009533;
 }
 
