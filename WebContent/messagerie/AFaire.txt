@@ -1,0 +1,6 @@
+X transformer le + en - et le onclick pour ne pas recharger
+X ajouter un lien pour afficher le message 
+- puis y répondre (si le dernier)
+- gérer l'ajout d'un nouveau message à la discussion
+- nettoyer/regrouper/généraliser le code et le commenter 
+- ajouter id_desc.

@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+ul {
+  margin:0em;
+  padding:0em;
+  list-style-type:none;
+}
+li div {
+  display: inline-block;
+  width: 30%;
+/*  float: left;*/
+}
+li div:first-of-type {
+width:1em;
+}
+li ul {
+  margin-left:2em;
+  padding:0em;
+}
+li ul li div {
+  display: inline-block;
+  width: 20%;
+/*  float: left;*/
+}
+li ul li div:first-of-type {
+width:20%;
+}

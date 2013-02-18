@@ -2,6 +2,14 @@
 //echo phpinfo();
 echo "ok";
 
+$test=null;
+
+if ($test) 
+	die('$test est nul et faux');
+else
+	die ('$test n\'est pas faux !');
+
+
 print_r($_REQUEST);
 print_r($_POST);
 print_r($_GET);

@@ -88,7 +88,7 @@ echo mysql_error().$req;
 	if ($id_d==null)
 		echec("erreur : ".mysql_error().$req);
 		echo $id_d;
-	$req="insert into Message value (null,'$intitule','$texte',$id_d,$auteur)";
+	$req="insert into Message value (null,'$intitule','$texte',NOW(), $id_d, $auteur)";
 //	$req=mysql_real_escape_string($req);
 if (requete($req)==null)
   echo "discussion lancée !";
