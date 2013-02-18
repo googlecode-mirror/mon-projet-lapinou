@@ -35,7 +35,11 @@ function connect(){
 //connection SGBD
 	$cnx =  mysql_pconnect(HOTE,USER,PASSE);
 	if ($cnx!==null) {
-		mysql_set_charset('utf8',$cnx);
+		if ($serveur!="arnould.f.free.fr")
+			mysql_set_charset('utf8',$cnx);
+		else
+		//!!! à trouver !
+			;
 		$bdd_cnx=mysql_select_db(BASE);
 	}
 	return $cnx;
