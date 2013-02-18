@@ -1,6 +1,7 @@
 X transformer le + en - et le onclick pour ne pas recharger
 X ajouter un lien pour afficher le message 
-- puis y répondre (si le dernier)
-- gérer l'ajout d'un nouveau message à la discussion
+X puis y répondre (si le dernier)
+X gérer l'ajout d'un nouveau message à la discussion
 - nettoyer/regrouper/généraliser le code et le commenter 
 - ajouter id_desc.
+- mettre à jour la liste des messages dans le navigateur.

@@ -5,8 +5,24 @@ normes :
 
 ********* tables / champs SQL ******************
 
+préfixe des tables : lapin_
+profil utilisateur :
+	- nom table : Profil
+	- clé :	id_profil
+profil lapin :
+	- nom table : Lapin
+	- clé :	id_lapin
+
+
 
 ********* variables SESSIONS php ***************
+identifiant de l'utilisateur : ?
 
 
 ********* librairies javascript ****************
+
+
+************	commentaires	****************
+note :			//Rq:
+correction		//!!!
+
