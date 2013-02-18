@@ -11,5 +11,6 @@
 	<header><h1>LAPI.NET</h1></header>
 	<section><p>En construction...</p></section>
 	<footer>LAPI.NET</footer>
+	<!-- test commit dom -->
 </body>
 </html>
