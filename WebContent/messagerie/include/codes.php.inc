@@ -1,6 +1,6 @@
 <?php
 //configuration de la connexion webetu
-	define('ETUDIANT',"");
+	define('ETUDIANT',"o2123859");
 //configuration de la connexion locale
 	define('HOTE',"localhost");
 	define('USER',"lapinou");

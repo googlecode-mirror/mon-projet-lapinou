@@ -5,19 +5,20 @@ include_once 'codes.php.inc';
 $cnx=null;
 
 $serveur=$_SERVER["SERVER_NAME"];
-if ($serveur=="arnould.f.free.fr") {
+$prefixe='lapin_';
+if (strcasecmp($serveur,"arnould.f.free.fr")==0) {
 	define('HOTE',"sql.free.fr");
 	define('USER',"arnould.f");
 	define('PASSE',"L4p1nG4r0u");
 	define('BASE',"arnould.f");
 } else 
-	if ($serveur=="webetu") {
+	if (strcasecmp($serveur,"webetu")==0) {
 		define('HOTE',"dbhost");
 		define('USER',ETUDIANT);
 		define('PASSE',ETUDIANT);
 		define('BASE',"bd_".ETUDIANT);
 	} else 
-		if ($serveur!="localhost") {
+		if (strcasecmp($serveur,"localhost")!=0) {
 			die("Pas d'information de connexion pour ce serveur !");
 		}
 		//les infos pour localhost se trouvent dans codes.php.inc
@@ -35,11 +36,11 @@ function connect(){
 //connection SGBD
 	$cnx =  mysql_pconnect(HOTE,USER,PASSE);
 	if ($cnx!==null) {
-		if ($serveur!="arnould.f.free.fr")
-			mysql_set_charset('utf8',$cnx);
-		else
+		if (strcasecmp($serveur,"arnould.f.free.fr")!=0)
 		//!!! à trouver !
 			;
+		else
+			mysql_set_charset('utf8',$cnx);
 		$bdd_cnx=mysql_select_db(BASE);
 	}
 	return $cnx;
@@ -103,8 +104,5 @@ function requete_champ_unique($req) {
 	return $resultat;
 }
 
-//echo $bdd;
-				
-//	echo phpinfo();
-
+	connect();
 ?>

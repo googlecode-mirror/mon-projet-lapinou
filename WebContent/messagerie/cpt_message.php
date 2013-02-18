@@ -5,7 +5,7 @@ if (connect()) {
 	//!!! vérifier que la personne est bien connectée (cookie/session)
 	//!!! gérer l'erreur d'absence de paramètres GET
 	//!!! gérer la sécurité (ne pas inclure GET directement !)
-	$req_mess="select * from `Message` natural join `Lapin` natural join `Profil` where id_disc='".$_GET['id_disc']."'";
+	$req_mess="select * from `${prefixe}Message` natural join `${prefixe}Lapin` natural join `${prefixe}Profil` where id_disc='".$_GET['id_disc']."'";
 	$liste_mess=requeteObj($req_mess);
 
 	header('Content-Type: application/xml');

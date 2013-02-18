@@ -203,14 +203,14 @@ function habille_boite($liste) {
 //filtrer les discussions du lapin courant ou dont un lapin appartient au propriétaire courant
 //priorité : le lapin courant (doit nécessairement appartenir au profil courant)
 if (isset($lid)) {
-	$req_disc="select * from `Discussion` 
+	$req_disc="select * from `${prefixe}Discussion` 
 	where auteur='$lid' or dest='$lid'";
 } else {
-	$req_disc="select * from `Discussion` 
-	d join `Lapin` l1 on d.auteur=l1.id_lapin 
-	join `Lapin` l2 on d.dest=l2.id_lapin 
-	join `Profil` p1 on p1.id_profil=l1.id_profil 
-	join `Profil` p2 on p2.id_profil=l2.id_profil 
+	$req_disc="select * from `${prefixe}Discussion` 
+	d join `${prefixe}Lapin` l1 on d.auteur=l1.id_lapin 
+	join `${prefixe}Lapin` l2 on d.dest=l2.id_lapin 
+	join `${prefixe}Profil` p1 on p1.id_profil=l1.id_profil 
+	join `${prefixe}Profil` p2 on p2.id_profil=l2.id_profil 
 	where  p1.id_profil='$pid' or p2.id_profil='$pid' ";
 }
 	$liste_disc=requeteObj($req_disc);
