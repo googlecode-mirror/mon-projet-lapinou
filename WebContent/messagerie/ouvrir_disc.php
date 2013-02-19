@@ -12,8 +12,8 @@ include_once "include/sql.php";
 
 function echec($message) {
 //!!! à développer
-if (isset($bdd))
-  mysql_close($bdd);
+if (isset($bdd_cnx))
+  mysql_close($bdd_cnx);
 die ("<div><dl><dt>Echec</dt><dd>$message</dd></dl></div>");	
 }
 
