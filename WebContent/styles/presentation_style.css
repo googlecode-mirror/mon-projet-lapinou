@@ -9,8 +9,9 @@ body {
 header div {
 	width:100%;
 	height:150px;
+	text-align:center;
 }
-div.bandeau img {
+div.bandeau img#img_coin {
 	float:left;
 }
 h1 {

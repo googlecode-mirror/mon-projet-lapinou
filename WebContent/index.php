@@ -17,8 +17,8 @@
 <header>
 <div class="bandeau">
 <br>
-	<img src="img/Lapi-bisous.jpg" width="100" alt="Logo site" title="Logo lapin"/><img>
-<center><h1>Lapi.net</h1></center>
+	<img id="img_coin" src="img/Lapi-bisous.jpg" width="100" alt="Logo site" title="Logo lapin"/><img>
+	<img src="img/LOGO_new.png" alt="LAPI.NET" title="LAPI.NET"></img>
 </div>
 </header>
 
