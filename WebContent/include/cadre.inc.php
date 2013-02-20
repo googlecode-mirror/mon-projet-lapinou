@@ -1,12 +1,18 @@
 <?php
 
 	// switch pour le contenu de la section "contenu"
-if (!isset($_GET['page'])) include(page par défaut à définir);
+if (!isset($_GET['page'])) include("contenu/accueil.php");
 else {
 	$redirige = false;
+	
 	// index.php?page='login'
 	if ($_GET['page']=='login') {
-		include(login.php);
+		include("contenu/login.php");
+		$redirige = true;
+	}
+	
+	if ($_GET['page']=='inscription') {
+		include("contenu/inscription.php");
 		$redirige = true;
 	}
 	
@@ -15,7 +21,7 @@ else {
 	
 	
 	
-	if (!$redirige) include(page par défaut à définir);
+	if (!$redirige) include("contenu/accueil.php");
 }
 
 ?>

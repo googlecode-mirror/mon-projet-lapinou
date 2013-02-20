@@ -1,0 +1,9 @@
+Structure du site :
+
+- une seule page [ index.php ]
+
+- la div " contenu " est controlée par $_GET : [ index.php?page=xxx ]
+
+- c'est [ cadre.inc.php ] qui switche les différents contenus (selon la valeur de l'argument " page " de GET )
+
+- les fichiers php inclus sont tous dans le dossier [ contenu ]
