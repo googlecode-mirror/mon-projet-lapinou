@@ -10,7 +10,7 @@
 	<body>
 		<section class="contenu">
 <!--formulaire inscription proprietaire-->
-<form name="inscription" method="post" action="inscrire.php" onsubmit="hash(verif());"> <!-- modif dom 19/02/2013 : sécurisation -->
+<form name="inscription" method="post" action="include/inscrire.inc.php" onsubmit="hash(verif());"> <!-- modif dom 19/02/2013 : sécurisation -->
 <fieldset>
 	<legend>Fiche d'inscription</legend>
 	<p id="problemes"><?php if (isset($_GET['mess'])) echo $_GET['mess']; ?></p>
