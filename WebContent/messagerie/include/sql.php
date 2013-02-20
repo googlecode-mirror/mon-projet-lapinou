@@ -65,8 +65,9 @@ function disconnect(){
 function requete($req) {
 	$rep=mysql_query($req);
 	$resultat=null;
-	while ($res=mysql_fetch_array($rep))
-		$resultat[]=$res;
+	if (!$rep)
+		while ($res=mysql_fetch_array($rep))
+			$resultat[]=$res;
 //!!! la fonction de Cyril retournait true ou false. Or php ne considère pas null comme faux !
 	return $resultat;
 }		

@@ -41,20 +41,27 @@ if ($texte===null || trim($texte)=="")
 //!!! il peut sans doute y avoir injection mysql ici !
 //!!! prévoir la création d'une discussion avec le propriétaire directement (donc $lapin="") => autre champ qui signale la page d'envoi
 $req="select id_profil, id_lapin from `${prefixe}Profil` natural join `${prefixe}Lapin` where id_profil=$dest and nomL='$lapin'";
-$ids=requete_per_ligne($req);
+$ids=requete_par_ligne($req);
 if ($ids===null)
 	echec("Lapin et propriétaire non liés ou inconnus !".$req);
 echo "<pre>";
 print_r($ids);
 echo "</pre>";
 
-$req="select id_profil from `${prefixe}Profil` where id_profil=$auteur";
+//$req="select id_profil from `${prefixe}Profil` where id_profil=$auteur";
+$req="select id_lapin from `${prefixe}Lapin` where id_lapin=$auteur";
 $idAok=requete_champ_unique($req);
 if ($idAok===null)
-	echec("Auteur inconnu !");
+	echec("Auteur inconnu !".$req);
 
 //à partir d'ici le formulaire est correctement rempli
 echo "transaction ".mysql_client_encoding();
+$utf=preg_match("/utf/",mysql_client_encoding());
+echo "connexion : $utf<br>\n";
+if (!$utf) {
+	$intitule=utf8_decode($intitule);
+	$texte=utf8_decode($texte);
+}
 //ajout de la discussion
 //!!! il faudrait pouvoir bloquer les transactions (+ commit) jusqu'à réception du nouvel id
 //!!! attention ! pour pouvoir avoir accès à last_insert_id, la connexion doit être persistente !
@@ -75,21 +82,24 @@ echo mysql_error().$req;
 //pour rechercher l'id de l'insertion il faut savoir depuis quand l'insertion s'est faite
 	$req="select now()";
 	$date=requete_champ_unique($req);
-	mysql_error();
-	$req="insert into Discussion (sujet,intitule,auteur,dest) value ('$lapin','$intitule',$idAok,".$ids[0].")";
+	echo "$req ".mysql_error();
+	$req="insert into `${prefixe}Discussion` (sujet,intitule,auteur,dest) value ('$lapin','$intitule',$idAok,".$ids[0].")";
+	echo "$req ";
 	$res=requete($req);
 	if (mysql_errno())
 		echec("$res erreur : ".mysql_error().$req);
 //puisqu'on ne peut garantir qu'il n'y a pas eu d'autre insertion entre les deux, LAST_INSERT_ID() ne peut être utilisée
 //on recherche donc la discussion créée avec ces paramètres depuis quelques secondes;
-	$req="select id_disc from ``${prefixe}Discussion` where sujet='$lapin' and intitule='$intitule' and auteur=$idAok and dest=".$ids[0]." and date>='$date'";
+	$req="select id_disc from `${prefixe}Discussion` where sujet='$lapin' and intitule='$intitule' and auteur=$idAok and dest=".$ids[0]." and date>='$date'";
+	echo "$req ";
 	$id_d=requete_champ_unique($req);
 	//Rq : il ne faut SURTOUT PAS tenter d'affecter un retour en comparant ave une valeur : $var=fonction()==null ne met pas le résultat de fonction dans var mais rien (pas même false ou true apparemment) !
 	if ($id_d==null)
 		echec("erreur : ".mysql_error().$req);
 		echo $id_d;
-	$req="insert into Message value (null,'$intitule','$texte',NOW(), $id_d, $auteur)";
+	$req="insert into `${prefixe}Message` value (null,'$intitule','$texte',NOW(), $id_d, $auteur)";
 //	$req=mysql_real_escape_string($req);
+echo "$req ";
 if (requete($req)==null)
   echo "discussion lancée !";
 else

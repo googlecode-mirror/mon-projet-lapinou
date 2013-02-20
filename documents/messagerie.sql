@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `lapin_Discussion` (
   `auteur` int(11) NOT NULL,
   `dest` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_disc`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `lapin_Lapin` (
   `id_profil` int(11) NOT NULL,
   `nomL` varchar(32) NOT NULL,
   PRIMARY KEY (`id_lapin`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `lapin_Message` (
   `id_disc` int(11) NOT NULL,
   `id_lapin` int(11) NOT NULL,
   PRIMARY KEY (`id_mess`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `lapin_Profil` (
   `id_profil` int(11) NOT NULL AUTO_INCREMENT,
   `infos` text NOT NULL COMMENT 'pseudo-attribut à remplacer',
   PRIMARY KEY (`id_profil`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='table à reprendre de la définition commune du site' AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='table à reprendre de la définition commune du site' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
