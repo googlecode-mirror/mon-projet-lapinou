@@ -24,7 +24,7 @@
 
 <ul id="menu">
          <li>
-                <a href="#">Accueil</a>
+                <a href="index.php">Accueil</a>
         </li>
         <li>
                 <a href="#">Membres</a>
