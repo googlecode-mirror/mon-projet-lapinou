@@ -18,3 +18,28 @@ CREATE TABLE IF NOT EXISTS `proprietaire` (
   `cle` int(10) NULL COMMENT 'cle aleatoire pour le hashage initialisÃ© Ã  chaque login',
   PRIMARY KEY (`identifiant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- table lapin
+
+CREATE TABLE IF NOT EXISTS `lapin` (
+  `idLap` varchar(30) NOT NULL COMMENT 'nom d''utilisateur du lapin',
+  `nomlap` varchar(30) NOT NULL COMMENT 'nom du lapin',
+  `agelap` varchar(2) NOT NULL COMMENT 'age',
+  `race` varchar(15) NOT NULL COMMENT 'race',
+  `sexe` int(1) NOT NULL COMMENT 'sexe',
+  `couleur` varchar(10) NOT NULL COMMENT 'couleur',
+  `description` varchar(200) NOT NULL COMMENT 'description',
+  `centreInteret` varchar(100) NOT NULL COMMENT 'interet',
+  `dateSession` date NOT NULL COMMENT 'dateS',
+  `dateRaffraich` date NOT NULL COMMENT 'dateR',
+  `regionlap` varchar(30) DEFAULT NULL COMMENT 'region du lapin',
+  `maillap` varchar(60) NOT NULL COMMENT 'mail du lapi,',
+  `passwdlap` varchar(40) NOT NULL COMMENT 'mot de passe du lapin', 
+  `clelap` int(10) NULL COMMENT 'cle aleatoire pour le hashage du lapin initialisée à chaque login',
+  `identifiant` varchar(30) NOT NULL COMMENT 'identifiant du proprietaire',
+  PRIMARY KEY (`idLap`)
+  constraint FKLapinProprio foreign key (identifiant) references proprietaire (identifiant) on delete cascade);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+                                       
