@@ -2,6 +2,10 @@ X transformer le + en - et le onclick pour ne pas recharger
 X ajouter un lien pour afficher le message 
 X puis y répondre (si le dernier)
 X gérer l'ajout d'un nouveau message à la discussion
-- nettoyer/regrouper/généraliser le code et le commenter 
+- nettoyer/regrouper/généraliser le code et le commenter > ajax ?
 - ajouter id_desc.
 - mettre à jour la liste des messages dans le navigateur.
+- s'assurer que la connexion à la base est en utf-8
+- vérifier avec les formulaire :
+	+ si on peut forcer son contenu à être envoyé dans un charset particulier
+	+ si le navigateur envoie le charset associé.
