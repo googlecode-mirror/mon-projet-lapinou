@@ -32,10 +32,10 @@
 	<form name="login" method="post" action="index.php" onsubmit="loginHash();"> <!-- modif dom 19/02/2013 : sécurisation -->
 	<fieldset>
 		<legend>Connexion</legend>
-		<label>Nom d'utilisateur :</label><input type="text" name="user"/> 	
-		<br/>
-		<label>Password :</label><input type="password" name="pass">
-		<br/>
+		<table>
+			<tr><td><label>Nom d'utilisateur :</label></td><td><input type="text" name="user"/> </td></tr>	
+			<tr><td><label>Password :</label></td><td><input type="password" name="pass"/></td></tr>
+		</table>
 		<input type="submit" name="login" value="Connexion"/>
 	</fieldset>
 	</form>
