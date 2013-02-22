@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>LAPI.NET - inscription</title>
-		<meta name="author" content="master CCI / Cyril THURIER">
-		<meta charset="utf-8">
+
 		<script type="text/javascript" language="Javascript" src="scripts/inscription.js"></script>
-		<link rel="stylesheet" type="text/css" href="styles/inscription.css" />
-	</head>
-	<body>
-		<section class="contenu">
+		<script type="text/javascript" language="Javascript" src="scripts/sha1.js"></script>
+
+
 <!--formulaire inscription proprietaire-->
-<form name="inscription" method="post" action="include/inscrire.inc.php" onsubmit="hash(verif());"> <!-- modif dom 19/02/2013 : sécurisation -->
+<form name="inscription" method="post" action="include/inscrire.php" onsubmit="hash(verif());"> <!-- modif dom 19/02/2013 : sécurisation -->
 <fieldset>
 	<legend>Fiche d'inscription</legend>
 	<p id="problemes"><?php if (isset($_GET['mess'])) echo $_GET['mess']; ?></p>
@@ -36,6 +30,3 @@
 	<input type="submit" name="soumetre" value="envoyer" /> 
 </fieldset>
 </form>		
-		</section>
-	</body>
-</html>

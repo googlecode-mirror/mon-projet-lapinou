@@ -83,15 +83,8 @@
 
 <div id="droite">
 <div id="connexion">
-	<form>
-	<fieldset>
-		<legend>Connexion</legend>
-		<label>Nom d'utilisateur :</label><input type="text" name="user"> 	
-		<br>
-		<label>Password :</label><input type="password" name="pass">
-		<br>
-		<input type="submit" value="Connexion" />
-	</form>
+	<?php //modif dominique : sortir le formulaire de login
+	include("contenu/login.php") ?>
 </div>
 <div id="messagerie"><p> messagerie</p>
 </div>

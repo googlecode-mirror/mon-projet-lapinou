@@ -7,11 +7,11 @@
 // Sécurisation. Dominique 19/02/2013
 
 function hash(bool) {
-	if (!bool) return false; // bloquer l'envoie du formulaire en cas de mauvaise saisie
-	nom 	= document.inscription.nom.value;
-	prenom 	= document.inscription.prenom.value;
+	if (!bool) return false; // bloquer l'envoi du formulaire en cas de mauvaise saisie
+
+	user 	= document.inscription.user.value;
 	pass	= document.inscription.pass.value;
-	sign	= hex_sha1(nom+prenom+pass); // hashage du mdp qui ne doit pas circuler sur le reseau
+	sign	= hex_sha1(user+pass); // hashage du mdp qui ne doit pas circuler sur le reseau
 	document.inscription.pass.value = document.inscription.confpass.value = sign;
 	return true ; // envoie le formulaire
 }

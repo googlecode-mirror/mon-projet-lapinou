@@ -15,7 +15,6 @@ CREATE TABLE IF NOT EXISTS `proprietaire` (
   `region` varchar(30) DEFAULT NULL COMMENT 'region',
   `mail` varchar(60) NOT NULL COMMENT 'mail',
   `passwd` varchar(40) NOT NULL COMMENT 'mot de passe', -- modif dom 02-12-2013 : mémorise un code de hashage sha1
-  `cle` int(10) NULL COMMENT 'cle aleatoire pour le hashage initialisé à chaque login',
   PRIMARY KEY (`identifiant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
