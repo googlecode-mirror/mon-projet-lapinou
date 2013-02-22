@@ -11,8 +11,14 @@
 	<meta name="description" content="site de rencontre des lapinous">
 	<meta name="keywords" content="lapins rencontre date amitie amour">
 	<link rel="stylesheet" type="text/css" href="styles/presentation_style.css" />
+	<script type="text/javascript" language="Javascript" src="scripts/prototype.js"></script>
+	<script type="text/javascript" language="Javascript" src="scripts/jquery.min.js"></script>
+	<script type="text/javascript" language="Javascript" src="scripts/chat.js"></script>
 </head>
 <body>
+<?php 
+	include("include/chat.inc.php");
+?>
 <div class="corps">
 <header>
 <div class="bandeau">
@@ -88,10 +94,16 @@
 </div>
 <div id="messagerie"><p> messagerie</p>
 </div>
-<div id="tchat"><p> tchat</p>
+<?php
+	if( isset($_SESSION['identifiant']) ){ //initialise ailleurs (connexion membre)
+		echo "<div id=\"tchat\"><p> tchat</p>";
+		echo "<img src=\"img/lapiphone.png\" /><br/>";
+		echo "<button type=\"button\" onclick=\"javascript:montrer_lapiphone();\">afficher</button><br/>";
+		echo "<button type=\"button\" onclick=\"javascript:cacher_lapiphone();\">masquer</button>";
+		echo "</div>";
+	}
+?>
 </div>
-</div>
-
 <br class="retour" />
 
 <br />
