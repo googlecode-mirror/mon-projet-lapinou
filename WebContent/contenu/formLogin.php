@@ -22,20 +22,26 @@
 	echo '<script type="text/javascript" language="Javascript">var randhash = ' . $_SESSION['hash'] . '</script>';
 	
 	
-	
+	// Interdire les tentatives de ,connexion sans javascript
 	
 ?>
 	<!--formulaire inscription proprietaire-->
+	<noscript>
+		<p>Votre navigateur ne prend pas en charge javascript : vous ne pouvez pas vous connecter !
+		</p>
+	</noscript>
 	<script type="text/javascript" language="Javascript" src="scripts/login.js"></script>
 	<script type="text/javascript" language="Javascript" src="scripts/sha1.js"></script>
-	<p name="loginMessage"><?php if (isset($_SESSION['mesLogin'])) echo $_SESSION['mesLogin']; ?></p>
-	<form name="login" method="post" action="index.php" onsubmit="loginHash();"> <!-- modif dom 19/02/2013 : sécurisation -->
-	<fieldset>
-		<legend>Connexion</legend>
-		<table>
-			<tr><td><label>Nom d'utilisateur :</label></td><td><input type="text" name="user"/> </td></tr>	
-			<tr><td><label>Password :</label></td><td><input type="password" name="pass"/></td></tr>
-		</table>
-		<input type="submit" name="login" value="Connexion"/>
-	</fieldset>
-	</form>
+	<script type="text/javascript" language="Javascript">
+document.write('	<p name="loginMessage"><?php if (isset($_SESSION['mesLogin'])) echo $_SESSION['mesLogin']; ?></p> ');
+document.write('	<form name="login" method="post" action="contenu/login.php" onsubmit="loginHash();"> <!-- modif dom 19/02/2013 : sécurisation -->');
+document.write('	<fieldset>');
+document.write('		<legend>Connexion</legend>');
+document.write('		<table>');
+document.write('			<tr><td><label>Nom d\'utilisateur :</label></td><td><input type="text" name="user"/> </td></tr>	');
+document.write('			<tr><td><label>Password :</label></td><td><input type="password" name="pass"/></td></tr>');
+document.write('		</table>');
+document.write('		<input type="submit" name="login" value="Connexion"/>');
+document.write('	</fieldset>');
+document.write('	</form>');
+	</script>

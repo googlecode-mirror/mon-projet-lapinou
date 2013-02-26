@@ -6,7 +6,9 @@
 // Cyril THURIER                          //
 ////////////////////////////////////////////
 
-//TODO : encryptage du mot de passe (cf Dominique ?)
+//DONE : encryptage du mot de passe (dominique) : il est réalisé à la source en javascript
+// le mot de passe est haché en sha1 : il ne circule jamais sur le web
+// sauf si js n'est pas activé...
 
 /********************
  * variables utiles *
