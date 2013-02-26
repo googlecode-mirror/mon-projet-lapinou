@@ -76,11 +76,77 @@ if( $erreur ){
 		'&nom='.urlencode($nom).'&prenom='.urlencode($prenom));
 }else{
 	//sinon OK
+	
+	// modif Dominique
+	// politique :
+	// 	si l'utilisateur est déjà logé : il peut mettre son compte à jour
+	// 	sinon, on interdit la création d'un identifiant déjà existant
+	// et on interdit la création d'un nouveau compte à un utilisateur déjà connécté
+	session_start();
+	if (isset($_SESSION['identifiant'])) {
+		if ($user != $_SESSION['identifiant']) {
+			// on interdit la création d'un nouveau compte pour un utilisateur logé
+			$message = "Vous ne pouvez pas créer un nouveau compte.\nSi vous souhaitez modifier votre compte, vérifiez votre identifiant.\nVous ne pouvez pas modifier votre identifiant.";
+			//renvoi tout sauf mots de passe, mail, code postal (parametres en GET )
+			header('Location: ../index.php?page=inscription&mess='.urlencode($message).'&user='.urlencode($user).
+			'&nom='.urlencode($nom).'&prenom='.urlencode($prenom));		
+		} else { // il s'agit d'une modification du compte
+			require("connexion.inc.php");
+			connect(); //connexion MySQL
+			$sql = 	"UPDATE proprietaire " .
+					"SET 	".
+							"nom			= '".$nom."',".
+							"prenom			= '".$prenom."',".
+							"code_postal	= '".$codepostal."',".
+							"region			= '".$region."',".
+							"mail			= '".$email."',".
+							"passwd			= '".$password."'".
+					"WHERE identifiant = '".$user."'";
+			if ( ! mysql_query($sql) ){
+				$message = $sql." \nun probleme s'est produit.".mysql_error();
+				//renvoi tout sauf mots de passe, mail, code postal (parametres en GET )
+				header('Location: ../index.php?page=inscription&mess='.urlencode($message).'&user='.urlencode($user).
+				'&nom='.urlencode($nom).'&prenom='.urlencode($prenom));		
+				exit(0);
+				
+			} else {
+				$message = "Compte mis à jour";
+				//goto profile page
+				header('Location: ../index.php?page=profil&user='.urlencode($user));	
+				exit(0);
+			}
+		}			
+	}
+	
+	
 	//tester si l'identifiant existe dejà
 	require("connexion.inc.php");
 	connect(); //connexion MySQL
 	
-	//TODO verifier les doublons -----------------------------------***
+	// verifier les doublons : dominique le 26/02
+	// On est certain ici que c'est une création de nouveau compte qui est demandé
+
+	$sql = "SELECT * FROM proprietaire WHERE identifiant = '".$user."'";
+	$resultat = mysql_query($sql);
+	if ( !$resultat  ){
+		$message = $sql." \nun probleme s'est produit.".mysql_error();
+		disconnect();  //deconnexion MySQL
+		//renvoi tout sauf mots de passe, mail, code postal (parametres en GET )
+		header('Location: ../index.php?page=inscription&mess='.urlencode($message).'&user='.urlencode($user).
+			'&nom='.urlencode($nom).'&prenom='.urlencode($prenom));	
+		exit(0);	
+	} else {
+		if (mysql_num_rows($resultat) > 0) { // l'identifiant existe déjà
+			// il peut s'agir d'une mise à jour des informations du compte
+
+			$message = "Un utilisateur possède déjà cet identifiant : choisissez un autre identifiant";
+			disconnect();  //deconnexion MySQL
+			//renvoi tout sauf mots de passe, mail, code postal (parametres en GET )
+			header('Location: ../index.php?page=inscription&mess='.urlencode($message).'&user='.urlencode($user).
+			'&nom='.urlencode($nom).'&prenom='.urlencode($prenom));	
+			exit(0);
+		}
+	}
 	
 	//insertion	 
 	$sql = "INSERT INTO proprietaire (identifiant, nom, prenom, code_postal, region, mail, passwd) ".
@@ -94,8 +160,7 @@ if( $erreur ){
 	}else{
 		//c'est bon
 		
-		//session id
-		session_start();
+
 		//if( ! isset($_SESSION['identifiant']) ){  // modif dom : dans tous les cas réinitialiser l'identifiant
 			$_SESSION['identifiant'] =$user;//
 			session_regenerate_id(true);
