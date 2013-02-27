@@ -46,7 +46,7 @@
 			
 			
 			// recherche de l'utilisateur user
-			$rq = "SELECT passwd FROM proprietaire WHERE identifiant = '" . mysql_real_escape_string($_POST['user']) . "'";
+			$rq = "SELECT id_profil, passwd FROM ${prefixe}proprietaire WHERE identifiant = '" . mysql_real_escape_string($_POST['user']) . "'";
 			$result = mysql_fetch_assoc(mysql_query($rq));
 			
 			
@@ -78,6 +78,7 @@
 			$_SESSION['identifiant'] = $_POST['user'];
 			session_regenerate_id(true);
 			$_SESSION['mesLogin'] = "";
+			$_SESSION['mid'] = $result['id_profil'];
 			header("location: ".$ch."index.php");
 			exit(0);
 		}
