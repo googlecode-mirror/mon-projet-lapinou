@@ -36,7 +36,7 @@ echo "'$lid ".isset($lid)."'";*/
 		exit;
 	}
 
-	if (!isset($mid) && !isset($_SESSION['lid']) {
+	if (!isset($mid) && !isset($_SESSION['lid'])) {
 	//gestion de l'erreur
 	//à priori inutile avec la connexion ; conservé pour éviter un appel direct
 		echo "<div class='erreur'>\nVous devez être identifié pour accéder à la messagerie.</div>\n";
@@ -59,6 +59,8 @@ ref.src="scripts/ajax.js";
 ref.type="text/javascript";
 document.getElementsByTagName("head")[0].appendChild(ref);
 </script>
+<script type="text/javascript" language="Javascript" src="scripts/ajax.js"></script>
+<script type="text/javascript" language="Javascript" src="scripts/messagerie.js"></script>
 
 
 <?php
@@ -133,8 +135,27 @@ document.getElementsByTagName("head")[0].appendChild(ref);
 		}
 	}
 	
+
+	$liste_disc=requeteObj($req_disc);
+/* echo "<pre>";
+print_r($liste_disc);
+echo "</pre>"; */
+	if ($liste_disc!==null) {
+	//affichage de la messagerie
+		$code="<div class='boite'>\n";
+		$code.=habille_boite($liste_disc);
+		$code.="<div class='message' id='message'></div>\n";
+		$code.="</div>\n";
+		echo $code;
+	} else
+		echo "<i>Aucun profil trouvé.</i> ".mysql_error()." ".$req_disc;
+
+//est-ce toujours nécessaire ? La connexion est peut-être encore utile => l'ajouter systématiquement dans un document générique (moteur) ?
+	disconnect();
+
+}
 ?>
-<script>
+<!--  script>
 cols=new Array("titre","date","nom","proprio");
 function loadXMLDoc(url,no,dernier) {
 	var xmlhttp;
@@ -296,27 +317,8 @@ function formReponse(no,disc) {
 //	alert(el.innerHTML.match(/.*/i));
 	el.innerHTML=el.innerHTML.replace(motif,txt);
 }
-</script>
+</script -->
 
 <?php 
 //$pid=$_SESSION['pid'];
-
-	$liste_disc=requeteObj($req_disc);
-/* echo "<pre>";
-print_r($liste_disc);
-echo "</pre>"; */
-if ($liste_disc!==null) {
-	//affichage de la messagerie
-	$code="<div class='boite'>\n";
-	$code.=habille_boite($liste_disc);
-	$code.="<div class='message' id='message'></div>\n";
-	$code.="</div>\n";
-	echo $code;
-} else
-echo "<i>Aucun profil trouvé.</i> ".mysql_error()." ".$req_disc;
-
-//est-ce toujours nécessaire ? La connexion est peut-être encore utile => l'ajouter systématiquement dans un document générique (moteur) ?
-disconnect();
-
-}
 ?>

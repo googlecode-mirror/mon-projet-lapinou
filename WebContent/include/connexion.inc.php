@@ -35,7 +35,7 @@ if (strcasecmp($serveur,"arnould.f.free.fr")==0) {
  **************/
 function connect(){
 //variables globales
-	global $cnx, $bdd_cnx;
+	global $cnx, $bdd_cnx,$serveur;
 	
 	if ($cnx!==null)
 	//déjà connecté : retourner la valeur courante
