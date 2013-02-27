@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `proprietaire` (
   `code_postal` int(5) NOT NULL COMMENT 'code postal',
   `region` varchar(30) DEFAULT NULL COMMENT 'region',
   `mail` varchar(60) NOT NULL COMMENT 'mail',
-  `passwd` varchar(40) NOT NULL COMMENT 'mot de passe', -- modif dom 02-12-2013 : mÃ©morise un code de hashage sha1
+  `passwd` varchar(40) NOT NULL COMMENT 'mot de passe', -- modif dom 02-12-2013 : memorise un code de hashage sha1
   PRIMARY KEY (`identifiant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `lapin` (
   `passwdlap` varchar(40) NOT NULL COMMENT 'mot de passe du lapin', 
   `clelap` int(10) NULL COMMENT 'cle aleatoire pour le hashage du lapin initialisée à chaque login',
   `identifiant` varchar(30) NOT NULL COMMENT 'identifiant du proprietaire',
-  PRIMARY KEY (`idLap`)
-  constraint FKLapinProprio foreign key (identifiant) references proprietaire (identifiant) on delete cascade);
+  PRIMARY KEY (`idLap`),
+  foreign key (`identifiant`) references `proprietaire` (`identifiant`) on delete cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
