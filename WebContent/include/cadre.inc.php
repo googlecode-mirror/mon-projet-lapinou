@@ -16,6 +16,12 @@ else {
 		$redirige = true;
 	}
 	
+	if ($_GET['page']=='messagerie') {
+		//!!! à priori devrait être inclu dans une page de profil et pas être une page en soi
+		include("include/messagerie.php");
+		$redirige = true;
+	}
+	
 	// à compléter
 	
 	
