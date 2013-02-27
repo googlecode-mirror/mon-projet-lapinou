@@ -88,7 +88,7 @@ function loadXMLDoc(url,no,dernier) {
 //        alert(disc);
         	el=document.getElementById('message');
 //        el.innerHTML=txt;
-        	if (dernier)
+        //	if (dernier)
             	txt=txt+"<form><input type='button' name='repondre' value='Répondre' onclick=\"formReponse("+no+","+disc+")\"></form>";
         	el.innerHTML=txt;
 		} else
