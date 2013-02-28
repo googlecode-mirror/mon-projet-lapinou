@@ -9,3 +9,9 @@ X gérer l'ajout d'un nouveau message à la discussion
 - vérifier avec les formulaire :
 	+ si on peut forcer son contenu à être envoyé dans un charset particulier
 	+ si le navigateur envoie le charset associé.
+	
+- css de la messagerie
+- mettre à jour les messages de la discussion complétée
+- proposer une nouvelle discussion (si possible) et gérer son ajout/affichage
+- rendre les formulaires corrects
+- tester les formulaires en javascript avant envoi.

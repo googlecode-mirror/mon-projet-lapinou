@@ -52,7 +52,7 @@ var reponseMessage = function (xmlhttp,x) {
 }
 
 
-var reponseErreur = function () {
+var reponseErreur = function (xmlhttp,x) {
 // x.nodeName=="erreur" normalement
 	x=donneRacine(xmlhttp,"contexte");
 	try {
@@ -68,6 +68,7 @@ var reponseErreur = function () {
 		txt="";
 	}
 //!!! autre fenêtre ?
+	alert(ctxt+"\n"+txt);
 }
 
 

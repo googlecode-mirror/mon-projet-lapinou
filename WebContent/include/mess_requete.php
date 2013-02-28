@@ -5,7 +5,7 @@ require_once "sql.php";
 
 function xmlErreur($message) {
 	header('Content-Type: application/xml');
-	$data="<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?> \n<erreur>";
+	$data="<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<erreur>";
 	$data.="<contexte>ajout messagerie</contexte>\n";
 	$data.="<message>$message</message>\n";
 	$data.="</erreur>";
@@ -32,7 +32,7 @@ if (connect()) {
 			$liste_mess=requeteObj($req_mess);
 
 			header('Content-Type: application/xml');
-			$data="<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?> \n<boite>";
+			$data="<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<boite>";
 			foreach ($liste_mess as $mess) {
 				$data.="<message><id>$mess->id_mess</id><titre>$mess->titre</titre><nom>$mess->nomL</nom><date>$mess->date</date><proprio>$mess->infos</proprio></message>\n";
 			}
@@ -47,7 +47,7 @@ if (connect()) {
 				$corps=requete_champ_unique($req_mess);
 
 				header('Content-Type: application/xml');
-				$data="<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?> \n<message>";
+				$data="<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<message>";
 				$data.="<corps>$corps</corps>";
 				$data.="\n</message>";
 				echo $data;
@@ -80,7 +80,7 @@ if (connect()) {
 						WHERE id_disc='$id_disc' and l.id_profil='$mid'";
 				$lid=requete_champ_unique($req_id);
 				if (!isset($lid)) {
-					xmlErreur("Aucun lapin n'est identifié. $mid '".implode($_SESSION)."' $req_id");
+					xmlErreur("Aucun lapin n'est identifié.");
 					$ok=false;
 				}
 			} else
@@ -91,7 +91,7 @@ if (connect()) {
 				$res=requete_champ_unique($req_ins);
 
 				header('Content-Type: application/xml');
-				$data="<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?> \n<messagerie>";
+				$data="<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<messagerie>";
 				$data.="<contexte>ajout</contexte>\n";
 				$data.="<retour>ok</retour>\n";
 				$data.="</messagerie>";
@@ -103,11 +103,11 @@ if (connect()) {
 //!!! à tester
 	if (!isset($_GET['corps'])) {
 		if (isset($_GET['id_disc'])) {
-			echo "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?> \n<boite>\n</boite>";
+			echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<boite>\n</boite>";
 		} else
 			if (isset($_GET['id_mess'])) {
 			//!!! à tester
-				echo "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?> \n<boite>\n</boite>";
+				echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<boite>\n</boite>";
 			}
 	} else {
 	//gestion de l'erreur
