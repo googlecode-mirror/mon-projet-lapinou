@@ -28,8 +28,9 @@ function loadXMLDoc(traitement) {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 		//réponse reçue sans erreur : analyse
 //!!! tester si XML ou texte brut.
+/*			if (xmlhttp.responseXML==null)
+				alert (xmlhttp.responseText);*/
 			x=xmlhttp.responseXML.documentElement;
-//			alert (xmlhttp.responseText);
 			if (x.nodeName=="erreur")
 				reponseErreur(xmlhttp,x);
 			else

@@ -1,6 +1,8 @@
 
 cols=new Array("titre","date","nom","proprio");
 
+//fonctions de traitement des réponses obtenues par ajax
+
 var reponseBoite = function (xmlhttp,x) {
 // x.nodeName=="boite" normalement
 	//réponse : liste des messages de cette discussion
@@ -88,11 +90,39 @@ var reponseMessagerie = function (xmlhttp,x) {
 		var motif = /<form[^]*form>/i;
 		var el=document.getElementById("texte");
 		el.innerHTML=el.innerHTML.replace(motif,"");
-//remettre à jour la messagerie
-//!!! récupérer le message après insertion ou relancer le clic (remettre onclic à jour et trouver no)
-//   ouvrir_fil(no);
+	//remettre à jour la messagerie : lancer le clic depuis cette fonction
+	//d'abord : vider la liste. Il n'est pas nécessaire d'inverser toutes 
+	//les opérations de ouvrir_fil pour remettre dans l'état initial
+		var el=document.getElementById('li'+paramAjax['disc']);
+	//contenu à charger : vider le contenu actuel (liste)
+		var motif = /<ul>[^]*<\/ul>/i;
+		el.innerHTML=el.innerHTML.replace(motif,"");
+	//recharger les messages de la discussion
+		ouvrir_fil(paramAjax ["disc"]);
 	}
 }
+
+
+var reponseDiscussion = function (xmlhttp,x) {
+// x.nodeName=="discussion" normalement
+	//Rq: on ne se sert pas de contexte pour l'instant
+	x=donneRacine(xmlhttp,"retour");
+	try {
+		txt=x[0].firstChild.nodeValue;
+  	//!!!affichage différent selon le contexte ?
+	} catch (er) {
+		alert(er+"Erreur ! Veuillez recommencer"+txt);
+	}
+//	alert(txt);
+	if (txt=="ok") {
+    //recharger la page pour afficher les discussions
+	//!!! cela ferme toutes les branches !
+	alert("rechargement ...");
+		window.location.reload();
+	}
+}
+
+//fonctions de gestion des requêtes ajax
 
 function ouvrir_fil(no) {
 	paramAjax ["url"]="include/mess_requete.php?id_disc="+no;
@@ -118,6 +148,16 @@ function ajout_message() {
 	loadXMLDoc(reponseMessagerie);
 	}
 
+function ajout_discussion(){
+	el=document.discussion;
+	//vérification des données;
+	//construction de la requête
+	req="lid="+el.lid.value+"&sujet="+el.sujet.value+"&titre="+el.intitule.value+"&corps="+el.corps.value+"&id_dest="+el.id_dest.value;
+//alert(el+" "+req)
+	paramAjax ["url"]="include/mess_requete.php?"+req;
+	loadXMLDoc(reponseDiscussion);
+}
+
 function formReponse(no,disc) {
     el=document.getElementById('texte');
 	txt="<form action='#' method='get' name='reponse' onsubmit='ajout_message();return false'>";
@@ -131,7 +171,6 @@ function formReponse(no,disc) {
 //	alert(el.innerHTML.match(/.*/i));
 	el.innerHTML=el.innerHTML.replace(motif,txt);
 }
-
 
 function plusmoins(no) {
 	el=document.getElementById('li'+no);
