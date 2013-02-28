@@ -30,7 +30,24 @@ function loadXMLDoc(traitement) {
 //!!! tester si XML ou texte brut.
 			x=xmlhttp.responseXML.documentElement;
 //			alert (xmlhttp.responseText);
-			traitement(xmlhttp,x);
+			if (x.nodeName=="erreur") {
+				x=xmlhttp.responseXML.documentElement.getElementsByTagName("contexte");
+	       		try {
+	              	ctxt=x[0].firstChild.nodeValue;
+	              	//!!!affichage différent selon le contexte ?
+	            } catch (er) {
+	              	ctxt="";
+	            }
+				x=xmlhttp.responseXML.documentElement.getElementsByTagName("message");
+	       		try {
+	              	txt=x[0].firstChild.nodeValue;
+	            } catch (er) {
+	              	txt="";
+	            }
+				//!!! autre fenêtre ?
+				alert(txt);
+			} else
+				traitement(xmlhttp,x);
 		}
   //!!! et ajouter un lien pour afficher le message puis y répondre (si le dernier)
 	}

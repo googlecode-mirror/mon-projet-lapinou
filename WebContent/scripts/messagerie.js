@@ -12,7 +12,7 @@ var reponseBoite = function (xmlhttp,x) {
 /* il faudrait indiquer id_desc pour pouvoir ajouter un message à la bonne discussion*/
 
 		var noMess=valeurEnfantSeul(x,i,"id");
-		var clic=" onclick=\"ouvrir_message("+noMess+","+(i==x.length-1)+")\"";
+		var clic=" onclick=\"ouvrir_message("+noMess+")\"";
 		txt=txt+"<li>\n";
 		for (j=0;j<cols.length;j++) {
 			xx=x[i].getElementsByTagName(cols[j]);
@@ -47,8 +47,7 @@ var reponseMessage = function (xmlhttp,x) {
 //!!! cette valeur devrait venir de paramAjax
 //	var disc=li.parentNode.parentNode.parentNode.getAttribute("id").substr(2,3);
 	var el=document.getElementById('texte');
-	if (paramAjax['dernier'])
-		txt=txt+"<form><input type='button' name='repondre' value='Répondre' onclick=\"formReponse("+paramAjax['mess']+","+paramAjax['disc']+")\"></form>";
+	txt=txt+"<form><input type='button' name='repondre' value='Répondre' onclick=\"formReponse("+paramAjax['mess']+","+paramAjax['disc']+")\"></form>";
 	el.innerHTML=txt;
 }
 
@@ -72,7 +71,7 @@ var reponseErreur = function () {
 }
 
 
-var reponseMessagerie = function () {
+var reponseMessagerie = function (xmlhttp,x) {
 // x.nodeName=="messagerie" normalement
 	//Rq: on ne se sert pas de contexte pour l'instant
 	x=donneRacine(xmlhttp,"retour");
@@ -82,6 +81,7 @@ var reponseMessagerie = function () {
 	} catch (er) {
 		alert(er+"Erreur ! Veuillez recommencer"+txt);
 	}
+//	alert(txt);
 	if (txt=="ok") {
     //supprimer le formulaire
 		var motif = /<form[^]*form>/i;
@@ -100,10 +100,47 @@ function ouvrir_fil(no) {
 	loadXMLDoc(reponseBoite);
 }
 
-function ouvrir_message(no,dernier) {
+function ouvrir_message(no) {
 	paramAjax ["url"]="include/mess_requete.php?id_mess="+no;
 	paramAjax ["mess"]=no;
-	paramAjax ["dernier"]=dernier;
 	loadXMLDoc(reponseMessage);
 	}
 
+function ajout_message() {
+	el=document.reponse;
+	//vérification des données;
+	//construction de la requête
+	req="id_mess="+el.id_mess.value+"&id_disc="+el.id_disc.value+"&titre="+el.titre.value+"&corps="+el.corps.value;
+//alert(req);
+	paramAjax ["url"]="include/mess_requete.php?"+req;
+	paramAjax ["disc"]=el.id_disc.value;
+	loadXMLDoc(reponseMessagerie);
+	}
+
+function formReponse(no,disc) {
+    el=document.getElementById('texte');
+	txt="<form action='#' method='get' name='reponse' onsubmit='ajout_message();return false'>";
+	//on pourrait passer id_disc ou le récupérer depuis le message précedent (id_mess);
+	txt+="<input type='hidden' name='id_mess' value='"+no+"'>";
+	txt+="<input type='hidden' name='id_disc' value='"+disc+"'>";
+	txt+="<input type='texte' name='titre'>";
+	txt+="<textarea name='corps'></textarea>";
+	txt+="<input type='submit' name='submit' value='Envoyer' />\n</form>";
+	motif=/<form>.*<.form>/i;
+//	alert(el.innerHTML.match(/.*/i));
+	el.innerHTML=el.innerHTML.replace(motif,txt);
+}
+
+
+function plusmoins(no) {
+	el=document.getElementById('li'+no);
+	div1=el.getElementsByTagName("div")[0];
+	ul=el.getElementsByTagName("ul");
+	if (div1.innerHTML=="-") {
+		ul[0].style.display="none";
+		div1.innerHTML="+";
+	} else {
+		ul[0].style.display="block";
+		div1.innerHTML="-";
+	}
+}
