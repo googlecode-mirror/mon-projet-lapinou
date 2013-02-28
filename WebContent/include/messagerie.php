@@ -16,7 +16,10 @@ autre lapin				mid, (pid), fiche		lip
 
 require_once "sql.php";
 
+/*
+$_SESSION['fiche']=8;
 print_r($_SESSION);
+*/
 
 if (!isset($_SESSION["identifiant"])) {
 //non connecté : erreur
@@ -72,7 +75,7 @@ document.getElementsByTagName("head")[0].appendChild(ref);
 				<div onclick=\"ouvrir_fil($disc->id_disc)\">+</div>
 				<div>$disc->intitule</div>
 				<div>$disc->date</div>
-				<div>$disc->infos</div></li>\n";
+				<div>$disc->nom $disc->prenom</div></li>\n";
 		}
 		$code.="</ul>\n</div>\n";
 		return $code;
@@ -145,6 +148,31 @@ echo "</pre>"; */
 		$code="<div class='boite'>\n";
 		$code.=habille_boite($liste_disc);
 		$code.="<div class='message' id='texte'></div>\n";
+	
+	//affichage du formulaire de nouvelle discussion
+	if (isset($_SESSION['fiche'])) {
+	//lapins du membre
+		$req_lapin="SELECT idLap, nomlap FROM lapin_lapin WHERE `id_profil`='$mid'";
+		$lapins=requeteObj($req_lapin);
+		//normalement il devrait toujours y avoir au moins un lapin
+		//mais s'il n'y en a pas (mort du dernier) ne rien afficher
+		if ($lapins!==null) {
+			$code.="<div id='nx_discussion'>";
+			$code.="<form action='#' method='get' name='discussion' onsubmit='ajout_discussion();return false;'>\n";
+			$code.="<label>Auteur :</label><select name='lid'>";
+			foreach ($lapins as $lapin)
+				$code.="<option value='$lapin->idLap'>$lapin->nomlap</option>";
+			$code.="</select>";
+			$code.="<label>Thème :</label><input type='text' name='sujet' value=''>";
+			$code.="<br />Détails<br /><label>Titre :</label><input type='text' name='intitule' value=''>";
+			$code.="<label>Message :</label><textarea name='corps'></textarea>";
+//mid est passé par la session
+			$code.="<input type='hidden' name='id_dest' value='".$_SESSION['fiche']."'>";
+			$code.="<input type='submit' name='submit' value='Envoyer' />\n</form>";
+			$code.="</div>";
+		}
+	}
+		
 		$code.="</div>\n";
 		echo $code;
 	} else
@@ -152,7 +180,6 @@ echo "</pre>"; */
 
 //est-ce toujours nécessaire ? La connexion est peut-être encore utile => l'ajouter systématiquement dans un document générique (moteur) ?
 	disconnect();
-
 }
 
 //$pid=$_SESSION['pid'];
