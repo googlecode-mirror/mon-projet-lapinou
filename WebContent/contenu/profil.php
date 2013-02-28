@@ -13,7 +13,12 @@ if (!isset($_GET['user'])) {
 $user = $_GET['user']; //TODO si vide ?????????????????
 
 require_once("include/connexion.inc.php");
-connect(); //connexion MySQL
+	if (!connect()) {
+	//gestion de l'erreur
+		echo "<div class='erreur'>\nLa messagerie n'est pas accessible actuellement.</div>\n";
+		exit;
+	}
+//connect(); //connexion MySQL
 
 //recherche de la personne		
 $sql = "SELECT * FROM proprietaire WHERE identifiant = '".$user."';";
