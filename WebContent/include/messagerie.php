@@ -144,7 +144,7 @@ echo "</pre>"; */
 	//affichage de la messagerie
 		$code="<div class='boite'>\n";
 		$code.=habille_boite($liste_disc);
-		$code.="<div class='message' id='message'></div>\n";
+		$code.="<div class='message' id='texte'></div>\n";
 		$code.="</div>\n";
 		echo $code;
 	} else
