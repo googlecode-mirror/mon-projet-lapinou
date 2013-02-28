@@ -22,6 +22,11 @@ else {
 		$redirige = true;
 	}
 	
+	if ($_GET['page']=='profil') {
+		include("contenu/profil.php");
+		$redirige = true;
+	}
+	
 	// à compléter
 	
 	
