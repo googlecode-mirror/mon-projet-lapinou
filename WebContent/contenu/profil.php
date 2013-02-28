@@ -36,12 +36,14 @@ if( ! $personne ) { // user n'existe pas dans la base
 */
 ?>
 <!-- HTML  -------------------------------------------->
-<h2>Profil de <?php echo $user; ?></h2>
-<p>Nom : <?php echo $personne['nom']; ?></p>
-<p>Prenom : <?php echo $personne['prenom']; ?></p>
-<p>Localisation : <?php echo $personne['code_postal']." (".$personne['region'].")"; ?></p>
-<p>Mail : <?php echo $personne['mail']; ?></p>
+<article>
+	<h2>Profil de <?php echo $user; ?></h2>
+	<p>Nom : <?php echo $personne['nom']; ?></p>
+	<p>Prenom : <?php echo $personne['prenom']; ?></p>
+	<p>Localisation : <?php echo $personne['code_postal']." (".$personne['region'].")"; ?></p>
+	<p>Mail : <?php echo $personne['mail']; ?></p>
 <!-- lapin -->
+<!-- TODO -->
 <?php
 if( $personne['photo']){
 	echo "\n<img src='".$personne['photo']."' alt='".$user."' title='".$user."' />";
@@ -54,7 +56,7 @@ if( $personne['photo']){
 	echo "\n</table></fieldset></form>";
 }
 ?>
-
+</article>
 </body>
 </html>
 

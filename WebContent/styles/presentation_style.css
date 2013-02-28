@@ -270,7 +270,14 @@ width:100px;
 	z-index:2;
 }
 
-
+article {
+	width:600px;
+	margin-left:auto;
+	margin-right:auto;
+	padding:1em;
+	border:1px solid black;
+	background-color:#ffe7b2;
+}
 
 
 	
