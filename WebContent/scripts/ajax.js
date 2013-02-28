@@ -29,7 +29,7 @@ function loadXMLDoc(traitement) {
 		//réponse reçue sans erreur : analyse
 //!!! tester si XML ou texte brut.
 			x=xmlhttp.responseXML.documentElement;
-			alert (traitement.toString());
+//			alert (xmlhttp.responseText);
 			traitement(xmlhttp,x);
 		}
   //!!! et ajouter un lien pour afficher le message puis y répondre (si le dernier)

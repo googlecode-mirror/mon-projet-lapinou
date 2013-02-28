@@ -34,7 +34,7 @@ var reponseBoite = function (xmlhttp,x) {
 	el.innerHTML=el.innerHTML+txt;
 }
 
-var reponseMessage = function () {
+var reponseMessage = function (xmlhttp,x) {
 // x.nodeName=="message" normalement
 	//réponse : corps du message
 	x=donneRacine(xmlhttp,"corps");
@@ -46,10 +46,10 @@ var reponseMessage = function () {
 	var li=document.getElementById('mess'+paramAjax['mess']);
 //!!! cette valeur devrait venir de paramAjax
 //	var disc=li.parentNode.parentNode.parentNode.getAttribute("id").substr(2,3);
-	var el=document.getElementById('message');
+	var el=document.getElementById('texte');
 	if (paramAjax['dernier'])
 		txt=txt+"<form><input type='button' name='repondre' value='Répondre' onclick=\"formReponse("+paramAjax['mess']+","+paramAjax['disc']+")\"></form>";
-	el.innerHTML=txt;		
+	el.innerHTML=txt;
 }
 
 
@@ -85,7 +85,7 @@ var reponseMessagerie = function () {
 	if (txt=="ok") {
     //supprimer le formulaire
 		var motif = /<form[^]*form>/i;
-		var el=document.getElementById("message");
+		var el=document.getElementById("texte");
 		el.innerHTML=el.innerHTML.replace(motif,"");
 //remettre à jour la messagerie
 //!!! récupérer le message après insertion ou relancer le clic (remettre onclic à jour et trouver no)
@@ -99,4 +99,11 @@ function ouvrir_fil(no) {
 	paramAjax ["dernier"]=false;
 	loadXMLDoc(reponseBoite);
 }
+
+function ouvrir_message(no,dernier) {
+	paramAjax ["url"]="include/mess_requete.php?id_mess="+no;
+	paramAjax ["mess"]=no;
+	paramAjax ["dernier"]=dernier;
+	loadXMLDoc(reponseMessage);
+	}
 
