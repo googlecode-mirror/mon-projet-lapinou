@@ -33,7 +33,7 @@
 	<script type="text/javascript" language="Javascript" src="scripts/login.js"></script>
 	<script type="text/javascript" language="Javascript" src="scripts/sha1.js"></script>
 	<script type="text/javascript" language="Javascript">
-document.write('	<p name="loginMessage"><?php if (isset($_SESSION['mesLogin'])) echo $_SESSION['mesLogin']; ?></p> ');
+document.write('	<p name="loginMessage"><?php if (isset($_SESSION['mesLogin'])) echo urlencode($_SESSION['mesLogin']); ?></p> ');
 document.write('	<form name="login" method="post" action="contenu/login.php" onsubmit="loginHash();"> <!-- modif dom 19/02/2013 : sécurisation -->');
 document.write('	<fieldset>');
 document.write('		<legend>Connexion</legend>');
