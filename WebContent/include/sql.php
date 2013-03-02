@@ -40,7 +40,10 @@ function connect(){
 		//!!! à trouver !
 			;
 		else
-			mysql_set_charset('utf8',$cnx);
+			if (function_exists ("mysql_set_charset"))
+				mysql_set_charset('utf8',$cnx);
+			else
+				mysql_query("SET NAMES 'utf8'");
 		$bdd_cnx=mysql_select_db(BASE);
 	}
 	return $cnx;
