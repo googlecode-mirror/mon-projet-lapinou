@@ -40,8 +40,8 @@
 			}
 			
 			// connexion à la base de données
-			//include_once('include/sql.php');
-			include_once($ch."include/connexion.inc.php");
+			include_once($ch.'include/sql.php');
+			//include_once($ch."include/connexion.inc.php");
 			connect();
 			
 			

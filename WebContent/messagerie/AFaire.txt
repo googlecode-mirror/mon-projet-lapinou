@@ -12,6 +12,7 @@ X mettre à jour la liste des messages dans le navigateur.
 	
 - css de la messagerie
 X mettre à jour les messages de la discussion complétée
-- proposer une nouvelle discussion (si possible) et gérer son ajout/affichage
+X proposer une nouvelle discussion (si possible) et gérer son ajout/affichage
 - rendre les formulaires corrects
 - tester les formulaires en javascript avant envoi.
+- mettre à jour la base chez free : tables correctes, valeurs minimales
