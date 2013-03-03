@@ -1,4 +1,8 @@
 <?php
+/*		script de gestion de la messagerie 
+ * 
+ * 		écrit par Florent Arnould	-	13 février 2013
+ */
 /* Notes :
 	mid : identifiant du membre connecté
 	lid : identifiant du lapin courant (fiche affichée) du membre connecté
@@ -150,31 +154,34 @@ echo "</pre>"; */
 		$code.="<div class='message' id='texte'></div>\n";
 	
 	//affichage du formulaire de nouvelle discussion
-	if (isset($_SESSION['fiche'])) {
+		if (isset($_SESSION['fiche'])) {
 	//lapins du membre
-		$req_lapin="SELECT idLap, nomlap FROM lapin_lapin WHERE `id_profil`='$mid'";
-		$lapins=requeteObj($req_lapin);
+			$req_lapin="SELECT idLap, nomlap FROM lapin_lapin WHERE `id_profil`='$mid'";
+			$lapins=requeteObj($req_lapin);
 		//normalement il devrait toujours y avoir au moins un lapin
 		//mais s'il n'y en a pas (mort du dernier) ne rien afficher
-		if ($lapins!==null) {
-			$code.="<div id='nx_discussion'>";
-			$code.="<form action='#' method='get' name='discussion' onsubmit='ajout_discussion();return false;'>\n";
-			$code.="<label>Auteur :</label><select name='lid'>";
-			foreach ($lapins as $lapin)
-				$code.="<option value='$lapin->idLap'>$lapin->nomlap</option>";
-			$code.="</select>";
-			$code.="<label>Thème :</label><input type='text' name='sujet' value=''>";
-			$code.="<br />Détails<br /><label>Titre :</label><input type='text' name='intitule' value=''>";
-			$code.="<label>Message :</label><textarea name='corps'></textarea>";
-//mid est passé par la session
-			$code.="<input type='hidden' name='id_dest' value='".$_SESSION['fiche']."'>";
-			$code.="<input type='submit' name='submit' value='Envoyer' />\n</form>";
-			$code.="</div>";
+			if ($lapins!==null) {
+				$code.="<div id='nx_discussion'>";
+				$code.="<form action='#' method='get' name='discussion' onsubmit='ajout_discussion();return false;'>\n";
+				$code.="<label>Auteur :</label><select name='lid'>";
+				foreach ($lapins as $lapin)
+					$code.="<option value='$lapin->idLap'>$lapin->nomlap</option>";
+				$code.="</select>";
+				$code.="<label>Thème :</label><input type='text' name='sujet' value=''>";
+				$code.="<br />Détails<br /><label>Titre :</label><input type='text' name='intitule' value=''>";
+				$code.="<label>Message :</label><textarea name='corps'></textarea>";
+		//mid est passé par la session
+				$code.="<input type='hidden' name='id_dest' value='".$_SESSION['fiche']."'>";
+				$code.="<input type='submit' name='submit' value='Envoyer' />\n</form>";
+				$code.="</div>";
+			}
 		}
-	}
 		
 		$code.="</div>\n";
 		echo $code;
+	//mettre à jour l'heure de dernière consultation
+		$req_date="INSERT INTO `${prefixe}Consultation` VALUES ('$mid', now()) ON DUPLICATE KEY UPDATE `derniere`=now()";
+		$lapins=requete_champ_unique($req_date);
 	} else
 		echo "<i>Aucun profil trouvé.</i> ".mysql_error()." ".$req_disc;
 

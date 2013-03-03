@@ -92,8 +92,11 @@
 	<?php //modif dominique : sortir le formulaire de login
 	include("contenu/login.php") ?>
 </div>
-<div id="messagerie"><p> messagerie</p>
-</div>
+<!--  nouveaux -->
+	<?php 
+		include("include/nouveaux.php");
+	?>
+<!-- -->
 <?php
 	if( isset($_SESSION['identifiant']) ){ //initialise ailleurs (connexion membre)
 		echo "<div id=\"tchat\"><p> tchat</p>";

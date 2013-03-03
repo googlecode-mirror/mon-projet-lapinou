@@ -48,6 +48,18 @@ CREATE TABLE IF NOT EXISTS `lapin_aSupprimer` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `lapin_Consultation`
+--
+
+CREATE TABLE IF NOT EXISTS `lapin_consultation` (
+  `id_profil` int(11) NOT NULL,
+  `derniere` datetime NOT NULL,
+  PRIMARY KEY (`id_profil`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `lapin_conversation`
 --
 

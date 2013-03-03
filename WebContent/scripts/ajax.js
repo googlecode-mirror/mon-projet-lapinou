@@ -30,6 +30,7 @@ function loadXMLDoc(traitement) {
 //!!! tester si XML ou texte brut.
 /*			if (xmlhttp.responseXML==null)
 				alert (xmlhttp.responseText);*/
+//			alert (xmlhttp.responseText);
 			x=xmlhttp.responseXML.documentElement;
 			if (x.nodeName=="erreur")
 				reponseErreur(xmlhttp,x);
