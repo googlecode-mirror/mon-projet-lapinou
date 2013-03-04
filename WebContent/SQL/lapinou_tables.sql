@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `lapin_aSupprimer` (
 -- Structure de la table `lapin_Consultation`
 --
 
-CREATE TABLE IF NOT EXISTS `lapin_consultation` (
+CREATE TABLE IF NOT EXISTS `lapin_Consultation` (
   `id_profil` int(11) NOT NULL,
   `derniere` datetime NOT NULL,
   PRIMARY KEY (`id_profil`)
