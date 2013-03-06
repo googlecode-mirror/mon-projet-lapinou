@@ -6,6 +6,8 @@
 // Cyril THURIER                          //
 ////////////////////////////////////////////
 
+require_once "sql.php"; // avant les mysql_real_escape_string
+connect();
 //DONE : encryptage du mot de passe (dominique) : il est réalisé à la source en javascript
 // le mot de passe est haché en sha1 : il ne circule jamais sur le web
 // sauf si js n'est pas activé...
@@ -22,6 +24,9 @@ $confirm = mysql_real_escape_string($_POST['confpass']);
 $codepostal = intval($_POST['cp']);
 $region = mysql_real_escape_string($_POST['region']);
 $email = mysql_real_escape_string($_POST['mail']);
+
+
+
 
 /*****************************
  * verifications des donnees *
@@ -91,9 +96,7 @@ if( $erreur ){
 			header('Location: ../index.php?page=inscription&mess='.urlencode($message).'&user='.urlencode($user).
 			'&nom='.urlencode($nom).'&prenom='.urlencode($prenom));		
 		} else { // il s'agit d'une modification du compte
-			require("connexion.inc.php");
-			connect(); //connexion MySQL
-			$sql = 	"UPDATE proprietaire " .
+			$sql = 	"UPDATE lapin_proprietaire " .
 					"SET 	".
 							"nom			= '".$nom."',".
 							"prenom			= '".$prenom."',".
@@ -120,13 +123,11 @@ if( $erreur ){
 	
 	
 	//tester si l'identifiant existe dejà
-	require("connexion.inc.php");
-	connect(); //connexion MySQL
-	
+
 	// verifier les doublons : dominique le 26/02
 	// On est certain ici que c'est une création de nouveau compte qui est demandé
 
-	$sql = "SELECT * FROM proprietaire WHERE identifiant = '".$user."'";
+	$sql = "SELECT * FROM lapin_proprietaire WHERE identifiant = '".$user."'";
 	$resultat = mysql_query($sql);
 	if ( !$resultat  ){
 		$message = $sql." \nun probleme s'est produit.".mysql_error();
@@ -149,7 +150,7 @@ if( $erreur ){
 	}
 	
 	//insertion	 
-	$sql = "INSERT INTO proprietaire (identifiant, nom, prenom, code_postal, region, mail, passwd) ".
+	$sql = "INSERT INTO lapin_proprietaire (identifiant, nom, prenom, code_postal, region, mail, passwd) ".
 			"VALUES ('".$user."','".$nom."','".$prenom."','".$codepostal."','".$region."','".$email."','".$password."');";
 			
 	if ( ! mysql_query($sql) ){

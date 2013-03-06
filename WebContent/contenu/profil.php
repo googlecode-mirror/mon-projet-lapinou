@@ -11,29 +11,22 @@ if (!isset($_GET['user'])) {
 	exit(0);
 }
 $user = $_GET['user']; //TODO si vide ?????????????????
-
-require_once("include/connexion.inc.php");
-	if (!connect()) {
+require_once("include/sql.php");
+if (!connect() ) {
 	//gestion de l'erreur
-		echo "<div class='erreur'>\nLa messagerie n'est pas accessible actuellement.</div>\n";
-		exit;
-	}
-//connect(); //connexion MySQL
-
-//recherche de la personne		
-$sql = "SELECT * FROM proprietaire WHERE identifiant = '".$user."';";
-$resultat = mysql_query($sql);	
-if ( !$resultat  ){
-		echo $sql." \nun probleme s'est produit.".mysql_error();
-		disconnect();  //deconnexion MySQL
-	}	
-$personne = mysql_fetch_array($resultat);
-/*
-if( ! $personne ) { // user n'existe pas dans la base
-	header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
+	echo "<div class='erreur'>\nLa messagerie n'est pas accessible actuellement.</div>\n";
 	exit(0);
 }
-*/
+//recherche de la personne		
+$sql = "SELECT * FROM lapin_proprietaire WHERE identifiant = '".$user."';";
+$resultat = mysql_query($sql);	
+if ( !$resultat  ){
+		disconnect();  //deconnexion MySQL
+		header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
+		exit(0);
+	}	
+$personne = mysql_fetch_array($resultat);
+
 ?>
 <!-- HTML  -------------------------------------------->
 <article>

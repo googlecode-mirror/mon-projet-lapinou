@@ -13,6 +13,9 @@ function hash(bool) {
 	pass	= document.inscription.pass.value;
 	sign	= hex_sha1(user+pass); // hashage du mdp qui ne doit pas circuler sur le reseau
 	document.inscription.pass.value = document.inscription.confpass.value = sign;
+	
+	//alert(document.inscription.user.value+" "+document.inscription.nom.value);
+	
 	return true ; // envoie le formulaire
 }
 
