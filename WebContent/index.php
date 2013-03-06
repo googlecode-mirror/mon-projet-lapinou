@@ -23,8 +23,8 @@
 <header>
 <div class="bandeau">
 <br>
-	<img id="img_coin" src="img/Lapi-bisous.jpg" width="100" alt="Logo site" title="Logo lapin"/><img>
-	<img src="img/LOGO_new.png" alt="LAPI.NET" title="LAPI.NET"></img>
+<img src="img/LOGO_new.png" alt="LAPI.NET" title="LAPI.NET"></img>
+<br>
 </div>
 </header>
 
@@ -35,8 +35,9 @@
         <li>
                 <a href="#">Membres</a>
                 <ul>
-                        <li><a href="index.php?page=login">Connexion</a></li>
                         <li><a href="index.php?page=inscription">Inscription</a></li>
+			<li><a href="index.php?page=messagerie">Messagerie</a></li>
+			<li><a href="index.php?page=profil">Profil</a></li>
                 </ul>
         </li>
 	 <li>
@@ -89,7 +90,7 @@
 
 <div id="droite">
 <div id="connexion">
-	<?php //modif dominique : sortir le formulaire de login
+	<?php 
 	include("contenu/login.php") ?>
 </div>
 <!--  nouveaux -->
@@ -116,7 +117,7 @@
 
 	<img src="img/barre-lapin.gif"  alt="barre" title="barre lapin"/><img>
 	<br>
-	<a href="#" target="_blank" title="Aller à l'accueil">Accueil</a>
+	<a href="index.php" target="_blank" title="Aller à l'accueil">Accueil</a>
 	<span class="portal-pipe">|</span>
 	<a href="#" target="_blank" title="Contactez-nous">Contact</a>
 	<span class="portal-pipe">|</span>

@@ -10,18 +10,18 @@ else {
 		include("contenu/login.php");
 		$redirige = true;
 	}
-	
+	// index.php?page='inscription'
 	if ($_GET['page']=='inscription') {
 		include("contenu/inscription.php");
 		$redirige = true;
 	}
-	
+	// index.php?page='messagerie'
 	if ($_GET['page']=='messagerie') {
 		//!!! à priori devrait être inclu dans une page de profil et pas être une page en soi
 		include("include/messagerie.php");
 		$redirige = true;
 	}
-	
+	// index.php?page='profil'
 	if ($_GET['page']=='profil') {
 		include("contenu/profil.php");
 		$redirige = true;

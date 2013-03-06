@@ -15,39 +15,33 @@ header div {
 	height:150px;
 	text-align:center;
 }
-div.bandeau img#img_coin {
-	float:left;
-}
-h1 {
-	text-align:center;
-	color:#FF5900;
-}
+
 /* Ensemble du menu */
 #menu {
-		font-weight : bold; 
+	font-weight : bold; 
         font-family : Arial; 
         font-size : 14px; 
 }
 /* Menu principal */
 #menu, #menu ul {
-		padding : 0; 
-		margin-left:5%;
-		margin-right:5%;
-		list-style : none; 
+	padding : 0; 
+	margin-left:5%;
+	margin-right:5%;
+	list-style : none; 
         line-height : 30px;
         text-align : center;
 }
  /* Elements du menu principal */ 
 #menu li {
-		display: block;
-	 	width:14%;
+	display: block;
+	 width:14%;
         float : left;
-        border-right : 1px solid transparent; /* on met une bordure transparente à droite de chaque élément */
+        border-right : 1px solid transparent; /* bordure transparente à droite de chaque élément */
 }
  /* Contenu des éléments du menu principal */
 #menu li a {
-		border-radius:5px 5px;
-        display : block; /* on change le type d'élément, les liens deviennent des balises de type block */
+	border-radius:5px 5px;
+        display : block; /* change le type d'élément, les liens deviennent des balises de type block */
         padding : 0; 
         background : #1D702D;        
         color : #fff;
@@ -61,7 +55,7 @@ h1 {
 }
  /* Sous-menu */
 #menu li ul {
-		position: absolute; 
+	position: absolute; 
         visibility:hidden;
         margin:0;
 }
@@ -69,17 +63,17 @@ h1 {
  /* Éléments de sous-menu */
 #menu li ul li {
         border-top : 1px solid transparent; 
-		display: block;
-		clear:both;
-		font-size : 12px;
-		text-align:center;
+	display: block;
+	clear:both;
+	font-size : 12px;
+	text-align:center;
 	 
               
 }
 /* Contenu des éléments du sous-menu */
 #menu li ul li a {
-		border-radius:5px 5px;
-        display : block; /* on change le type d'élément, les liens deviennent des balises de type block */
+	border-radius:5px 5px;
+        display : block; /* change le type d'élément, les liens deviennent des balises de type block */
         background : #00B82D;      
         color : #fff; 
         text-decoration : none; 
@@ -106,7 +100,6 @@ h1 {
 	float:left;
 }
 p {
-	
 	padding: 10px;
 }
 h2 {
@@ -120,40 +113,7 @@ h2 {
 	padding : 0 1% 1% 1%; 
 	text-align:justify;
 }
-
-/*menu sur la droite*/
-#droite {
-	float:left;
-	height:100%;
-	
-	
-}
-div#droite div {
-	width:240px;
-	/*height:200px;
-	*/
-	margin-left:10px;
-	margin-right:10px;
-	margin-top:20px;
-}
-#nouveaux, #tchat {
-	border: 1px solid;
-}
-
-/*pied de page*/
-footer {
-	position:absolute;
-	color:#009533;
-	width: 100%;
-	bottom:0; 
-	text-align: center;
-	
-}
-footer a {
-	color:#009533;
-}
-
-/* formulaire type */
+/* contenu formulaire */
 #contenu form #problemes {
 	display: none ;
 }
@@ -175,16 +135,32 @@ form td {
 	padding-left:4px;
 }
 td + td {
-width:100px;
+	width:100px;
 }
 input {
-width:100px;
+	width:100px;
 }
 
 #contenu .readonly {
 	color:#BAB5AB;
 }
 
+/*menu sur la droite*/
+#droite {
+	float:left;
+	height:100%;
+	
+	
+}
+div#droite div {
+	width:240px;
+	margin-left:10px;
+	margin-right:10px;
+	margin-top:20px;
+}
+#nouveaux, #tchat {
+	border: 1px solid;
+}
 /* lapiphone */
 #lapiphone {
 	position: absolute;
@@ -277,6 +253,19 @@ article {
 	padding:1em;
 	border:1px solid black;
 	background-color:#ffe3a6;
+}
+
+/*pied de page*/
+footer {
+	position:absolute;
+	color:#009533;
+	width: 100%;
+	bottom:0; 
+	text-align: center;
+	
+}
+footer a {
+	color:#009533;
 }
 
 
