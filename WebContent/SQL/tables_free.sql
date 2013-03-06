@@ -5,8 +5,6 @@
 
 -- tables du chat
 
-
-
 -- table utilisateur
 CREATE TABLE IF NOT EXISTS `lapin_utilisateur` (
   `nom` varchar(20) NOT NULL COMMENT 'nom de l''utilisateur',
@@ -16,19 +14,19 @@ CREATE TABLE IF NOT EXISTS `lapin_utilisateur` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- table conversation
-CREATE TABLE IF NOT EXISTS `lapin_conversation` (
+CREATE TABLE IF NOT EXISTS `lapin_tchat_conversation` (
   `id_conversation` int(11) NOT NULL AUTO_INCREMENT COMMENT 'numero de fil de conversation',
   `user1` varchar(20) NOT NULL COMMENT 'utilisateur 1',
   `session_1` datetime NOT NULL COMMENT 'date de la session (user1)',
   `user2` varchar(20) NOT NULL COMMENT 'utilisateur 2',
   `session_2` datetime NOT NULL COMMENT 'date de la session (user2)',
   PRIMARY KEY (`id_conversation`),
-  FOREIGN KEY (`user1`) REFERENCES `utilisateur` (`nom`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`user2`) REFERENCES `utilisateur` (`nom`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`user1`) REFERENCES `lapin_utilisateur` (`nom`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`user2`) REFERENCES `lapin_utilisateur` (`nom`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 -- table message
-CREATE TABLE IF NOT EXISTS `lapin_message` (
+CREATE TABLE IF NOT EXISTS `lapin_tchat_message` (
   `id_message` int(11) NOT NULL AUTO_INCREMENT COMMENT 'numero id du message',
   `conversation` int(11) NOT NULL COMMENT 'numero de la conversation courante',
   `expediteur` varchar(20) NOT NULL COMMENT 'id exped',
@@ -36,9 +34,9 @@ CREATE TABLE IF NOT EXISTS `lapin_message` (
   `texte` text COMMENT 'contenu',
   `date` datetime NOT NULL COMMENT 'date de l''envoi',
   PRIMARY KEY (`id_message`),
-  FOREIGN KEY (`conversation`) REFERENCES `conversation` (`id_conversation`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`expediteur`) REFERENCES `utilisateur` (`nom`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`destinataire`) REFERENCES `utilisateur` (`nom`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`conversation`) REFERENCES `lapin_tchat_conversation` (`id_conversation`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`expediteur`) REFERENCES `lapin_utilisateur` (`nom`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`destinataire`) REFERENCES `lapin_utilisateur` (`nom`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
@@ -82,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `lapin_lapin` (
   `clelap` int(10) NULL COMMENT 'cle aleatoire pour le hashage du lapin initialis�e � chaque login',
   `identifiant` varchar(30) NOT NULL COMMENT 'identifiant du proprietaire',
   PRIMARY KEY (`idLap`),
-  foreign key (`identifiant`) references `proprietaire` (`identifiant`) on delete cascade
+  foreign key (`identifiant`) references `lapin_proprietaire` (`identifiant`) on delete cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -161,13 +159,13 @@ CREATE TABLE IF NOT EXISTS `lapin_Discussion` (
 -- Structure de la table `Lapin`
 --
 
---DROP TABLE IF EXISTS `lapin_Lapin`;
---CREATE TABLE IF NOT EXISTS `lapin_Lapin` (
+-- DROP TABLE IF EXISTS `lapin_Lapin`;
+-- CREATE TABLE IF NOT EXISTS `lapin_Lapin` (
 -- `id_lapin` int(11) NOT NULL AUTO_INCREMENT,
 -- `id_profil` int(11) NOT NULL,
 --  `nomL` varchar(32) NOT NULL,
 --  PRIMARY KEY (`id_lapin`)
---) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+-- ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
