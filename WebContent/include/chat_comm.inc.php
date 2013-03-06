@@ -7,16 +7,17 @@
 	//////////////////////////////
 
 	/*** ulterieurement en include config.inc.php ***/
+	/*
 	$hostDB = 'localhost';
 	$userDB = 'root';
-	$passwd = 'caneton';
-	$dataBase = 'LAPI.NET';
+	$passwd = 'root';
+	$dataBase = 'LAPI.NET';*/
 	$liendb = null;
 	/***************************************/
 
-	$table_general = 'utilisateur';
-	$table_conversations = 'conversation';
-	$table_messages = 'message';
+	$table_general = 'lapin_proprietaire';
+	$table_conversations = 'lapin_tchat_conversation';
+	$table_messages = 'lapin_tchat_message';
 	
 	//variables de session
 	session_start();
