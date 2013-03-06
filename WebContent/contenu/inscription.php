@@ -23,7 +23,7 @@ document.write('			<td><input type="text" name="nom" value="<?php if (isset($_GE
 document.write('		<tr><td><label>Pr&eacute;nom :</label></td>');
 document.write('			<td><input type="text" name="prenom" value="<?php if (isset($_GET['prenom'])) echo $_GET['prenom']; ?>" title="au moins 4 caract&egrave;res"/></td></tr>');
 document.write('		<tr><td><label>Code postal :</label></td>');
-document.write('			<td><input type="number" name="cp" title="au format 00000" onkeyup="explicitRegion()"/></td></tr>');
+document.write('			<td><input type="text" name="cp" title="au format 00000" onkeyup="explicitRegion()"/></td></tr>');
 document.write('		<tr class="readonly"><td><label>R&eacute;gion :</label></td>');
 document.write('			<td><input type="text" name="region" readonly></td></tr>');
 document.write('		<tr><td><label>Email :</label></td>');
