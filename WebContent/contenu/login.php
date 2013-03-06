@@ -49,13 +49,13 @@
 			// WARNING (dom) : le champs s'appelait "identifiant" - et maintenant "id_profil". 
 			// pour quelle table ???
 			// ou est défini $prefixe ?
-			$rq = "SELECT id_profil, passwd FROM ${prefixe}proprietaire WHERE identifiant = '" . mysql_real_escape_string($_POST['user']) . "'";
+			$rq = "SELECT identifiant, passwd FROM lapin_proprietaire WHERE identifiant = '" . mysql_real_escape_string($_POST['user']) . "'";
 			$result = mysql_fetch_assoc(mysql_query($rq));
 			
 			
 			// il n'existe pas : message d'erreur
 			if (!$result) {
-				$_SESSION['mesLogin'] = "Nom d'utilisateur invalide".mysql_error()."|".$rq;
+				$_SESSION['mesLogin'] = "Nom d'utilisateur invalide";
 				header("location: ".$ch."index.php");
 				exit(0);
 			}

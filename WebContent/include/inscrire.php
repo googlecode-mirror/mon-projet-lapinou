@@ -130,7 +130,7 @@ if( $erreur ){
 	$sql = "SELECT * FROM lapin_proprietaire WHERE identifiant = '".$user."'";
 	$resultat = mysql_query($sql);
 	if ( !$resultat  ){
-		$message = $sql." \nun probleme s'est produit.".mysql_error();
+		$message = $sql." \nun probleme s'est produit.";
 		disconnect();  //deconnexion MySQL
 		//renvoi tout sauf mots de passe, mail, code postal (parametres en GET )
 		header('Location: ../index.php?page=inscription&mess='.urlencode($message).'&user='.urlencode($user).
@@ -154,7 +154,7 @@ if( $erreur ){
 			"VALUES ('".$user."','".$nom."','".$prenom."','".$codepostal."','".$region."','".$email."','".$password."');";
 			
 	if ( ! mysql_query($sql) ){
-		$message = $sql." \nun probleme s'est produit.".mysql_error();
+		$message = $sql." \nun probleme s'est produit.";
 		//renvoi tout sauf mots de passe, mail, code postal (parametres en GET )
 		header('Location: ../index.php?page=inscription&mess='.urlencode($message).'&user='.urlencode($user).
 			'&nom='.urlencode($nom).'&prenom='.urlencode($prenom));		
