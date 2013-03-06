@@ -211,6 +211,7 @@ function envoyer(){
 			parameters: {dest: courant , texte: $('message').value},
 			onSuccess: function(response) {
 				$('message').value =''; //on efface
+				alert('ecoute\n'+response.responseText);
 			}
 		});
 	}

@@ -12,7 +12,6 @@
 	$userDB = 'root';
 	$passwd = 'root';
 	$dataBase = 'LAPI.NET';*/
-	$liendb = null;
 	/***************************************/
 
 	$table_general = 'lapin_proprietaire';
@@ -49,7 +48,7 @@
 				$this->nom2 = $nom;
 				
 				//recup date_acces_session
-				$sql = "SELECT date_acces_session FROM ".$table_general." WHERE nom = '".$nom."';";
+				$sql = "SELECT date_acces_session FROM ".$table_general." WHERE identifiant = '".$nom."';";
 				$resultat = mysql_query($sql);
 				if( $resultat ){
 					$this->session2 = mysql_result($resultat,0);
@@ -59,7 +58,7 @@
 				$this->session2 = $session_time;
 				$this->nom1 = $nom;	
 				//recup date_acces_session
-				$sql = "SELECT date_acces_session FROM ".$table_general." WHERE nom = '".$nom."';";
+				$sql = "SELECT date_acces_session FROM ".$table_general." WHERE identifiant = '".$nom."';";
 				$resultat = mysql_query($sql);
 				if( $resultat ){
 					$this->session1 = mysql_result($resultat,0);
@@ -93,6 +92,7 @@
 		}else {
 			$conversation = mysql_result($resultat,0,'id_conversation');
 		}		
+		echo "envoi";
 		//nouveau message
 		create_message($conversation,$destinataire,$id,$texte);
 	}
@@ -103,7 +103,7 @@
 	 * est appelle par envoyer_message        *
 	 ******************************************/
 	function create_message($conversation, $destinataire, $expediteur, $texte){
-
+		echo "creer";
 		//variables globales
 		global $table_messages;
 		 
@@ -128,6 +128,7 @@
 	 * -1 sinon                         *
 	 ************************************/	 
 	function create_conversation($chater2){
+				echo "conversation $chater2\n";
 		//variables globales
 		global $table_general, $table_messages, $table_conversations, $id, $session_time;
 
@@ -156,8 +157,10 @@
 		$sql = "INSERT INTO ".$table_conversations." (user1,session_1,user2,session_2) ".
 			"VALUES ('".$binome->nom1."','".$binome->session1."','".$binome->nom2."','".$binome->session2."');";
 		if ( ! mysql_query($sql) ){
+			echo $sql." ".mysql_error()."\n";
 			return -1;
 		}
+		echo $sql."\n";
 
 		return mysql_insert_id(); //retourne l'index
 	}	
@@ -178,16 +181,16 @@
 			date('m'), date('d'), date('Y')));
     
 		//personnes non connectees
-		$sql = "SELECT nom FROM ".$table_general." WHERE date_dernier_signal < '".$delai."';";
+		$sql = "SELECT identifiant FROM ".$table_general." WHERE date_dernier_signal < '".$delai."';";
 		$resultat = mysql_query($sql);
 		
 		while( $absent = mysql_fetch_array($resultat)){
 			//effacer les messages
-			$sql = "DELETE FROM ".$table_messages." WHERE expediteur = '".$absent['nom']."' OR destinataire ='".$absent['nom']."';";
+			$sql = "DELETE FROM ".$table_messages." WHERE expediteur = '".$absent['identifiant']."' OR destinataire ='".$absent['identifiant']."';";
 			mysql_query($sql);
 			
 			//effacer les conversations
-			$sql = "DELETE FROM ".$table_conversations." WHERE user1 = '".$absent['nom']."' OR user2 = '".$absent['nom']."';";
+			$sql = "DELETE FROM ".$table_conversations." WHERE user1 = '".$absent['identifiant']."' OR user2 = '".$absent['identifiant']."';";
 			//envoi de la requete
 			mysql_query($sql);					
 		}
@@ -298,14 +301,14 @@
 			date('m'), date('d'), date('Y')));
     
 		//personnes connectees
-		$sql = "SELECT nom FROM ".$table_general." WHERE date_dernier_signal > '".$delai."';";
+		$sql = "SELECT identifiant FROM ".$table_general." WHERE date_dernier_signal > '".$delai."';";
 		$resultat = mysql_query($sql);
 		
 		while( $present = mysql_fetch_array($resultat)){
-			if( $present['nom'] != $id ){
+			if( $present['identifiant'] != $id ){
 				
 				//creation d'un binome
-				$binome = new Binome($present['nom']);				
+				$binome = new Binome($present['identifiant']);				
 				//recherche d'une conversation courante
 				$sql = "SELECT * FROM ".$table_conversations." WHERE user1 = '".$binome->nom1
 					."' AND user2 = '".$binome->nom2."' AND session_1 = '".$binome->session1
@@ -313,7 +316,7 @@
 				$conversation = mysql_query($sql);
 				if( ! $conversation || mysql_num_rows($conversation) == 0  ){
 					//on ajoute dans la liste sans conversation
-					$listing->ajouter_ami(new Ami($present['nom'], null));				
+					$listing->ajouter_ami(new Ami($present['identifiant'], null));				
 				}else {
 					//on va chercher des messages
 					$sql = "SELECT * FROM ".$table_messages." WHERE conversation = ".
@@ -326,7 +329,7 @@
 						$maConv->ajouterMessage(new Message($message['expediteur'],$message['destinataire'],
 							$message['date'],$message['texte']));
 					}
-					$listing->ajouter_ami(new Ami($present['nom'], $maConv));
+					$listing->ajouter_ami(new Ami($present['identifiant'], $maConv));
 				}					
 			}
 		}
@@ -369,7 +372,7 @@
 
 		//requete
 		$sql = "UPDATE ".$table_general." SET date_dernier_signal = '".$moment."', date_acces_session ='".
-			$session_time."' WHERE nom = '".$id."';";
+			$session_time."' WHERE identifiant = '".$id."';";
 
 		//envoi de la requete
 		if ( ! mysql_query($sql) ){
