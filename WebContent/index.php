@@ -6,7 +6,7 @@
 <html>
 <head>
 	<title>LAPI.NET</title>
-	<meta name="author" content="master CCI">
+	<meta name="author" content="master CCI / Philibert Julie">
 	<meta charset="utf-8">
 	<meta name="description" content="site de rencontre des lapinous">
 	<meta name="keywords" content="lapins rencontre date amitie amour">

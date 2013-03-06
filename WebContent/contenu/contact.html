@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LAPI.NET - inscription</title>
+		<meta name="author" content="master CCI / Philibert Julie">
+		<meta charset="utf-8">
+		<script type="text/javascript" language="Javascript" src="scripts/contact.js"></script>
+		
+	</head>
+<body>
+<section class="contenu">
+<!--formulaire inscription proprietaire-->
+<form name="contact" method="post" action="../include/envoimail.php" onsubmit="return verif()">
+<fieldset>
+	<legend>Contactez-nous</legend>
+	<p id="problemes"></p>
+	<table>
+		<tr><td><label>Nom d'utilisateur :</label></td>
+			<td><input type="text" name="user"/></td></tr>
+		<tr><td><label>Email :</label></td>
+			<td><input type="email" name="mail" placeholder="email@example.com"></td></tr>
+		<tr><td><label>Sujet :</label></td>
+			<td><input type="text" name="sujet"/></td></tr>
+		<tr><td><label>Message :</label></td>
+			<td><textarea rows="10" cols="50" name="message"></textarea></td></tr>
+	</table>
+	<input type="submit" name="soumettre" value="envoyer"/>
+	<input type="reset" name="reset" value="Effacer le formulaire"/>
+</fieldset>
+</form>		
+		</section>
+	</body>
+</html>
+
