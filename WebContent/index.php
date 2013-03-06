@@ -16,9 +16,7 @@
 	<script type="text/javascript" language="Javascript" src="scripts/chat.js"></script>
 </head>
 <body>
-<?php 
-	include("include/chat.inc.php");
-?>
+
 <div class="corps">
 <header>
 <div class="bandeau">
@@ -127,7 +125,9 @@
 
 </footer>
 </div>
-
+<?php 
+	include("include/chat.inc.php");
+?>
 </body>
 </html>
 
