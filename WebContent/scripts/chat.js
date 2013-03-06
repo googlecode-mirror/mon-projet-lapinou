@@ -32,8 +32,8 @@ $j("#lapiphone").ready(
 
 		connectes.onchange = function(){
 			var connectes = $('amis');
-			console.log(connectes.options.selectedIndex);
-			switch_conversation( connectes.select('option')[connectes.options.selectedIndex].text );
+			if( connectes.select('option').length > 1 )
+				switch_conversation( connectes.select('option')[connectes.options.selectedIndex].text );
 		};
 });
 
@@ -211,7 +211,6 @@ function envoyer(){
 			parameters: {dest: courant , texte: $('message').value},
 			onSuccess: function(response) {
 				$('message').value =''; //on efface
-				alert('ecoute\n'+response.responseText);
 			}
 		});
 	}
