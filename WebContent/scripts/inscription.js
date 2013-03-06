@@ -101,6 +101,7 @@ function verif(){
 		bool = false;
 	}
 	
+	if(! bool) alarm.style.display = 'inline';
 	return bool;
 }
 

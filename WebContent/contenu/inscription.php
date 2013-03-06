@@ -6,7 +6,7 @@
 <!--formulaire inscription proprietaire-->
 <noscript>Vous ne pouvez pas vous inscrire car javascript n'est pas activé.</noscript>
 <script type="text/javascript" language="Javascript">
-document.write('<form name="inscription" method="post" action="include/inscrire.php" onsubmit="hash(verif());"> ');
+document.write('<form name="inscription" method="post" action="include/inscrire.php" onsubmit="return hash(verif());"> ');
 document.write('<fieldset>');
 document.write('	<legend>Fiche d\'inscription</legend>');
 document.write('	<p id="problemes"><?php if (isset($_GET['mess'])) echo $_GET['mess']; ?></p>');

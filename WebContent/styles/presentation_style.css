@@ -116,6 +116,7 @@ h2 {
 /* contenu formulaire */
 #contenu form #problemes {
 	display: none ;
+	color:red;
 }
 #contenu legend {
 	font-style:italic;
