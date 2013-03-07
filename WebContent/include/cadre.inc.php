@@ -26,6 +26,10 @@ else {
 		include("contenu/profil.php");
 		$redirige = true;
 	}
+		// index.php?page='Qui sommes-nous'
+	if ($_GET['page']=='identite-groupe.php') {
+		include("contenu/identite-groupe.php");
+		$redirige = true;
 	
 	// à compléter
 	

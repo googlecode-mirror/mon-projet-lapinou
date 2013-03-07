@@ -67,7 +67,7 @@
                 <a href="#">Plus</a>
                 <ul>
                         <li><a href="#">Contactez-nous</a></li>
-                        <li><a href="#">Qui sommes-nous ?</a></li>
+                        <li><a href="index.php?page='identite-groupe'">Qui sommes-nous ?</a></li>
                         <li><a href="#">Partenaires</a></li>
                         <li><a href="#">Administration du site</a></li>
                         
