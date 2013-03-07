@@ -30,7 +30,7 @@ else {
 	if ($_GET['page']=='identite-groupe.php') {
 		include("contenu/identite-groupe.php");
 		$redirige = true;
-	
+	}
 	// à compléter
 	
 	
