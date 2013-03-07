@@ -6,7 +6,7 @@
 <!--formulaire inscription proprietaire-->
 <noscript>Vous ne pouvez pas vous inscrire car javascript n'est pas activé.</noscript>
 <script type="text/javascript" language="Javascript">
-document.write('<form name="inscription" method="post" action="include/inscrire.php" onsubmit="return hash(verif());"> ');
+document.write('<form name="inscription" method="post" enctype="multipart/form-data" action="include/inscrire.php" onsubmit="return hash(verif());"> ');
 document.write('<fieldset>');
 document.write('	<legend>Fiche d\'inscription</legend>');
 document.write('	<p id="problemes"><?php if (isset($_GET['mess'])) echo $_GET['mess']; ?></p>');
@@ -28,6 +28,8 @@ document.write('		<tr class="readonly"><td><label>R&eacute;gion :</label></td>')
 document.write('			<td><input type="text" name="region" readonly></td></tr>');
 document.write('		<tr><td><label>Email :</label></td>');
 document.write('			<td><input type="email" name="mail" placeholder="email@example.com" title="au format ###@###.##"></td></tr>');
+document.write('		<tr><td class="readonly">ajouter une photo optionnel</td><td></td></tr>');
+document.write('		<tr><td><label>fichier photo</label></td><td><input type="file" name="trombine"></input></td></tr>');
 document.write('	</table>');
 document.write('	<input type="submit" name="soumetre" value="envoyer" /> ');
 document.write('</fieldset>');

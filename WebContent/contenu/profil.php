@@ -2,15 +2,19 @@
 /////////////////////////////////////
 // afficher un profil proprietaire //
 /////////////////////////////////////
-
+session_start();
 /********************
  * variables utiles *
  ********************/
 if (!isset($_GET['user'])) {
-	header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
-	exit(0);
+	if( isset($_SESSION['identifiant']) )
+		$user = $_SESSION['identifiant'];
+	else {header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
+		exit(0);
+	}
+}else{
+	$user = $_GET['user']; //TODO si vide ?????????????????
 }
-$user = $_GET['user']; //TODO si vide ?????????????????
 require_once("include/sql.php");
 if (!connect() ) {
 	//gestion de l'erreur
@@ -40,13 +44,6 @@ $personne = mysql_fetch_array($resultat);
 <?php
 if( $personne['photo']){
 	echo "\n<img src='".$personne['photo']."' alt='".$user."' title='".$user."' />";
-
-}else{
-	echo "\n<form name='ajout_photo' enctype='multipart/form-data' action='include/upload_photo.inc.php' method='post'>";
-	echo "\n<fieldset><legend>ajouter une photo</legend><table>";
-	echo "\n<tr><td><td><label>fichier</label><input type='file' name='trombine'></input></td>";
-	echo "\n<tr><td></td><td><input type='submit' value='Envoyer'/></td>";
-	echo "\n</table></fieldset></form>";
 }
 ?>
 </article>
