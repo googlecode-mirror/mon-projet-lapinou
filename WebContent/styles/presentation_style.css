@@ -115,7 +115,7 @@ h2 {
 }
 /* contenu formulaire */
 #contenu form #problemes {
-	display: none ;
+	display: inline ;
 	color:red;
 }
 #contenu legend {

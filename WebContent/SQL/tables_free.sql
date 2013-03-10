@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 -- table proprietaire
 
 CREATE TABLE IF NOT EXISTS `lapin_proprietaire` (
-  `identifiant` varchar(30) NOT NULL COMMENT 'nom d''utilisateur',
+  `identifiant` varchar(30) NOT NULL UNIQUE COMMENT 'nom d''utilisateur',
   `nom` varchar(30) NOT NULL COMMENT 'nom',
   `prenom` varchar(30) NOT NULL COMMENT 'prenom',
   `code_postal` int(5) NOT NULL COMMENT 'code postal',
