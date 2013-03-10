@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `lapin_proprietaire` (
   `passwd` varchar(40) NOT NULL COMMENT 'mot de passe', -- modif dom 02-12-2013 : memorise un code de hashage sha1
   `date_dernier_signal` datetime COMMENT 'date dernier signal',
   `date_acces_session` datetime COMMENT 'variable de session representant la date',
+  `trombine` varchar(30) COMMENT 'photo',
   PRIMARY KEY (`identifiant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

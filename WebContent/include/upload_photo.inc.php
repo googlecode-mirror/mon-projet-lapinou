@@ -16,17 +16,20 @@
 	 $extension_upload =  strtolower( substr( strrchr( $fichier['name'], '.') ,1) );
 	 if( ! in_array( $extension_upload, $extensions_valides) ) return false;
 	 
-	 $nouveau_nom = "../img/".$user.".".$extension_upload;//+ path relatif a include/
+	 $nouveau_nom = $user.".".$extension_upload;//+ path relatif a include/
+	 $chemin = "../img/".$nouveau_nom;
 	 
 	 //effacer preexistant
-	 if( file_exists($nouveau_nom) ) unlink($nouveau_nom);
+	 if( file_exists($chemin) ) unlink($chemin);
 	 //redimensionnement
 	 $taille = getimagesize( $fichier['tmp_name'] );
 	 
+	 //TODO
+	 
 	 //deplacer
-	 $resultat = move_uploaded_file( $fichier['tmp_name'], $nouveau_nom );
-	 if( ! $resultat ) die(error_log);
-	 return $resultat;
+	 $resultat = move_uploaded_file( $fichier['tmp_name'], $chemin );
+	 if( ! $resultat ) return false;
+	 return $nouveau_nom; //nom fichier sinon
  }
 	 
 

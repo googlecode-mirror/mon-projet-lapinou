@@ -6,14 +6,18 @@ session_start();
 /********************
  * variables utiles *
  ********************/
-if (!isset($_GET['user'])) {
-	if( isset($_SESSION['identifiant']) )
+if (!isset($_GET['user']) || $_GET['user'] == "") {
+	if( isset($_SESSION['identifiant']) ){
 		$user = $_SESSION['identifiant'];
-	else {header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
+		$prive=true;
+	}else {
+		header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
 		exit(0);
 	}
 }else{
-	$user = $_GET['user']; //TODO si vide ?????????????????
+	$user = $_GET['user'];
+	if( $user == $_SESSION['identifiant'] ) $prive = true;
+	else $prive = false;
 }
 require_once("include/sql.php");
 if (!connect() ) {
@@ -28,7 +32,7 @@ if ( !$resultat  ){
 		disconnect();  //deconnexion MySQL
 		header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
 		exit(0);
-	}	
+}	
 $personne = mysql_fetch_array($resultat);
 
 ?>
@@ -42,8 +46,8 @@ $personne = mysql_fetch_array($resultat);
 <!-- lapin -->
 <!-- TODO -->
 <?php
-if( $personne['photo']){
-	echo "\n<img src='".$personne['photo']."' alt='".$user."' title='".$user."' />";
+if( $personne['trombine'] ){
+	echo "\n<img src='img/".$personne['trombine']."' alt='".$user."' title='".$user."' />";
 }
 ?>
 </article>

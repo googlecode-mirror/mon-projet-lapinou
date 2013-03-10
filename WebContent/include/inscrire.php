@@ -149,14 +149,6 @@ if( $erreur ){
 		}
 	}
 
-	//GESTION DE LA PHOTO
-	require_once "upload_photo.inc.php";
-	$photo_enregistree = false;
-	if(isset($_FILES['trombine'])){
-		$photo_enregistree = enregistrer_photo($_FILES['trombine'], $user );
-	}
-
-	
 	//insertion	 
 	$sql = "INSERT INTO lapin_proprietaire (identifiant, nom, prenom, code_postal, region, mail, passwd) ".
 			"VALUES ('".$user."','".$nom."','".$prenom."','".$codepostal."','".$region."','".$email."','".$password."');";
@@ -169,10 +161,21 @@ if( $erreur ){
 	}else{
 		//c'est bon
 		
+		//GESTION DE LA PHOTO			
+		require_once "upload_photo.inc.php";
+		if(isset($_FILES['trombine'])){
+			$fich =  enregistrer_photo($_FILES['trombine'], $user );
+			if( $fich  ){//succes upload
+				$sql = "UPDATE lapin_proprietaire SET trombine = '".$fich."' WHERE identifiant = '".$user."';";
+				mysql_query($sql);
+			}
+			
+		}
+		
 
 		//if( ! isset($_SESSION['identifiant']) ){  // modif dom : dans tous les cas réinitialiser l'identifiant
-			$_SESSION['identifiant'] =$user;//
-			session_regenerate_id(true);
+		$_SESSION['identifiant'] =$user;//
+		session_regenerate_id(true);
 		//}			
 		//goto profile page
 		header('Location: ../index.php?page=profil&user='.urlencode($user));	
