@@ -148,13 +148,14 @@ if( $erreur ){
 			exit(0);
 		}
 	}
-	
+
 	//GESTION DE LA PHOTO
 	require_once "upload_photo.inc.php";
 	$photo_enregistree = false;
 	if(isset($_FILES['trombine'])){
-		$photo_enregistree = enregistrer_photo($_FILES['trombine']);
+		$photo_enregistree = enregistrer_photo($_FILES['trombine'], $user );
 	}
+
 	
 	//insertion	 
 	$sql = "INSERT INTO lapin_proprietaire (identifiant, nom, prenom, code_postal, region, mail, passwd) ".
