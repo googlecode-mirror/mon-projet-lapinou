@@ -108,6 +108,31 @@ function verif(){
 	return bool;
 }
 
+//verification du formulaire
+function verif_modif(){
+	var alarm = document.getElementById('problemes');
+	alarm.innerHTML ='';
+	var bool = true;
+	
+	//email : ###@###.## (minimum)
+	var reg = new RegExp('^[0-9A-Za-z\-_]{3,}@[0-9A-Za-z\-_]{3,}\.[A-Za-z]{2,3}$','g');
+	if( !(reg.test( document.inscription.mail.value ) ) ){
+		alarm.innerHTML += "- e-mail incorrect.<br/>";
+		document.inscription.mail.focus();
+		bool = false;
+	}
+
+	var reg = new RegExp('^([0-9]{5})$','g');
+	if( !(reg.test( document.inscription.cp.value ) ) ){ //code postal
+		alarm.innerHTML += "- le code postal est invalide.<br/>";
+		document.inscription.cp.focus();
+		bool = false;
+	}
+	
+	if(! bool) alarm.style.display = 'inline';
+	return bool;
+}
+
 //tableau des depts
 departements = {
 	'01' : 'Rhone-Alpes',

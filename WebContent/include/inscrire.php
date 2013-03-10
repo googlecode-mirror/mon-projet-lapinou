@@ -70,6 +70,11 @@ if( preg_match("/^[0-9A-Za-z\-_]{3,}@[0-9A-Za-z\-_]{3,}\.[A-Za-z]{2,3}$/",$email
 	$erreur = true;
 	$probleme .= "email invalide<br/>";	
 }
+///test taille fichier
+if ($_FILES['trombine']['size'] > 1048576) { // >1Mo
+	$erreur = true;
+	$probleme .= "fichier trop volumineux<br/>";
+}
 
 //redirection vers l'inscription si erreur
 if( $erreur ){

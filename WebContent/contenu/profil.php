@@ -21,8 +21,7 @@ if (!isset($_GET['user']) || $_GET['user'] == "") {
 }
 require_once("include/sql.php");
 if (!connect() ) {
-	//gestion de l'erreur
-	echo "<div class='erreur'>\nLa messagerie n'est pas accessible actuellement.</div>\n";
+	header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
 	exit(0);
 }
 //recherche de la personne		
@@ -35,20 +34,52 @@ if ( !$resultat  ){
 }	
 $personne = mysql_fetch_array($resultat);
 
-?>
-<!-- HTML  -------------------------------------------->
-<article>
-	<h2>Profil de <?php echo $user; ?></h2>
-	<p>Nom : <?php echo $personne['nom']; ?></p>
-	<p>Prenom : <?php echo $personne['prenom']; ?></p>
-	<p>Localisation : <?php echo $personne['code_postal']." (".$personne['region'].")"; ?></p>
-	<p>Mail : <?php echo $personne['mail']; ?></p>
-<!-- lapin -->
-<!-- TODO -->
-<?php
-if( $personne['trombine'] ){
-	echo "\n<img src='img/".$personne['trombine']."' alt='".$user."' title='".$user."' />";
+echo "<script type=\"text/javascript\" src=\"scripts/inscription.js\"></script>\n";
+echo "<article>\n";
+echo "<h2>Profil de ".$user."</h2>\n";
+//photo
+if( $personne['trombine'] )	echo "\n<img src='img/".$personne['trombine']."' alt='".$user."' title='".$user."' />\n";
+
+if( $prive && $_GET['modifier'] ){
+	echo "<p id=\"problemes\"></p>\n";//messages d'erreur
+	echo "<form name =\"inscription\" action=\"\" method=\"post\" onsubmit=\"return verif_modif()\" >\n"; //TODO <--------------------------
+	echo "<input type=\"hidden\" name=\"user\" value=\"".$user."\" />\n"; //permet de recharger le meme profil
+	//modifier la photo
+	echo "<label>fichier photo : </label><input type=\"file\" name=\"trombine\"></input><p/>\n";
+	//modifier la localisation
+	echo "<label>Code postal :</label><input type=\"text\" name=\"cp\" title=\"au format 00000\" onkeyup=\"explicitRegion()\"/><br/>\n";
+	echo "<p class=\"readonly\"><label>R&eacute;gion :</label><input type=\"text\" name=\"region\" readonly></p>\n";
+}else echo "<p>Localisation : ".$personne['code_postal']." (".$personne['region'].")</p>\n";
+
+if( $prive ){ //champs prives
+	echo "<p>Nom : ".$personne['nom']."</p>\n";
+	echo "<p>Prenom : ".$personne['prenom']."</p>\n";
+	if( $_GET['modifier'] ){
+		//modifier mail
+		echo "<label>Email :</label><input type=\"email\" name=\"mail\" value=\"".$personne['mail']."\" title=\"au format ###@###.##\">\n";
+		echo "<p></p>\n";
+		//valider
+		echo "<input type=\"submit\" name=\"submit\" value=\"valider\" />\n";		
+		echo "</form>\n";
+	}else{
+		 echo "<p>Mail : ".$personne['mail']."</p>\n";
+
+	//bouton modifier	
+		echo "<form name =\"modifier\" action=\"".$_SERVER['PHP_SELF']."\" method=\"get\" >\n";
+		echo "<input type=\"submit\" name=\"modifier\" value=\"modifier\" />\n"; //mettre en post avec des $_request -> pb avec cadre ?
+		echo "<input type=\"hidden\" name=\"user\" value=\"".$user."\" />\n"; //permet de recharger le meme profil
+		echo "<input type=\"hidden\" name=\"page\" value=\"profil\" />\n"; //permet de recharger le meme profil
+		echo "</form>\n";
+	}
+	
+//bouton ajouter un lapin	
+	echo "<form name =\"add_lapin\" action=\"\" method=\"post\" >\n"; //TODO <--------------------------
+	echo "<input type=\"submit\" name=\"ajout\" value=\"ajout de lapin\" />\n";
+	echo "</form>\n";
 }
+
+//afficher les lapins ici
+
 ?>
 </article>
 </body>
