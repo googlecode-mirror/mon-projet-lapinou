@@ -98,7 +98,7 @@
 <!-- -->
 <?php
 	if( isset($_SESSION['identifiant']) ){ //initialise ailleurs (connexion membre)
-		echo "<div id=\"tchat\"><p> tchat</p>";
+		echo "<div id=\"tchat\">";
 		echo "<img src=\"img/lapiphone.png\" /><br/>";
 		echo "<button type=\"button\" onclick=\"javascript:montrer_lapiphone();\">afficher</button><br/>";
 		echo "<button type=\"button\" onclick=\"javascript:cacher_lapiphone();\">masquer</button>";
