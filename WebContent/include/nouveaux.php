@@ -43,3 +43,4 @@ nx_messages();		//pour le chargement initial.
 <?php
 }
 //non connecté : on ne fait rien
+?>
