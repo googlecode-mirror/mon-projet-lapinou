@@ -8,10 +8,17 @@
 .liste_boite li div {
   display: inline-block;
   width: 30%;
+  margin:1px;
 /*  float: left;*/
 }
 .liste_boite li div:first-of-type {
 	width:1em;
+}
+.pmMess {
+	width:1em;
+	border:1px solid darkgray;
+	cursor:pointer;
+	background-color:#dddddd;
 }
 .liste_boite li ul {
   margin-left:2em;
@@ -20,22 +27,37 @@
 .liste_boite li ul li div {
   display: inline-block;
   width: 20%;
+	cursor:pointer;
 /*  float: left;*/
 }
 .liste_boite li ul li div:first-of-type {
 	width:20%;
 }
-
+.message div {
+/*	border: 1px solid darkgray;*/
+	border-top:3px double darkgray;
+/*	padding:0.5em;*/
+}
+.message div fieldset {
+	border: 1px solid darkgray;
+	background-color:white;
+}
 /* formulaires */
 #reponse {
 	margin-left:1em;
 	margin-top:1em;
+	padding-right:1em;
 }
 #reponse label {
-	text-decoration:italic;
+	font-style:italic;
 	font-size:small;
 }	
-#reponse input, #reponse textarea {
+#reponse input:not([type=submit]), #reponse textarea {
+	margin-left:1em;
+	margin-right:1em;
+	width:93%;
+}
+input[type=submit] {
 	margin-left:1em;
 }
 .detailsMess {

@@ -76,7 +76,7 @@ document.getElementsByTagName("head")[0].appendChild(ref);
 		$code="<div class='liste_boite'>\n<ul>\n";
 		foreach ($liste as $disc) {
 			$code.="<li id=\"li$disc->id_disc\">
-				<div onclick=\"ouvrir_fil($disc->id_disc)\">+</div>
+				<div class='pmMess' onclick=\"ouvrir_fil($disc->id_disc)\">+</div>
 				<div>$disc->intitule</div>
 				<div>$disc->date</div>
 				<div>$disc->nom $disc->prenom</div></li>\n";

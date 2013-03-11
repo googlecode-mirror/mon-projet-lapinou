@@ -49,7 +49,7 @@ var reponseMessage = function (xmlhttp,x) {
 //!!! cette valeur devrait venir de paramAjax
 //	var disc=li.parentNode.parentNode.parentNode.getAttribute("id").substr(2,3);
 	var el=document.getElementById('texte');
-	txt=txt+"<form><input type='button' name='repondre' value='Répondre' onclick=\"formReponse("+paramAjax['mess']+","+paramAjax['disc']+")\"></form>";
+	txt="<div>\n<fieldset>\n<legend>Message</legend>\n"+txt+"</fieldset>\n</div>"+"<form><input type='button' name='repondre' value='Répondre' onclick=\"formReponse("+paramAjax['mess']+","+paramAjax['disc']+")\"></form>";
 	el.innerHTML=txt;
 }
 
