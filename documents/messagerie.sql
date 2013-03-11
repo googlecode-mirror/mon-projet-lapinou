@@ -65,11 +65,11 @@ CREATE TABLE IF NOT EXISTS `lapin_Discussion` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Lapin`
+-- Structure de la table `lapin`
 --
 
-DROP TABLE IF EXISTS `lapin_Lapin`;
-CREATE TABLE IF NOT EXISTS `lapin_Lapin` (
+DROP TABLE IF EXISTS `lapin_lapin`;
+CREATE TABLE IF NOT EXISTS `lapin_lapin` (
   `id_lapin` int(11) NOT NULL AUTO_INCREMENT,
   `id_profil` int(11) NOT NULL,
   `nomL` varchar(32) NOT NULL,

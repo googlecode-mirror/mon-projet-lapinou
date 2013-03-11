@@ -32,7 +32,7 @@ if (connect()) {
 		//!!! vérifier que la personne est bien connectée (cookie/session)
 	//!!! gérer l'erreur d'absence de paramètres GET
 	//!!! gérer la sécurité (ne pas inclure GET directement !)
-			$req_mess="select * from `${prefixe}Message` natural join `${prefixe}Lapin` natural join `${prefixe}proprietaire` where id_disc='".$_GET['id_disc']."' order by date";
+			$req_mess="select * from `${prefixe}Message` natural join `${prefixe}lapin` natural join `${prefixe}proprietaire` where id_disc='".$_GET['id_disc']."' order by date";
 			$liste_mess=requeteObj($req_mess);
 
 			header('Content-Type: application/xml');

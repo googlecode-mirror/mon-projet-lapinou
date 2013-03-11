@@ -40,7 +40,7 @@ if ($texte===null || trim($texte)=="")
 	echo "liens entre profils";
 //!!! il peut sans doute y avoir injection mysql ici !
 //!!! prévoir la création d'une discussion avec le propriétaire directement (donc $lapin="") => autre champ qui signale la page d'envoi
-$req="select id_profil, id_lapin from `${prefixe}Profil` natural join `${prefixe}Lapin` where id_profil=$dest and nomL='$lapin'";
+$req="select id_profil, id_lapin from `${prefixe}Profil` natural join `${prefixe}lapin` where id_profil=$dest and nomL='$lapin'";
 $ids=requete_par_ligne($req);
 if ($ids===null)
 	echec("Lapin et propriétaire non liés ou inconnus !".$req);
@@ -49,7 +49,7 @@ print_r($ids);
 echo "</pre>";
 
 //$req="select id_profil from `${prefixe}Profil` where id_profil=$auteur";
-$req="select id_lapin from `${prefixe}Lapin` where id_lapin=$auteur";
+$req="select id_lapin from `${prefixe}lapin` where id_lapin=$auteur";
 $idAok=requete_champ_unique($req);
 if ($idAok===null)
 	echec("Auteur inconnu !".$req);

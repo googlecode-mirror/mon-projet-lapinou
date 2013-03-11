@@ -207,8 +207,8 @@ if (isset($lid)) {
 	where auteur='$lid' or dest='$lid'";
 } else {
 	$req_disc="select * from `${prefixe}Discussion` 
-	d join `${prefixe}Lapin` l1 on d.auteur=l1.id_lapin 
-	join `${prefixe}Lapin` l2 on d.dest=l2.id_lapin 
+	d join `${prefixe}lapin` l1 on d.auteur=l1.id_lapin 
+	join `${prefixe}lapin` l2 on d.dest=l2.id_lapin 
 	join `${prefixe}Profil` p1 on p1.id_profil=l1.id_profil 
 	join `${prefixe}Profil` p2 on p2.id_profil=l2.id_profil 
 	where  p1.id_profil='$pid' or p2.id_profil='$pid' ";

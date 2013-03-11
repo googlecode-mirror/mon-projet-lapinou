@@ -46,10 +46,10 @@ $id_disc=$_GET["id_disc"];
 
 if (!isset($lid)) {
 //retrouver l'id du lapin qui écrit, celui du propriétaire courant
-	$req_id="SELECT id_lapin FROM `${prefixe}Discussion` d join ${prefixe}Lapin l on d.dest=l.id_lapin
+	$req_id="SELECT id_lapin FROM `${prefixe}Discussion` d join ${prefixe}lapin l on d.dest=l.id_lapin
 			WHERE id_disc='$id_disc' and l.id_profil='$pid' 
 			union
-			SELECT id_lapin FROM `${prefixe}Discussion` d join ${prefixe}Lapin l on d.auteur=l.id_lapin
+			SELECT id_lapin FROM `${prefixe}Discussion` d join ${prefixe}lapin l on d.auteur=l.id_lapin
 			WHERE id_disc='$id_disc' and l.id_profil='$pid'";
 	$lid=requete_champ_unique($req_id);
 	if (!isset($lid)) {
