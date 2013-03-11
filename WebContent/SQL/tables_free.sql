@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 -- table proprietaire
 
 CREATE TABLE IF NOT EXISTS `lapin_proprietaire` (
-  `identifiant` varchar(30) NOT NULL UNIQUE COMMENT 'nom d''utilisateur',
+  `id_profil` varchar(30) NOT NULL UNIQUE COMMENT 'nom d''utilisateur',
   `nom` varchar(30) NOT NULL COMMENT 'nom',
   `prenom` varchar(30) NOT NULL COMMENT 'prenom',
   `code_postal` int(5) NOT NULL COMMENT 'code postal',
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `lapin_lapin` (
   `maillap` varchar(60) NOT NULL COMMENT 'mail du lapi,',
   `passwdlap` varchar(40) NOT NULL COMMENT 'mot de passe du lapin', 
   `clelap` int(10) NULL COMMENT 'cle aleatoire pour le hashage du lapin initialis�e � chaque login',
-  `identifiant` varchar(30) NOT NULL COMMENT 'identifiant du proprietaire',
+  `id_profil` varchar(30) NOT NULL COMMENT 'identifiant du proprietaire',
   PRIMARY KEY (`idLap`),
   foreign key (`identifiant`) references `lapin_proprietaire` (`identifiant`) on delete cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -107,6 +107,18 @@ CREATE TABLE IF NOT EXISTS `lapin_aSupprimer` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `lapin_Consultation`
+--
+
+CREATE TABLE IF NOT EXISTS `lapin_Consultation` (
+  `id_profil` int(11) NOT NULL,
+  `derniere` datetime NOT NULL,
+  PRIMARY KEY  (`id_profil`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Discussion`
 --
 
@@ -158,12 +170,12 @@ CREATE TABLE IF NOT EXISTS `lapin_Message` (
 -- Structure de la table `Profil`
 --
 
-DROP TABLE IF EXISTS `lapin_Profil`;
-CREATE TABLE IF NOT EXISTS `lapin_Profil` (
-  `id_profil` int(11) NOT NULL AUTO_INCREMENT,
-  `infos` text NOT NULL COMMENT 'pseudo-attribut à remplacer',
-  PRIMARY KEY (`id_profil`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='table à reprendre de la définition commune du site' AUTO_INCREMENT=1 ;
+-- DROP TABLE IF EXISTS `lapin_Profil`;
+-- CREATE TABLE IF NOT EXISTS `lapin_Profil` (
+--   `id_profil` int(11) NOT NULL AUTO_INCREMENT,
+--   `infos` text NOT NULL COMMENT 'pseudo-attribut à remplacer',
+--   PRIMARY KEY (`id_profil`)
+-- ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='table à reprendre de la définition commune du site' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

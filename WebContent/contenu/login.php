@@ -44,12 +44,12 @@
 			//include_once($ch."include/connexion.inc.php");
 			connect();
 			
-			
 			// recherche de l'utilisateur user
 			// WARNING (dom) : le champs s'appelait "identifiant" - et maintenant "id_profil". 
 			// pour quelle table ???
 			// ou est défini $prefixe ?
-			$rq = "SELECT identifiant, passwd FROM lapin_proprietaire WHERE identifiant = '" . mysql_real_escape_string($_POST['user']) . "'";
+			// Réponse : cf trunk > documents > normes et include/slq.php les deux champs sont nécessaires, id_profil étant la clé
+			$rq = "SELECT id_profil, identifiant, passwd FROM lapin_proprietaire WHERE identifiant = '" . mysql_real_escape_string($_POST['user']) . "'";
 			$result = mysql_fetch_assoc(mysql_query($rq));
 			
 			
