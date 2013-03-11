@@ -241,4 +241,4 @@ CREATE TABLE IF NOT EXISTS `lapin_tchat_message` (
 --
 
 INSERT INTO `lapin_proprietaire` (`identifiant`, `nom`, `prenom`, `code_postal`, `region`, `mail`, `passwd`) VALUES
-('1', 'root', '', '', 0, NULL, '', '906f116eb480c6b710c2a0197b644afb372d34d3');
+('root', '', '', 0, NULL, '', '906f116eb480c6b710c2a0197b644afb372d34d3');
