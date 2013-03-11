@@ -15,8 +15,10 @@ SET time_zone = "+00:00";
 
 -- table proprietaire
 
+DROP TABLE IF EXISTS `lapin_proprietaire`;
 CREATE TABLE IF NOT EXISTS `lapin_proprietaire` (
-  `id_profil` varchar(30) NOT NULL UNIQUE COMMENT 'nom d''utilisateur',
+  `id_profil` int(11) NOT NULL UNIQUE auto_increment,
+  `identifiant` varchar(30) NOT NULL UNIQUE COMMENT 'nom d''utilisateur',
   `nom` varchar(30) NOT NULL COMMENT 'nom',
   `prenom` varchar(30) NOT NULL COMMENT 'prenom',
   `code_postal` int(5) NOT NULL COMMENT 'code postal',
@@ -31,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `lapin_proprietaire` (
 
 -- table lapin
 
+DROP TABLE IF EXISTS `lapin_lapin`;
 CREATE TABLE IF NOT EXISTS `lapin_lapin` (
   `idLap` varchar(30) NOT NULL COMMENT 'nom d''utilisateur du lapin',
   `nomlap` varchar(30) NOT NULL COMMENT 'nom du lapin',
@@ -46,7 +49,8 @@ CREATE TABLE IF NOT EXISTS `lapin_lapin` (
   `maillap` varchar(60) NOT NULL COMMENT 'mail du lapi,',
   `passwdlap` varchar(40) NOT NULL COMMENT 'mot de passe du lapin', 
   `clelap` int(10) NULL COMMENT 'cle aleatoire pour le hashage du lapin initialis�e � chaque login',
-  `id_profil` varchar(30) NOT NULL COMMENT 'identifiant du proprietaire',
+  `identifiant` varchar(30) NOT NULL COMMENT 'identifiant du proprietaire',
+  `id_profil` int NOT NULL COMMENT 'identifiant du proprietaire',
   PRIMARY KEY (`idLap`),
   foreign key (`identifiant`) references `lapin_proprietaire` (`identifiant`) on delete cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -110,6 +114,7 @@ CREATE TABLE IF NOT EXISTS `lapin_aSupprimer` (
 -- Structure de la table `lapin_Consultation`
 --
 
+DROP TABLE IF EXISTS `lapin_Consultation`;
 CREATE TABLE IF NOT EXISTS `lapin_Consultation` (
   `id_profil` int(11) NOT NULL,
   `derniere` datetime NOT NULL,
@@ -197,6 +202,8 @@ CREATE TABLE IF NOT EXISTS `lapin_repondA` (
 -- tables du chat
 
 -- table conversation
+
+DROP TABLE IF EXISTS `lapin_tchat_conversation`;
 CREATE TABLE IF NOT EXISTS `lapin_tchat_conversation` (
   `id_conversation` int(11) NOT NULL AUTO_INCREMENT COMMENT 'numero de fil de conversation',
   `user1` varchar(20) NOT NULL COMMENT 'utilisateur 1',
@@ -209,6 +216,7 @@ CREATE TABLE IF NOT EXISTS `lapin_tchat_conversation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 -- table message
+DROP TABLE IF EXISTS `lapin_tchat_message`;
 CREATE TABLE IF NOT EXISTS `lapin_tchat_message` (
   `id_message` int(11) NOT NULL AUTO_INCREMENT COMMENT 'numero id du message',
   `conversation` int(11) NOT NULL COMMENT 'numero de la conversation courante',
@@ -233,4 +241,4 @@ CREATE TABLE IF NOT EXISTS `lapin_tchat_message` (
 --
 
 INSERT INTO `lapin_proprietaire` (`identifiant`, `nom`, `prenom`, `code_postal`, `region`, `mail`, `passwd`) VALUES
-('root', '', '', 0, NULL, '', '906f116eb480c6b710c2a0197b644afb372d34d3');
+('1', 'root', '', '', 0, NULL, '', '906f116eb480c6b710c2a0197b644afb372d34d3');
