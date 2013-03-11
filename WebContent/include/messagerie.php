@@ -163,17 +163,18 @@ echo "</pre>"; */
 			if ($lapins!==null) {
 				$code.="<div id='nx_discussion'>";
 				$code.="<form action='#' method='get' name='discussion' onsubmit='ajout_discussion();return false;'>\n";
-				$code.="<label>Auteur :</label><select name='lid'>";
+				$code.="<fieldset>\n<label>Auteur : </label><select name='lid'>";
 				foreach ($lapins as $lapin)
 					$code.="<option value='$lapin->idLap'>$lapin->nomlap</option>";
 				$code.="</select>";
-				$code.="<label>Thème :</label><input type='text' name='sujet' value=''>";
-				$code.="<br />Détails<br /><label>Titre :</label><input type='text' name='intitule' value=''>";
-				$code.="<label>Message :</label><textarea name='corps'></textarea>";
+				$code.="<label>Thème : </label><input type='text' name='sujet' value=''>";
+				$code.="<br />Détails<br /><div class='detailsMess'>\n";
+				$code.="<label>Titre : </label><input type='text' name='intitule' value=''>";
+				$code.="<label>Message : </label><textarea name='corps'></textarea>\n</div>";
 		//mid est passé par la session
 				$code.="<input type='hidden' name='id_dest' value='".$_SESSION['fiche']."'>";
 				$code.="<input type='submit' name='submit' value='Envoyer' />\n</form>";
-				$code.="</div>";
+				$code.="</fieldset>\n</div>";
 			}
 		}
 		

@@ -160,12 +160,13 @@ function ajout_discussion(){
 
 function formReponse(no,disc) {
     el=document.getElementById('texte');
-	txt="<form action='#' method='get' name='reponse' onsubmit='ajout_message();return false'>";
+	txt="<form action='#' method='get' name='reponse' id='reponse' onsubmit='ajout_message();return false'>";
 	//on pourrait passer id_disc ou le récupérer depuis le message précedent (id_mess);
-	txt+="<input type='hidden' name='id_mess' value='"+no+"'>";
-	txt+="<input type='hidden' name='id_disc' value='"+disc+"'>";
-	txt+="<input type='texte' name='titre'>";
-	txt+="<textarea name='corps'></textarea>";
+	txt+="<input type='hidden' name='id_mess' value='"+no+"'>\n";
+	txt+="<input type='hidden' name='id_disc' value='"+disc+"'>\n";
+	txt+="<fieldset>\n<legend>Réponse au message</legend>\n" +
+			"<label>Titre du message : </label> <br \>\n<input type='texte' name='titre'> <br \>\n";
+	txt+="<label>Détails : </label> <br \>\n<textarea name='corps'></textarea> <br \>";
 	txt+="<input type='submit' name='submit' value='Envoyer' />\n</form>";
 	motif=/<form>.*<.form>/i;
 //	alert(el.innerHTML.match(/.*/i));

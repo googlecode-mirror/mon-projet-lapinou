@@ -11,7 +11,7 @@
 /*  float: left;*/
 }
 .liste_boite li div:first-of-type {
-width:1em;
+	width:1em;
 }
 .liste_boite li ul {
   margin-left:2em;
@@ -23,5 +23,21 @@ width:1em;
 /*  float: left;*/
 }
 .liste_boite li ul li div:first-of-type {
-width:20%;
+	width:20%;
+}
+
+/* formulaires */
+#reponse {
+	margin-left:1em;
+	margin-top:1em;
+}
+#reponse label {
+	text-decoration:italic;
+	font-size:small;
+}	
+#reponse input, #reponse textarea {
+	margin-left:1em;
+}
+.detailsMess {
+	margin-left:2em;
 }
