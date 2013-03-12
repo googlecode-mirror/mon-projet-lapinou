@@ -38,14 +38,16 @@
 			<?php if( isset($_SESSION['identifiant']) ) echo '<li><a href="index.php?page=profil">Profil</a></li>' ;?>
                 </ul>
         </li>
-	 <li>
-                <a href="#">Amis</a>
-                
-        </li>
-        <li>
-                <a href="#">Recherche</a>
-                
-        </li>
+<?php
+if( isset($_SESSION['identifiant']) ){ //necessite une connexion
+echo "<li>\n";
+echo "\t<a href=\"#\">Amis</a>\n";
+echo "</li>\n";
+echo "<li>\n";
+echo "\t<a href=\"#\">Recherche</a>\n";
+echo "</li>\n";
+}
+?>
          
         <li>
                 <a href="#">Forum</a>

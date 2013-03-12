@@ -18,7 +18,7 @@ function enregistrer_photo( $fichier, $user ){
 	$extension_upload =  strtolower( substr( strrchr( $fichier['name'], '.') ,1) );
 	if( ! in_array( $extension_upload, $extensions_valides) ) return false;
 	
-	$nouveau_nom = $user.".".$extension_upload;//+ path relatif a include/
+	$nouveau_nom = $user.time().".".$extension_upload;//+ path relatif a include/
 	$chemin = "../img/".$nouveau_nom;
 	 
 	//effacer preexistant
@@ -32,9 +32,9 @@ function enregistrer_photo( $fichier, $user ){
 
 	$taille = getimagesize( $fichier['tmp_name'] );
 
-	if($taille[1] > 100){
-		$hauteur_finale=100;
-		$largeur_finale = ( ($taille[0] * (100.0 / $taille[1])) );
+	if($taille[1] > 200){
+		$hauteur_finale=200;
+		$largeur_finale = ( ($taille[0] * (200.0 / $taille[1])) );
 	}else {
 		$largeur_finale = $taille[0];
 		$hauteur_finale= $taille[1];

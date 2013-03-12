@@ -45,7 +45,6 @@ function explicitRegion(e){
 	}else{
 		document.inscription.region.value = '';
 	}
-	//alert(reg);
 }
 
 //verification du formulaire

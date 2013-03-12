@@ -71,7 +71,7 @@ if( preg_match("/^[0-9A-Za-z\-_]{3,}@[0-9A-Za-z\-_]{3,}\.[A-Za-z]{2,3}$/",$email
 	$probleme .= "email invalide<br/>";	
 }
 ///test taille fichier
-if ($_FILES['trombine']['size'] > 1048576) { // >1Mo
+if ($_FILES['trombine'] && $_FILES['trombine']['size'] > 1048576) { // >1Mo
 	$erreur = true;
 	$probleme .= "fichier trop volumineux<br/>";
 }
@@ -111,7 +111,7 @@ if( $erreur ){
 							"passwd			= '".$password."'".
 					"WHERE identifiant = '".$user."'";
 			if ( ! mysql_query($sql) ){
-				$message = $sql." \nun probleme s'est produit.".mysql_error();
+				$message = $sql." \nun probleme s'est produit.";
 				//renvoi tout sauf mots de passe, mail, code postal (parametres en GET )
 				header('Location: ../index.php?page=inscription&mess='.urlencode($message).'&user='.urlencode($user).
 				'&nom='.urlencode($nom).'&prenom='.urlencode($prenom));		

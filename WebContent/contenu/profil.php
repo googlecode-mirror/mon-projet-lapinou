@@ -35,19 +35,23 @@ if ( !$resultat  ){
 $personne = mysql_fetch_array($resultat);
 
 echo "<script type=\"text/javascript\" src=\"scripts/inscription.js\"></script>\n";
+//debut de la section.
 echo "<article>\n";
+//titre
 echo "<h2>Profil de ".$user."</h2>\n";
 //photo
 if( $personne['trombine'] )	echo "\n<img src='img/".$personne['trombine']."' alt='".$user."' title='".$user."' />\n";
 
 if( $prive && $_GET['modifier'] ){
 	echo "<p id=\"problemes\"></p>\n";//messages d'erreur
-	echo "<form name =\"inscription\" action=\"\" method=\"post\" onsubmit=\"return verif_modif()\" >\n"; //TODO <--------------------------
+	echo "<form name =\"inscription\" action=\"include/modifier_profil.inc.php\" method=\"post\" 
+		enctype=\"multipart/form-data\" onsubmit=\"return verif_modif()\" >\n"; //TODO <--------------------------
 	echo "<input type=\"hidden\" name=\"user\" value=\"".$user."\" />\n"; //permet de recharger le meme profil
 	//modifier la photo
 	echo "<label>fichier photo : </label><input type=\"file\" name=\"trombine\"></input><p/>\n";
 	//modifier la localisation
-	echo "<label>Code postal :</label><input type=\"text\" name=\"cp\" title=\"au format 00000\" onkeyup=\"explicitRegion()\"/><br/>\n";
+	echo "<label>Code postal :</label><input type=\"text\" name=\"cp\" title=\"au format 00000\" 
+		onkeyup=\"explicitRegion()\" value=\"".$personne['code_postal']."\"/><br/>\n";
 	echo "<p class=\"readonly\"><label>R&eacute;gion :</label><input type=\"text\" name=\"region\" readonly></p>\n";
 }else echo "<p>Localisation : ".$personne['code_postal']." (".$personne['region'].")</p>\n";
 
@@ -72,19 +76,20 @@ if( $prive ){ //champs prives
 		echo "</form>\n";
 	}
 	
-//bouton ajouter un lapin	
+	//bouton ajouter un lapin	
 	echo "<form name =\"add_lapin\" action=\"\" method=\"post\" >\n"; //TODO <--------------------------
 	echo "<input type=\"submit\" name=\"ajout\" value=\"ajout de lapin\" />\n";
 	echo "</form>\n";
+}else if( isset($_SESSION['identifiant']) ){ //profil public, etat connecte : proposer comme ami
+	echo "<a href=\"\">ajouter aux amis</a>";
 }
-
 //afficher les lapins ici
 
 ?>
 </article>
-</body>
-</html>
-
 <?php
 disconnect();
+if( $prive && $_GET['modifier'] ){
+	echo "<script>document.body.onload = function(){explicitRegion();};</script>\n";// affichage de la region au chargement
+}
 ?>
