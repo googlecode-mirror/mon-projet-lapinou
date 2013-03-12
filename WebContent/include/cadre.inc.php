@@ -18,7 +18,7 @@ else {
 	// index.php?page='messagerie'
 	if ($_GET['page']=='messagerie') {
 		//!!! à priori devrait être inclu dans une page de profil et pas être une page en soi
-		include("include/messagerie.php");
+		include("include/messagerie/messagerie.php");
 		$redirige = true;
 	}
 	// index.php?page='profil'

@@ -1,4 +1,18 @@
+//définition du message sélectionné pour la gestion de la surbrillance
+var mess_select=null;
+var bgcolor="";			//conserve la couleur d'origine de ce message
 
+function eteindre_message() {
+	mess_select.style.backgroundColor=bgcolor;
+}
+
+function allumer_message(no) {
+	mess_select=document.getElementById('mess'+no).parentNode;
+	bgcolor=mess_select.style.backgroundColor;
+	mess_select.style.backgroundColor="lightgray";
+}
+
+//nom des colonnes de la messagerie
 cols=new Array("titre","date","nom","proprio");
 
 //fonctions de traitement des réponses obtenues par ajax
@@ -125,16 +139,21 @@ var reponseDiscussion = function (xmlhttp,x) {
 //fonctions de gestion des requêtes ajax
 
 function ouvrir_fil(no) {
-	paramAjax ["url"]="include/mess_requete.php?id_disc="+no;
+	paramAjax ["url"]="include/messagerie/mess_requete.php?id_disc="+no;
 	paramAjax ["disc"]=no;
 	paramAjax ["dernier"]=false;
 	loadXMLDoc(reponseBoite);
 }
 
 function ouvrir_message(no) {
-	paramAjax ["url"]="include/mess_requete.php?id_mess="+no;
+//effacer la surbrillance du message précédemment ouvert
+	if (mess_select!=null)
+		eteindre_message();
+	paramAjax ["url"]="include/messagerie/mess_requete.php?id_mess="+no;
 	paramAjax ["mess"]=no;
 	loadXMLDoc(reponseMessage);
+//mettre le message en surbrillance
+	allumer_message(no);
 	}
 
 function ajout_message() {
@@ -143,7 +162,7 @@ function ajout_message() {
 	//construction de la requête
 	req="id_mess="+el.id_mess.value+"&id_disc="+el.id_disc.value+"&titre="+el.titre.value+"&corps="+el.corps.value;
 //alert(req);
-	paramAjax ["url"]="include/mess_requete.php?"+req;
+	paramAjax ["url"]="include/messagerie/mess_requete.php?"+req;
 	paramAjax ["disc"]=el.id_disc.value;
 	loadXMLDoc(reponseMessagerie);
 	}
@@ -154,7 +173,7 @@ function ajout_discussion(){
 	//construction de la requête
 	req="lid="+el.lid.value+"&sujet="+el.sujet.value+"&titre="+el.intitule.value+"&corps="+el.corps.value+"&id_dest="+el.id_dest.value;
 //alert(el+" "+req)
-	paramAjax ["url"]="include/mess_requete.php?"+req;
+	paramAjax ["url"]="include/messagerie/mess_requete.php?"+req;
 	loadXMLDoc(reponseDiscussion);
 }
 

@@ -95,7 +95,7 @@ echo "</li>\n";
 </div>
 <!--  nouveaux -->
 	<?php 
-		include("include/nouveaux.php");
+		include("include/messagerie/nouveaux.php");
 	?>
 <!-- -->
 <?php
