@@ -6,6 +6,7 @@ session_start();
 //nécessaire d'avoir des balises racines xml différentes (sauf pour l'erreur).
 
 require_once "../sql.php";
+require_once "sqlMess.php";
 
 function xmlErreur($message) {
 	header('Content-Type: application/xml');
@@ -32,7 +33,10 @@ if (connect()) {
 		//!!! vérifier que la personne est bien connectée (cookie/session)
 	//!!! gérer l'erreur d'absence de paramètres GET
 	//!!! gérer la sécurité (ne pas inclure GET directement !)
-			$req_mess="select * from `${prefixe}Message` natural join `${prefixe}lapin` natural join `${prefixe}proprietaire` where id_disc='".$_GET['id_disc']."' order by date";
+			$req_mess=LireMessages($_GET['id_disc']);
+/*			echo($req_mess);
+			exit(0);*/
+			//"select * from `${prefixe}Message` natural join `${prefixe}lapin` natural join `${prefixe}proprietaire` where id_disc='".$_GET['id_disc']."' order by date";
 			$liste_mess=requeteObj($req_mess);
 
 			header('Content-Type: application/xml');
@@ -47,7 +51,8 @@ if (connect()) {
 			//!!! vérifier que la personne est bien connectée (cookie/session)
 			//!!! gérer l'erreur d'absence de paramètres GET
 			//!!! gérer la sécurité (ne pas inclure GET directement !)
-				$req_mess="select texte from `${prefixe}Message` where id_mess='".$_GET['id_mess']."'";
+				$req_mess=LireLeMessage($_GET['id_mess']);
+				//"select texte from `${prefixe}Message` where id_mess='".$_GET['id_mess']."'";
 				$corps=requete_champ_unique($req_mess);
 
 				header('Content-Type: application/xml');
@@ -77,13 +82,16 @@ if (connect()) {
 				$id_mess=$_GET["id_mess"];
 				$id_disc=$_GET["id_disc"];
 
+//!!! si un lapin est défini dans la session mais n'est pas celui de la discussion à laquelle on répond, cela n'est pas correct
+//!!! => toujours rechercher l'identifiant et vérifier lid ou le jeter.
 				if (!isset($_SESSION['lid'])) {
 				//retrouver l'id du lapin qui écrit, celui du propriétaire courant
-					$req_id="SELECT id_lapin FROM `${prefixe}Discussion` d join ${prefixe}lapin l on d.dest=l.id_lapin
+					$req_id=LireLapinDiscussion($mid,$id_disc);
+					/*"SELECT id_lapin FROM `${prefixe}Discussion` d join ${prefixe}lapin l on d.dest=l.id_lapin
 							WHERE id_disc='$id_disc' and l.id_profil='$mid' 
 							union
 							SELECT id_lapin FROM `${prefixe}Discussion` d join ${prefixe}lapin l on d.auteur=l.id_lapin
-							WHERE id_disc='$id_disc' and l.id_profil='$mid'";
+							WHERE id_disc='$id_disc' and l.id_profil='$mid'";*/
 					$lid=requete_champ_unique($req_id);
 					if (!isset($lid)) {
 						xmlErreur("Aucun lapin n'est identifié.");
@@ -93,7 +101,8 @@ if (connect()) {
 					$lid=$_SESSION['lid'];
 				if ($ok) {
 	
-					$req_ins="insert into `${prefixe}Message` values ('', '$titre','$corps',NOW(),'$id_disc','$lid')";
+					$req_ins=ecrireMessage($lid,$id_disc,$titre,$corps);
+					//"insert into `${prefixe}Message` values ('', '$titre','$corps',NOW(),'$id_disc','$lid')";
 					$res=requete_champ_unique($req_ins);
 
 					header('Content-Type: application/xml');
@@ -138,7 +147,8 @@ if (connect()) {
 //	echo "liens entre profils";
 		//!!! il peut sans doute y avoir injection mysql ici !
 		//!!! prévoir la création d'une discussion avec le propriétaire directement (donc $lapin="") => autre champ qui signale la page d'envoi
-				$req="select id_profil, id_lapin from `${prefixe}lapin` where id_profil=$mid and id_lapin='$auteur'";
+				$req=coherenceProprioLapin($mid,$auteur);
+				//"select id_profil, id_lapin from `${prefixe}lapin` where id_profil=$mid and id_lapin='$auteur'";
 				$ids=requete_par_ligne($req);
 				if ($ids===null)
 					$echec="Lapin et propriétaire non liés ou inconnus !".$req;
@@ -149,12 +159,14 @@ print_r($ids);
 echo "</pre>";
 */
 //$req="select id_profil from `${prefixe}Profil` where id_profil=$auteur";
-				$req="select id_lapin from `${prefixe}lapin` where id_lapin=$auteur";
+				$req=existeLapin($auteur);
+				//"select id_lapin from `${prefixe}lapin` where id_lapin=$auteur";
 				$idAok=requete_champ_unique($req);
 				if ($idAok===null)
 					$echec="Auteur inconnu !".$req;
 
-				$req="select id_profil, id_lapin from `${prefixe}lapin` where id_profil=$mid and id_lapin='$dest'";
+				$req=coherenceProprioLapin($mid,$dest);
+				//"select id_profil, id_lapin from `${prefixe}lapin` where id_profil=$mid and id_lapin='$dest'";
 				$autres=requete_par_ligne($req);
 				if ($autres!==null)
 					$echec="Le destinataire vous appartient !".$req;
@@ -192,14 +204,16 @@ echo mysql_error().$req;
 					$req="select now()";
 					$date=requete_champ_unique($req);
 //	echo "$req ".mysql_error();
-					$req="insert into `${prefixe}Discussion` (sujet,intitule,auteur,dest) value ('$sujet','$intitule',$idAok,$dest)";
+					$req=creerDiscussion($sujet,$intitule,$idAok,$dest);
+					//"insert into `${prefixe}Discussion` (sujet,intitule,auteur,dest) value ('$sujet','$intitule',$idAok,$dest)";
 //	echo "$req ";
 					$res=requete($req);
 					if (mysql_errno())
 						$echec="$res erreur : ".mysql_error().$req;
 		//puisqu'on ne peut garantir qu'il n'y a pas eu d'autre insertion entre les deux, LAST_INSERT_ID() ne peut être utilisée
 		//on recherche donc la discussion créée avec ces paramètres depuis quelques secondes;
-					$req="select id_disc from `${prefixe}Discussion` where sujet='$sujet' and intitule='$intitule' and auteur=$idAok and dest=$dest and date>='$date'";
+					$req=derniereDiscussion($sujet,$intitule,$idAok,$dest,$date);
+					//"select id_disc from `${prefixe}Discussion` where sujet='$sujet' and intitule='$intitule' and auteur=$idAok and dest=$dest and date>='$date'";
 //	echo "$req ";
 					$id_d=requete_champ_unique($req);
 	//Rq : il ne faut SURTOUT PAS tenter d'affecter un retour en comparant ave une valeur : $var=fonction()==null ne met pas le résultat de fonction dans var mais rien (pas même false ou true apparemment) !
@@ -210,7 +224,8 @@ echo mysql_error().$req;
 					//erreur d'ajout de la nouvelle discussion
 						xmlErreur($echec);
 					else {
-						$req="insert into `${prefixe}Message` value (null,'$intitule','$texte',NOW(), $id_d, $auteur)";
+						$req=ecrireMessage($auteur,$id_d,$intitule,$texte);
+						//"insert into `${prefixe}Message` value (null,'$intitule','$texte',NOW(), $id_d, $auteur)";
 //	$req=mysql_real_escape_string($req);
 //echo "$req ";
 						if (requete($req)==null) {

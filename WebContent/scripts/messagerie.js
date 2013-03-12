@@ -140,6 +140,7 @@ var reponseDiscussion = function (xmlhttp,x) {
 
 function ouvrir_fil(no) {
 	paramAjax ["url"]="include/messagerie/mess_requete.php?id_disc="+no;
+//	alert("ouvrir"+paramAjax ["url"]);
 	paramAjax ["disc"]=no;
 	paramAjax ["dernier"]=false;
 	loadXMLDoc(reponseBoite);

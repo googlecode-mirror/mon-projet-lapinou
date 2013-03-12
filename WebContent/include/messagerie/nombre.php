@@ -6,6 +6,7 @@
 
 session_start();
 require_once "../sql.php";
+require_once "sqlMess.php";
 
 
 if (isset($_SESSION["identifiant"])) {
@@ -25,10 +26,11 @@ if (!connect()) {
 		exit;
 	}
 
-	$req_disc="select count(*) from `${prefixe}Discussion` d
+	$req_disc=nonLus($mid);
+	/*"select count(*) from `${prefixe}Discussion` d
 		join `${prefixe}Message` m on d.id_disc=m.id_disc 
 		join `${prefixe}Consultation` c on (d.auteur=c.id_profil or d.dest=c.id_profil)
-		where c.id_profil='$mid' and m.date>c.derniere";
+		where c.id_profil='$mid' and m.date>c.derniere";*/
 //	echo $req_disc;
 	$nb_disc=requete_champ_unique($req_disc);
 	

@@ -20,6 +20,7 @@ autre lapin				mid, (pid), fiche		lip
 $chm_sql= dirname($_SERVER[ 'SCRIPT_FILENAME'])."/include/";
 
 require_once $chm_sql."sql.php";
+require_once "sqlMess.php";
 
 /*
 $_SESSION['fiche']=8;
@@ -100,46 +101,51 @@ document.getElementsByTagName("head")[0].appendChild(ref);
 	//côté membre
 		if (!isset($_SESSION['lid'])) {
 		//on considère que lid est fixé en affichant la fiche d'un lapin du membre et supprimé sur la fiche du membre
-			$req_disc="select * from `${prefixe}Discussion` 
+			$req_disc=DiscProprio($mid);
+			
+			/*"select * from `${prefixe}Discussion` 
 			d join `${prefixe}lapin` l1 on d.auteur=l1.id_lapin 
 			join `${prefixe}lapin` l2 on d.dest=l2.id_lapin 
 			join `${prefixe}proprietaire` p1 on p1.id_profil=l1.id_profil 
 			join `${prefixe}proprietaire` p2 on p2.id_profil=l2.id_profil 
-			where  p1.id_profil='$mid' or p2.id_profil='$mid' ";
+			where  p1.id_profil='$mid' or p2.id_profil='$mid' ";*/
 		} else {
 		//on considère que lid est fixé en affichant la fiche d'un lapin du membre et supprimé sur la fiche du membre
 			
 		//membre sur un de ses lapins : toutes les discussions du lapin
 
 			$lid=$_SESSION['lid'];
-			$req_disc="select * from `${prefixe}Discussion` 
-			where auteur='$lid' or dest='$lid'";
+			$req_disc=DiscLapin($lid);
+			/*"select * from `${prefixe}Discussion` 
+			where auteur='$lid' or dest='$lid'";*/
 		}
 	} else {
 	
 	//membre sur une fiche d'un autre membre
 
 	 	$pid=$_SESSION['pid'];
-		$req_disc="select * from `${prefixe}Discussion` 
+/*		$req_disc="select * from `${prefixe}Discussion` 
 		d join `${prefixe}lapin` l1 on d.auteur=l1.id_lapin 
 		join `${prefixe}lapin` l2 on d.dest=l2.id_lapin 
 		join `${prefixe}proprietaire` p1 on p1.id_profil=l1.id_profil 
-		join `${prefixe}proprietaire` p2 on p2.id_profil=l2.id_profil ";
+		join `${prefixe}proprietaire` p2 on p2.id_profil=l2.id_profil ";*/
 
 		if (!isset($_SESSION['fiche'])) {
 		//on considère que fiche est fixé en affichant la fiche d'un lapin d'un autre membre et supprimé sur la fiche du propriétaire
 
 		//membre sur la fiche d'un autre membre : les seules discussions entre leurs lapins
 
-			$req_disc.="where (p1.id_profil='$mid' and p2.id_profil='$pid')
-			or (p2.id_profil='$mid' and p1.id_profil='$pid')";
+			$req_disc=DiscAutreProprio ($mid,$pid);
+			/*.="where (p1.id_profil='$mid' and p2.id_profil='$pid')
+			or (p2.id_profil='$mid' and p1.id_profil='$pid')";*/
 		} else {
 
 	 	//membre sur un des lapins d'un autre membre : les seules discussions des lapins du membre avec ce lapin
 
 			$fiche=$_SESSION['fiche'];
-			$req_disc.="where (p1.id_profil='$mid' and l2.id_lapin ='$fiche')
-			or (p2.id_profil='$mid' and l1.id_lapin ='$fiche')";
+			$req_disc=DiscAutreLapin ($mid,$fiche);
+			/* .="where (p1.id_profil='$mid' and l2.id_lapin ='$fiche')
+			or (p2.id_profil='$mid' and l1.id_lapin ='$fiche')";*/
 		}
 	}
 	
@@ -157,7 +163,8 @@ echo "</pre>"; */
 	//affichage du formulaire de nouvelle discussion
 		if (isset($_SESSION['fiche'])) {
 	//lapins du membre
-			$req_lapin="SELECT id_lapin, nomlap FROM lapin_lapin WHERE `id_profil`='$mid'";
+			$req_lapin=IdNomLapin($mid);
+			//"SELECT id_lapin, nomlap FROM lapin_lapin WHERE `id_profil`='$mid'";
 			$lapins=requeteObj($req_lapin);
 		//normalement il devrait toujours y avoir au moins un lapin
 		//mais s'il n'y en a pas (mort du dernier) ne rien afficher
@@ -182,7 +189,8 @@ echo "</pre>"; */
 		$code.="</div>\n";
 		echo $code;
 	//mettre à jour l'heure de dernière consultation
-		$req_date="INSERT INTO `${prefixe}Consultation` VALUES ('$mid', now()) ON DUPLICATE KEY UPDATE `derniere`=now()";
+		$req_date=MajConsultation ($mid);
+		//"INSERT INTO `${prefixe}Consultation` VALUES ('$mid', now()) ON DUPLICATE KEY UPDATE `derniere`=now()";
 		$lapins=requete_champ_unique($req_date);
 	} else
 		echo "<i>Aucun profil trouvé.</i> ".mysql_error()." ".$req_disc;
