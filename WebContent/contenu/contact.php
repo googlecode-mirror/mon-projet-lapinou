@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>LAPI.NET - inscription</title>
-		<meta name="author" content="master CCI / Philibert Julie">
-		<meta charset="utf-8">
-		<script type="text/javascript" language="Javascript" src="scripts/contact.js"></script>
-		
-	</head>
-<body>
-<section class="contenu">
+
+<script type="text/javascript" language="Javascript" src="scripts/contact.js"></script>
 <!--formulaire inscription proprietaire-->
 <form name="contact" method="post" action="../include/envoimail.php" onsubmit="return verif()">
 <fieldset>
@@ -28,7 +19,4 @@
 	<input type="reset" name="reset" value="Effacer le formulaire"/>
 </fieldset>
 </form>		
-		</section>
-	</body>
-</html>
-
+		

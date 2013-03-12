@@ -6,7 +6,7 @@
 <html>
 <head>
 	<title>LAPI.NET</title>
-	<meta name="author" content="master CCI / Philibert Julie">
+	<meta name="author" content="master CCI">
 	<meta charset="utf-8">
 	<meta name="description" content="site de rencontre des lapinous">
 	<meta name="keywords" content="lapins rencontre date amitie amour">
@@ -25,7 +25,7 @@
 <br>
 </div>
 </header>
-
+<div class="menu">
 <ul id="menu">
          <li>
                 <a href="index.php">Accueil</a>
@@ -33,24 +33,22 @@
         <li>
                 <a href="#">Membres</a>
                 <ul>
-                        <li><a href="index.php?page=inscription">Inscription</a></li>
-			<li><a href="index.php?page=messagerie">Messagerie</a></li>
-			<?php if( isset($_SESSION['identifiant']) ) echo '<li><a href="index.php?page=profil">Profil</a></li>' ;?>
+						<li><a href="index.php?page=inscription">Inscription</a></li>
+						<li><a href="index.php?page=messagerie">Messagerie</a></li>
+						<?php if( isset($_SESSION['identifiant']) ) echo '<li><a href="index.php?page=profil">Profil</a></li>' ;?>
                 </ul>
         </li>
-<?php
-if( isset($_SESSION['identifiant']) ){ //necessite une connexion
-echo "<li>\n";
-echo "\t<a href=\"#\">Amis</a>\n";
-echo "</li>\n";
-echo "<li>\n";
-echo "\t<a href=\"#\">Recherche</a>\n";
-echo "</li>\n";
-}
-?>
+		<?php
+			if( isset($_SESSION['identifiant']) ){ //necessite une connexion
+			echo "<li>\n";
+			echo "\t<a href=\"#\">Amis</a>\n";
+			echo "</li>\n";
+			
+			}
+		?>
          
         <li>
-                <a href="#">Forum</a>
+                <a href="#">Recherche</a>
                 
         </li>
          
@@ -62,22 +60,22 @@ echo "</li>\n";
                         <li><a href="GL/besoin.htm">Définition des besoins</a></li>
                         <li><a href="GL/conception.htm">Dossier de conception</a></li>
                         <li><a href="GL/prototype.htm">Prototype</a></li>
-			<li><a href="GL/presentation.htm">Documents de présentation</a></li>
+						<li><a href="GL/presentation.htm">Documents de présentation</a></li>
                 </ul>
         </li>
-	<li>
+		<li>
                 <a href="#">Plus</a>
                 <ul>
-                        <li><a href="#">Contactez-nous</a></li>
-                        <li><a href="index.php?page='identite-groupe'">Qui sommes-nous ?</a></li>
-                        <li><a href="#">Partenaires</a></li>
-                        <li><a href="#">Administration du site</a></li>
-                        
+                        <li><a href="index.php?page=contact">Contactez-nous</a></li>
+                        <li><a href="index.php?page=identite-groupe">Qui sommes-nous ?</a></li>
+                        <li><a href="index.php?page=liens">Liens</a></li>
+                                                
                 </ul>
         </li>
          
          
 </ul>
+</div>
 
 <br class="retour" />
 <br />
@@ -93,11 +91,11 @@ echo "</li>\n";
 	<?php 
 	include("contenu/login.php") ?>
 </div>
-<!--  nouveaux -->
+<!--  nouveaux messages -->
 	<?php 
 		include("include/messagerie/nouveaux.php");
 	?>
-<!-- -->
+<!--tchat -->
 <?php
 	if( isset($_SESSION['identifiant']) ){ //initialise ailleurs (connexion membre)
 		echo "<div id=\"tchat\">";
@@ -117,13 +115,11 @@ echo "</li>\n";
 
 	<img src="img/barre-lapin.gif"  alt="barre" title="barre lapin"/><img>
 	<br>
-	<a href="index.php" target="_blank" title="Aller à l'accueil">Accueil</a>
-	<span class="portal-pipe">|</span>
-	<a href="#" target="_blank" title="Contactez-nous">Contact</a>
-	<span class="portal-pipe">|</span>
-	<a href="#" target="_blank" title="Qui sommes nous">Qui sommes-nous ?</a>
-	<span class="portal-pipe">|</span>
-	<a href="#" target="_blank" title="Administration">Administration</a>
+	<a href="index.php" target="_blank" title="Aller à l'accueil">Accueil </a>|
+	<a href="index.php?page=contact" target="_blank" title="Contactez-nous">Contact </a>|
+	<a href="index.php?page=identite-groupe" target="_blank" title="Qui sommes nous">Qui sommes-nous ? </a>|
+	<a href="index.php?page=liens" target="_blank" title="Liens">Liens</a>
+	
 
 </footer>
 </div>

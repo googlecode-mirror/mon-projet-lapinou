@@ -10,80 +10,83 @@ body {
 	
 }
 /*Bandeau Titre*/
-header div {
+.bandeau {
 	width:100%;
-	height:150px;
+	height:180px;
 	text-align:center;
 }
 
 /* Ensemble du menu */
+.menu {
+padding-left:20%;
+
+	text-align:center;
+}
 #menu {
 	font-weight : bold; 
-        font-family : Arial; 
-        font-size : 14px; 
+    font-family : Arial; 
+    font-size : 14px; 
 }
 /* Menu principal */
 #menu, #menu ul {
 	padding : 0; 
-	margin-left:5%;
-	margin-right:5%;
 	list-style : none; 
-        line-height : 30px;
-        text-align : center;
+    line-height : 30px;
+    text-align : center;
 }
  /* Elements du menu principal */ 
 #menu li {
 	display: block;
-	 width:14%;
-        float : left;
-        border-right : 1px solid transparent; /* bordure transparente à droite de chaque élément */
+	width:14%;
+    float : left;
+    border-right : 1px solid transparent; /* bordure transparente à droite de chaque élément */
 }
  /* Contenu des éléments du menu principal */
 #menu li a {
 	border-radius:5px 5px;
-        display : block; /* change le type d'élément, les liens deviennent des balises de type block */
-        padding : 0; 
-        background : #1D702D;        
-        color : #fff;
-        text-decoration : none; 
+    display : block; /* change le type d'élément, les liens deviennent des balises de type block */
+    padding : 0; 
+    background : #1D702D;        
+    color : #fff;
+    text-decoration : none; 
 }
 /* Lorsque la souris passe sur un des liens du menu principal */ 
 #menu a:hover   {
-        border-radius:5px 5px;
-        color: #009533; 
-        background: #fff; 
+	border-radius:5px 5px;
+	color: #009533; 
+	background: #fff; 
 }
  /* Sous-menu */
 #menu li ul {
 	position: absolute; 
-        visibility:hidden;
-        margin:0;
+    visibility:hidden;
+    margin:0;
 }
  
  /* Éléments de sous-menu */
 #menu li ul li {
-        border-top : 1px solid transparent; 
+    border-top : 1px solid transparent; 
 	display: block;
 	clear:both;
 	font-size : 12px;
 	text-align:center;
-	 
-              
 }
+
 /* Contenu des éléments du sous-menu */
 #menu li ul li a {
 	border-radius:5px 5px;
-        display : block; /* change le type d'élément, les liens deviennent des balises de type block */
-        background : #00B82D;      
-        color : #fff; 
-        text-decoration : none; 
-        width:140px;
-        
-}
+    display : block; /* change le type d'élément, les liens deviennent des balises de type block */
+    background : #00B82D;      
+    color : #fff; 
+    text-decoration : none; 
+    width:140px;
+}        
+
  /* Sous-menu lorsque la souris passe sur un élément du menu ET sous-sous-lites lorsque la souris passe sur un élément de sous-liste */
 #menu li:hover ul, #menu li li:hover ul, #menu li.sfhover ul, #menu li li.sfhover ul {
-        visibility:visible; 
+     visibility:visible; 
 }
+
 /*déblocage du float left du menu*/
 .retour {
 	clear:both;
@@ -93,6 +96,7 @@ header div {
 	position:relative;
 	min-height: 100%
 }
+
 /*contenu des pages*/
 #contenu {
 	width:70%;
@@ -145,13 +149,30 @@ input {
 #contenu .readonly {
 	color:#BAB5AB;
 }
+/*liste des liens partenaires*/
+dt {
+	font-weight:bold;
+	font-size:17px;
+	margin-top:5%;
+		
+}
+dd {
+	font-weight:600;
+	color:#00980B;
+	padding-top:2%;
+}
+
+/*image des liens partenaires*/
+img#part {
+  vertical-align:middle;
+  padding-right:2em;
+  width:16%;
+}
 
 /*menu sur la droite*/
 #droite {
 	float:left;
-	height:100%;
-	
-	
+	height:100%;	
 }
 div#droite div {
 	width:240px;
@@ -175,59 +196,42 @@ div#droite div {
 	margin-right:auto;
 	margin-left:auto;
 }
-
-
-
 #phone {
 	/*height:322px;*/
-
 	border: 1px solid #666666;
 	background-color: #080808;
 	padding:8px;
 	border-radius:5px;
 	-moz-border-radius:5px; /* Old Firefox */
-
 	font-family: arial, verdana, sans-serif;
 	font-size:small;
-	
 }
-
 #phone > div {
 	margin-bottom:2px;
 }
-
-
 #phone form span {
 	color:white;
 	margin-left:0px;
 	text-align:left;
 }
-
 #phone select {
 	width:140px;
 }
-
 #phone input {
 	margin:2px;
 }
-
 #messages_div {
-
 	height:150px;
 	position:relative;
-	
 	border: 1px solid black;
 	background-color: #F5F6CE;
-
 	color:#120A2A;
 	text-align:left;
 	overflow: auto;
 }
-
 #phone .id {
 	color:blue;
 }
-
 #phone .centrer {
 	margin-right:auto;
 	margin-left:auto;
@@ -237,7 +241,6 @@ div#droite div {
 	margin-left:0px;
 	text-align:left;
 }
-
 #phone .sup {
 	position:absolute;
 	visibility:hidden;
@@ -258,12 +261,12 @@ article {
 
 /*pied de page*/
 footer {
-/*	position:absolute;*
+	position:absolute;
 	color:#009533;
 	width: 100%;
-/*	bottom:0; */
+	bottom:0;
 	text-align: center;
-	
+	font-size : 13px; 
 }
 footer a {
 	color:#009533;

@@ -26,9 +26,19 @@ else {
 		include("contenu/profil.php");
 		$redirige = true;
 	}
+	// index.php?page='contactez-nous'
+	if ($_GET['page']=='contact') {
+		include("contenu/contact.php");
+		$redirige = true;
+	}
 		// index.php?page='Qui sommes-nous'
-	if ($_GET['page']=='identite-groupe.php') {
+	if ($_GET['page']=='identite-groupe') {
 		include("contenu/identite-groupe.php");
+		$redirige = true;
+	}
+	// index.php?page='Liens'
+	if ($_GET['page']=='liens') {
+		include("contenu/liens.php");
 		$redirige = true;
 	}
 	// à compléter
