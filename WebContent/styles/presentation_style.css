@@ -249,7 +249,28 @@ div#droite div {
 	left:0px;
 	z-index:2;
 }
-
+/* lapin */
+div.profil_lapin {
+	width:280px;
+	border:1px solid black;
+	padding:1em;
+}
+div.profil_lapin h2 {
+	text-align:center;
+}
+div.profil_lapin img {
+	height: 120px;
+	float:right;
+}
+div.profil_lapin dl * {
+	color:black;
+	font-size: small;
+	font-weight: normal;
+}
+div.profil_lapin dt {
+	text-decoration:underline;
+}
+/* article */
 article {
 	width:600px;
 	margin-left:auto;
