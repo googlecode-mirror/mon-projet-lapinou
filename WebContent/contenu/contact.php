@@ -1,12 +1,12 @@
 
 <script type="text/javascript" language="Javascript" src="scripts/contact.js"></script>
-<!--formulaire inscription proprietaire-->
-<form name="contact" method="post" action="../include/envoimail.php" onsubmit="return verif()">
+<!--formulaire de contact-->
+<form name="contact" method="post" action="include/envoimail.php" onsubmit="return verif();">
 <fieldset>
 	<legend>Contactez-nous</legend>
 	<p id="problemes"></p>
 	<table>
-		<tr><td><label>Nom d'utilisateur :</label></td>
+		<tr><td><label>Nom :</label></td>
 			<td><input type="text" name="user"/></td></tr>
 		<tr><td><label>Email :</label></td>
 			<td><input type="email" name="mail" placeholder="email@example.com"></td></tr>
