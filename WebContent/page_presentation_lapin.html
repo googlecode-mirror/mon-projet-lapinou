@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Inscription</title>
+
+<script type="text/javascript">
+
+	function verifierPass() {
+		var pass = document.getElementById("pass");
+		var confpass = document.getElementById("confpass");
+		if (!(pass==confpass)) {
+			document.getElementById("pbpass").style.display = "block";
+			document.getElementById("pbpass").style.color = "red";
+			confpass.style.color = "red";
+		}
+	}
+	
+	function verifierNom() {
+		var nom = document.getElementById("nom");
+		if (nom.value == "") {
+			document.getElementById("pbNom").style.display = "block";
+			document.getElementById("pbNom").style.color = "red";
+		}
+	}
+	
+	function verifierPrenom() {
+		var prenom = document.getElementById("prenom");
+		if (prenom.value == "") {
+			document.getElementById("pbPrenom").style.display = "block";
+			document.getElementById("pbPrenom").style.color = "red";
+		}
+	}
+
+	
+</script>
+<style type="text/css">
+	
+	label {
+    		display: block;
+    		width: 200px;
+    		float: left;
+	}
+	input[type=submit] {
+		clear:left;   		
+		width : 250px;
+   	}
+	#pbPass, #pbNom, #pbPrenom {
+		display: none ;
+	}
+	</style>
+</head>
+<body>
+<form method="get" action="html_form_action.html">
+
+<fieldset>
+  <legend>Fiche d'identité du lapin(e)</legend>
+	<label>Nom du lapin(e) :</label><input type="text" name="nomlapi">
+	<br>
+	<label>Age :</label><input type="text" name="age">
+	<br>
+	<label>Sexe :</label>
+	<input type="radio" name="sex" value="male">Mâle
+	<input type="radio" name="sex" value="femelle">Femelle
+	<br>
+	<label>Race :</label><select name="race">
+<option>Grandes Races</option>
+<option>Races Moyennes</option>
+<option>Petites Races</option>
+<option>Races Naines</option>
+<option>Races à Fourrure</option>
+<option>Races Zombies</option>
+<option>Races Toons</option>
+<option>Races Crétains</option>
+<option>Races Mutantes</option>
+<option>Races Cuites</option>
+<option>Races Indéterminées</option>
+	<br>
+	<label>Type de robe :</label><select name="couleur">
+<option>Unicolore</option>
+<option>Panaché</option>
+<option>Mosaïque</option>
+<option>Tacheté</option>
+<option>Agouti</option>
+<option>Argenté</option>
+	<br>
+	<label>Type de pelage :</label><select name="pelage">
+<option>Angora</option>
+<option>Rex</option>
+<option>Satin</option>
+	<br>
+	<label>Description :</label><select name="description">
+	<TEXTAREA name="nom" rows=4 cols=40>Votre Description ici...</TEXTAREA>
+	<br>	
+	<label>Centre d'Intérêt :</label><select name="interet">
+	<TEXTAREA name="nom" rows=4 cols=40>Votre Description ici...</TEXTAREA>
+	<br>
+</fieldset>
+<input type="submit" value="S'inscrire" onclick="verifierNom(); verifierPrenom(); return false;"  />
+<input type="reset" value="Remettre à zéro" />
+</form>
+</body>
+</html>
