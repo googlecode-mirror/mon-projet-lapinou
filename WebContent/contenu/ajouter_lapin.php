@@ -17,12 +17,8 @@ if (!connect() ) {
 	exit(0);
 }
 ?>
-<html>
-<head>
-
-</head>
-<body>
-<form name="inscLapin" onsubmit="return verif_lapin();" action="inscrire_lapin.php" method="post">
+<script type="text/javascript" language="Javascript" src="scripts/inscription.js"></script>
+<form name="inscLapin" onsubmit="return verif_lapin();" action="inscrire_lapin.php" method="post" enctype="multipart/form-data">
 <fieldset>
 	<legend>Fiche d'identité du lapin(e)</legend>
 	<p id="problemes"></p>
@@ -33,6 +29,7 @@ if (!connect() ) {
 			<input type="radio" name="sex" value="femelle"/>Femelle</td></tr>
 		<tr><td><label>Race :</label></td><td>
 			<select name="race"/>
+				<option value="null">Races proposées</option>
 				<option value="grande">Grandes Races</option>
 				<option value="moyenne">Races Moyennes</option>
 				<option value="petite">Petites Races</option>
@@ -49,6 +46,7 @@ if (!connect() ) {
 			</select></td></tr>
 		<tr><td><label>Couleur :</label></td><td>
 			<select name="couleur">
+				<option value="null">Couleurs...</option>
 				<option value="unicolore">Unicolore</option>
 				<option value="panache">Panaché</option>
 				<option value="mosaique">Mosaïque</option>
@@ -61,8 +59,6 @@ if (!connect() ) {
 	<label>Description : </label><textarea rows="3" cols="40" name="desc"></textarea><p/>
 	<label>fichier photo : </label><input type="file" name="photo"></input>
 </fieldset>
-<input type="submit" value="inscrire" onclick="verifierNom(); verifierPrenom(); return false;"  />
+<input type="submit" value="inscrire"/>
 <input type="reset" value="effacer" />
 </form>
-</body>
-</html>

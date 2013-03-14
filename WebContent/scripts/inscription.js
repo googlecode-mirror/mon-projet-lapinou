@@ -132,16 +132,40 @@ function verif_modif(){
 	return bool;
 }
 
+
 //verification du formulaire d'inscription de lapin
 function verif_lapin(){
+
 	var alarm = document.getElementById('problemes');
 	alarm.innerHTML ='';
 	var bool = true;
 	
+		if( document.inscLapin.couleur.selectedIndex <= 0 ){//couleur
+		alarm.innerHTML += "- lapin sans couleur<br/>";
+		document.inscLapin.race.focus;
+		bool = false;		;
+	}
+
+	if( document.inscLapin.race.selectedIndex <= 0 ){//race
+		alarm.innerHTML += "- lapin sans race<br/>";
+		document.inscLapin.race.focus;
+		bool = false;		;
+	}
+	
+	var verif_radio =false; // sex
+	for(i = 0; i < document.inscLapin.sex.length; i++){
+		if(document.inscLapin.sex[i].checked) verif_radio =true;
+	}
+	if( ! verif_radio ){
+		alarm.innerHTML += "- lapin sans sexe<br/>";
+		document.inscLapin.sex[0].focus;
+		bool = false;
+	}
+	
 	var reg = new RegExp('^[0-9A-Za-z\-_\u00E0-\u00FC]{3,}$','g');
-	if( !(reg.test( document.inscription.user.value ) ) ){ //user
-		alarm.innerHTML += "- nom d'utilisateur absent ou trop court<br/>";
-		document.inscription.user.focus();
+	if( !(reg.test( document.inscLapin.nomlapi.value ) ) ){ //nom
+		alarm.innerHTML += "- nom de lapin absent ou mal formé<br/>";
+		document.inscLapin.nomlapi.focus();
 		bool = false;
 	}
 	
