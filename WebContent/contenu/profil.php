@@ -77,7 +77,7 @@ if( $prive ){ //champs prives
 	}
 	
 	//bouton ajouter un lapin	
-	echo "<form name =\"add_lapin\" action=\"\" method=\"post\" >\n"; //TODO <--------------------------
+	echo "<form name =\"add_lapin\" action=\"index.php?page=ajouter_lapin\" method=\"post\" >\n"; //TODO <--------------------------
 	echo "<input type=\"submit\" name=\"ajout\" value=\"ajout de lapin\" />\n";
 	echo "</form>\n";
 }else if( isset($_SESSION['identifiant']) ){ //profil public, etat connecte : proposer comme ami

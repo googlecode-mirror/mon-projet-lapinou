@@ -41,6 +41,11 @@ else {
 		include("contenu/liens.php");
 		$redirige = true;
 	}
+	// index.php?page='ajouter_lapin'
+	if ($_GET['page']=='ajouter_lapin') {
+		include("contenu/ajouter_lapin.php");
+		$redirige = true;
+	}
 	// à compléter
 	
 	
