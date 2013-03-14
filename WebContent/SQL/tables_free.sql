@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `lapin_proprietaire` (
 
 DROP TABLE IF EXISTS `lapin_lapin`;
 CREATE TABLE IF NOT EXISTS `lapin_lapin` (
+  `id_lapin` int(11) NOT NULL AUTO_INCREMENT,
   `idLap` varchar(30) NOT NULL COMMENT 'nom d''utilisateur du lapin',
   `nomlap` varchar(30) NOT NULL COMMENT 'nom du lapin',
   `agelap` varchar(2) NOT NULL COMMENT 'age',
@@ -47,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `lapin_lapin` (
   `identifiant` varchar(30) NOT NULL COMMENT 'identifiant du proprietaire',
   `id_profil` int NOT NULL COMMENT 'identifiant du proprietaire',
   PRIMARY KEY (`idLap`),
+  UNIQUE KEY `id_lapin` (`id_lapin`),
   foreign key (`identifiant`) references `lapin_proprietaire` (`identifiant`) on delete cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
