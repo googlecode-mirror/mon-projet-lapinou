@@ -18,7 +18,7 @@ if (!connect() ) {
 }
 ?>
 <script type="text/javascript" language="Javascript" src="scripts/inscription.js"></script>
-<form name="inscLapin" onsubmit="return verif_lapin();" action="inscrire_lapin.php" method="post" enctype="multipart/form-data">
+<form name="inscLapin" onsubmit="return verif_lapin();" action="include/inscrire_lapin.inc.php" method="post" enctype="multipart/form-data">
 <fieldset>
 	<legend>Fiche d'identité du lapin(e)</legend>
 	<p id="problemes"></p>
