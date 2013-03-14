@@ -68,14 +68,14 @@ function verif(){
 		bool = false;
 	}
 	
-	var reg = new RegExp('^[0-9A-Za-z\-_]{3,}$','g');
+	var reg = new RegExp('^[A-Za-z\-\xE0-\xFC]{3,}$','g');
 	if( !(reg.test( document.inscription.prenom.value ) ) ){ //prenom
 		alarm.innerHTML += "- le prenom n'est pas renseign&eacute; ou trop court.<br/>";
 		document.inscription.prenom.focus();
 		bool = false;
 	}
 	
-	var reg = new RegExp('^[0-9A-Za-z\-_]{3,}$','g');
+	var reg = new RegExp('^[A-Za-z\-\xE0-\xFC]{3,}$','g');
 	if( !(reg.test( document.inscription.nom.value ) ) ){ //nom
 		alarm.innerHTML += "- le nom n'est pas renseign&eacute; ou trop court.<br/>";
 		document.inscription.nom.focus();
@@ -96,7 +96,7 @@ function verif(){
 		bool = false;
 	}
 	
-	var reg = new RegExp('^[0-9A-Za-z\-_]{3,}$','g');
+	var reg = new RegExp('^[0-9A-Za-z\-_\xE0-\xFC]{3,}$','g');
 	if( !(reg.test( document.inscription.user.value ) ) ){ //user
 		alarm.innerHTML += "- nom d'utilisateur absent ou trop court<br/>";
 		document.inscription.user.focus();
@@ -125,6 +125,23 @@ function verif_modif(){
 	if( !(reg.test( document.inscription.cp.value ) ) ){ //code postal
 		alarm.innerHTML += "- le code postal est invalide.<br/>";
 		document.inscription.cp.focus();
+		bool = false;
+	}
+	
+	if(! bool) alarm.style.display = 'inline';
+	return bool;
+}
+
+//verification du formulaire d'inscription de lapin
+function verif_lapin(){
+	var alarm = document.getElementById('problemes');
+	alarm.innerHTML ='';
+	var bool = true;
+	
+	var reg = new RegExp('^[0-9A-Za-z\-_\u00E0-\u00FC]{3,}$','g');
+	if( !(reg.test( document.inscription.user.value ) ) ){ //user
+		alarm.innerHTML += "- nom d'utilisateur absent ou trop court<br/>";
+		document.inscription.user.focus();
 		bool = false;
 	}
 	

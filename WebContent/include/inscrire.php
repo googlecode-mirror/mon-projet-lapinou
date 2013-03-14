@@ -35,17 +35,17 @@ $email = mysql_real_escape_string($_POST['mail']);
 $probleme = ""; // localisation du probleme
 $erreur = false;
 //test user
-if( preg_match("/^[0-9A-Za-z\-_]{3,}$/",$user) != 1 ){
+if( preg_match("/[0-9A-Za-z\-_\x{00e0}-\x{00fc}]{3,}+/u",$user) != 1 ){
 	$erreur = true;
 	$probleme .= "nom d'utilisateur invalide<br/>";	
 }
 //test nom
-if( preg_match("/^[0-9A-Za-z\-_]{3,}$/",$nom) != 1 ){
+if( preg_match("/[A-Za-z\-\x{00e0}-\x{00fc}]{3,}+/u",$nom) != 1 ){
 	$erreur = true;
 	$probleme .= "nom invalide<br/>";	
 }
 //test prenom
-if( preg_match("/^[0-9A-Za-z\-_]{3,}$/",$prenom) != 1 ){
+if( preg_match("/[A-Za-z\-\x{00e0}-\x{00fc}]{3,}+/u",$prenom) != 1 ){
 	$erreur = true;
 	$probleme .= "pr&eacute;nom invalide<br/>";	
 }

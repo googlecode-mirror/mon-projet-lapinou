@@ -22,9 +22,10 @@ if (!connect() ) {
 
 </head>
 <body>
-<form>
+<form name="inscLapin" onsubmit="return verif_lapin();" action="inscrire_lapin.php" method="post">
 <fieldset>
 	<legend>Fiche d'identité du lapin(e)</legend>
+	<p id="problemes"></p>
 	<table>
 		<tr><td><label>Nom du lapin(e) :</label></td><td><input type="text" name="nomlapi"/></td></tr>
 		<tr><td colspan="2"><label>Sexe :</label>
