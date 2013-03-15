@@ -16,7 +16,6 @@ if (!connect() ) {
 	exit(0);
 }
 
-//verification du formulaire
 /********************
  * variables utiles *
  ********************/
@@ -28,9 +27,47 @@ $couleur = mysql_real_escape_string($_POST['couleur']);
 $interets = mysql_real_escape_string($_POST['interets']);
 $description = mysql_real_escape_string($_POST['desc']);
 
-//TODO PK nomLap + identifiant proprietaire
+/*****************************
+ * verifications des donnees *
+ * envoyees                  *
+ *****************************/
+$probleme = ""; // localisation du probleme
+$erreur = false;
+
+//test nom
+if( preg_match("/[A-Za-z\-\x{00e0}-\x{00fc}]{3,}+/u",$nom) != 1 ){
+	$erreur = true;
+	$probleme .= "nom invalide<br/>";	
+}
+//test sexe
+$sexe_valide =  array('male', 'femelle');
+if( ! in_array( $sexe, $sexe_valide) ){
+	$erreur = true;
+	$probleme .= "lapin sans sexe<br/>";	
+}
+//test race
+$races_valides =  array('grande', 'moyenne', 'petite','naine','belier','rustique',
+	'fourrure','zombie','toons','cretin','mutante','cuite','indetermine');
+if( ! in_array( $race, $races_valides) ){
+	$erreur = true;
+	$probleme .= "lapin sans race<br/>";	
+}
+//test couleur
+$couleurs_valides =  array('unicolore', 'panache', 'mosaique', 'tachete', 'agouti', 'argente');
+if( ! in_array( $couleur, $couleurs_valides) ){
+	$erreur = true;
+	$probleme .= "lapin sans couleur<br/>";	
+}
+//test fichier
+///test taille fichier
+if ($_FILES['photo'] && $_FILES['photo']['size'] > 1048576) { // >1Mo
+	$erreur = true;
+	$probleme .= "fichier trop volumineux<br/>";
+}
 
 
+
+//Primary key =  nomLap + identifiant proprietaire
 ?>
 <html>
 <body>
