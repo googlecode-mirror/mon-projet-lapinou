@@ -21,6 +21,7 @@ if (!connect() ) {
  ********************/
 
 $nom = mysql_real_escape_string($_POST['nomlapi']);
+$age = mysql_real_escape_string($_POST['age']);
 $sexe = mysql_real_escape_string($_POST['sex']);
 $race = mysql_real_escape_string($_POST['race']);
 $couleur = mysql_real_escape_string($_POST['couleur']);
@@ -39,6 +40,13 @@ if( preg_match("/[A-Za-z\-\x{00e0}-\x{00fc}]{3,}+/u",$nom) != 1 ){
 	$erreur = true;
 	$probleme .= "nom invalide<br/>";	
 }
+
+//test age
+if( preg_match("/^([0-9]{1,2})$/",$age) != 1 ){
+	$erreur = true;
+	$probleme .= "age invalide<br/>";	
+}
+
 //test sexe
 $sexe_valide =  array('male', 'femelle');
 if( ! in_array( $sexe, $sexe_valide) ){
@@ -64,10 +72,38 @@ if ($_FILES['photo'] && $_FILES['photo']['size'] > 1048576) { // >1Mo
 	$erreur = true;
 	$probleme .= "fichier trop volumineux<br/>";
 }
-
-
-
 //Primary key =  nomLap + identifiant proprietaire
+$sql = "SELECT * FROM lapin_lapin WHERE identifiant = '".$user."' AND nomlap = '".$nom."';";
+$resultat = mysql_query($sql);
+if ( !$resultat  ){
+	$erreur = true;
+	$message = " \nun probleme s'est produit.";
+	disconnect();  //deconnexion MySQL
+} else if (mysql_num_rows($resultat) > 0) { // l'identifiant existe déjà
+	$erreur = true;
+	$message = "Un lapin similaire existe deja";
+	disconnect();  //deconnexion MySQL
+}
+if( $erreur ){
+	header('Location: ../index.php?page=ajouter_lapin&mess='.urlencode($message));	
+	exit(0);
+}
+
+//OK insertion
+//recuperer l'id_profil du prorietaire -merci Florent...
+$sql = "SELECT id_profil FROM lapin_proprietaire WHERE identifiant = '".$user."';";
+$resultat = mysql_query($sql);
+$idProprietaire = mysql_fetch_array($resultat);
+
+$sql = "INSERT INTO lapin_lapin (nomlap, agelap, race, sexe, couleur, description, centreInteret, identifiant, id_profil) ".
+	"VALUES ('".$nom."','".$age."','".$race."','".$sexe."','".$couleur."','".$description."','".$interets."','".$user."', ".$idProprietaire['id_profil'].");";
+			
+if ( ! mysql_query($sql) ){
+	$message = " \nun probleme s'est produit.";
+	header('Location: ../index.php?page=ajouter_lapin&mess='.urlencode($message));	
+	exit(0);
+}
+
 ?>
 <html>
 <body>

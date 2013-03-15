@@ -161,7 +161,14 @@ function verif_lapin(){
 		document.inscLapin.sex[0].focus;
 		bool = false;
 	}
-	
+
+	var reg = new RegExp('^[0-9]{1,2}$','g');
+	if( !(reg.test( document.inscLapin.age.value ) ) ){ //age
+		alarm.innerHTML += "- age non mentionne<br/>";
+		document.inscLapin.age.focus();
+		bool = false;
+	}
+		
 	var reg = new RegExp('^[0-9A-Za-z\-_\u00E0-\u00FC]{3,}$','g');
 	if( !(reg.test( document.inscLapin.nomlapi.value ) ) ){ //nom
 		alarm.innerHTML += "- nom de lapin absent ou mal formé<br/>";
