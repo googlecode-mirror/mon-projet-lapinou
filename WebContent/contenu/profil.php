@@ -84,8 +84,34 @@ if( $prive ){ //champs prives
 	echo "<a href=\"\">ajouter aux amis</a>";
 }
 //afficher les lapins ici
-
 ?>
+<h3>mes lapins : </h3>
+<div><table>
+
+<?php
+$compteur = 0;
+require_once("include/affiche_lapin.inc.php");
+$resultat = mysql_query( "SELECT * FROM lapin_lapin WHERE identifiant = '".$user."';" );
+
+//affichage en tableau X x 2
+while ($lapin = mysql_fetch_array($resultat) ){
+
+	if( $compteur % 2 == 0 ) {
+		echo "<tr><td>";
+		affiche_lapin( $lapin );
+		echo "</td>";
+	}else {
+		echo "<td>";
+		affiche_lapin( $lapin );
+		echo "</td></tr>";
+	}
+	$compteur++;
+}
+if( $compteur % 2 == 1 ) 
+	echo "</tr>";
+?>
+
+</table></div>
 </article>
 <?php
 disconnect();

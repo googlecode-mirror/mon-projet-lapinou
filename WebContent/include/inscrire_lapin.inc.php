@@ -103,15 +103,17 @@ if ( ! mysql_query($sql) ){
 	header('Location: ../index.php?page=ajouter_lapin&mess='.urlencode($message));	
 	exit(0);
 }
-
+//photo
+//GESTION DE LA PHOTO			
+require_once "upload_photo.inc.php";
+if(isset($_FILES['photo'])){
+	$fich =  enregistrer_photo($_FILES['photo'], $user );
+	if( $fich  ){//succes upload
+		$sql = "UPDATE lapin_lapin SET photo = '".$fich."' WHERE identifiant = '".$user."' AND nomlap = '".$nom."';";
+		mysql_query($sql);
+	}
+}
+//fin
+header('Location: ../index.php?page=profil');	
+exit(0);
 ?>
-<html>
-<body>
-<p><?php echo $nom; ?></p>
-<p><?php echo $sexe; ?></p>
-<p><?php echo $race; ?></p>
-<p><?php echo $couleur; ?></p>
-<p><?php echo $interets; ?></p>
-<p><?php echo $description; ?></p>
-</body>
-</html>

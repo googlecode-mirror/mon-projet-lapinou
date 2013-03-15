@@ -54,7 +54,7 @@ function verif(){
 	var bool = true;
 	
 	//email : ###@###.## (minimum)
-	var reg = new RegExp('^[0-9A-Za-z\-_]{3,}@[0-9A-Za-z\-_]{3,}\.[A-Za-z]{2,3}$','g');
+	var reg = new RegExp('^[0-9A-Za-z\-_\.]{3,}@[0-9A-Za-z\-_]{3,}\.[A-Za-z]{2,3}$','g');
 	if( !(reg.test( document.inscription.mail.value ) ) ){
 		alarm.innerHTML += "- e-mail incorrect.<br/>";
 		document.inscription.mail.focus();
@@ -114,7 +114,7 @@ function verif_modif(){
 	var bool = true;
 	
 	//email : ###@###.## (minimum)
-	var reg = new RegExp('^[0-9A-Za-z\-_]{3,}@[0-9A-Za-z\-_]{3,}\.[A-Za-z]{2,3}$','g');
+	var reg = new RegExp('^[0-9A-Za-z\-_\.]{3,}@[0-9A-Za-z\-_]{3,}\.[A-Za-z]{2,3}$','g');
 	if( !(reg.test( document.inscription.mail.value ) ) ){
 		alarm.innerHTML += "- e-mail incorrect.<br/>";
 		document.inscription.mail.focus();

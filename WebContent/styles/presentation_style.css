@@ -251,8 +251,9 @@ div#droite div {
 }
 /* lapin */
 div.profil_lapin {
-	width:280px;
-	border:1px solid black;
+	width:260px;
+	border:1px solid white;
+	background-color:#ffebbf;
 	padding:1em;
 }
 div.profil_lapin h2 {
@@ -260,7 +261,7 @@ div.profil_lapin h2 {
 }
 div.profil_lapin img {
 	height: 120px;
-	float:right;
+	/*float:right;*/
 }
 div.profil_lapin dl * {
 	color:black;

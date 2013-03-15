@@ -21,7 +21,7 @@ if (!connect() ) {
 <form name="inscLapin" onsubmit="return verif_lapin();" action="include/inscrire_lapin.inc.php" method="post" enctype="multipart/form-data">
 <fieldset>
 	<legend>Fiche d'identité du lapin(e)</legend>
-	<p id="problemes"><?php if( isset( $_GET['mess'] ) echo $_GET['mess']; )</p>
+	<p id="problemes"><?php if( isset( $_GET['mess'] ) ) echo $_GET['mess']; ?></p>
 	<table>
 		<tr><td><label>Nom du lapin(e) :</label></td><td><input type="text" name="nomlapi"/></td></tr>
 		<tr><td><label>Age :</label></td><td><input type="text" name="age"></td></tr>
