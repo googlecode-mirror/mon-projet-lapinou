@@ -185,7 +185,7 @@ div#droite div {
 }
 /* lapiphone */
 #lapiphone {
-	position: absolute;
+	position: fixed;
 	left: 30px;
 	bottom: 30px;
 	text-align:center;
