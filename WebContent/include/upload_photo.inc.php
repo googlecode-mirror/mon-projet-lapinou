@@ -40,7 +40,7 @@ function enregistrer_photo( $fichier, $user ){
 		$hauteur_finale= $taille[1];
 	}
 		
-	try{
+	//try{
 		if( in_array( $taille['mime'], $mime_jpg ) ){ //images jprg
 			$ImageChoisie = imagecreatefromjpeg($fichier['tmp_name']) or die ();
 			$NouvelleImage = imagecreatetruecolor($largeur_finale , $hauteur_finale) or die ();
@@ -68,14 +68,14 @@ function enregistrer_photo( $fichier, $user ){
 		}else{
 			return false;
 		}
-	}catch( Exception $e ){
+	//}catch( Exception $e ){
 		//si on voulait deplacer malgre tout sans redimensionner
 		/**
 		$resultat = move_uploaded_file( $fichier['tmp_name'], $chemin );
 		
 		if( ! $resultat ) */
-		return false;
-	}
+	//	return false;
+	//}
 	return $nouveau_nom; //nom fichier sinon
 }
 ?>
