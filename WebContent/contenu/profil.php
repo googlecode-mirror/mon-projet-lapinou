@@ -95,7 +95,6 @@ $resultat = mysql_query( "SELECT * FROM lapin_lapin WHERE identifiant = '".$user
 
 //affichage en tableau X x 2
 while ($lapin = mysql_fetch_array($resultat) ){
-
 	if( $compteur % 2 == 0 ) {
 		echo "<tr><td>";
 		affiche_lapin( $lapin );
