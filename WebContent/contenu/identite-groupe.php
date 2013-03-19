@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Qui sommes-nous ?</title>
+</head>
+<body>
 <h2>Présentation du Groupe</h2>
 <br /> 
 <p>
@@ -11,6 +18,8 @@ le domaine de la rencontre pour lapins.
 <BR>En espérant vous avoir renseigné au mieux et en espérant que ce site vous ait convaincu.
 cf image groupe: (a définir)...
 </p>
+</body>
+</html>
 
 <!--<p>Nous nous sommes plac&eacute;s dans la position d’un regroupement de personnes passionn&eacute;es de lapins. La cr&eacute;ation d’un site pour aider les propri&eacute;taires de
 lapins à les faire reproduire n’existe pas encore et pourrait &ecirc;tre utile par exemple pour la sauvegarde de certaine race. L’objectif de ce projet est donc
