@@ -46,6 +46,16 @@ else {
 		include("contenu/ajouter_lapin.php");
 		$redirige = true;
 	}
+	// index.php?page='recherche'
+	if ($_GET['page']=='recherche') {
+		include("contenu/chercher.html");
+		$redirige = true;
+	}
+	// index.php?page='trouve'
+	if ($_GET['page']=='trouve') {
+		include("include/recherche.php");
+		$redirige = true;
+	}
 	// à compléter
 	
 	

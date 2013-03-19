@@ -29,7 +29,7 @@
 */
 
 session_start();
-require_once "../sql.php";
+require_once "sql.php";
 connect();
 
 //fonctions
@@ -58,7 +58,7 @@ function typesCriteres() {
 	global $criteres, $types, $type;
 
 	//obtenir les critères séparés
-	$criteres=split(' ',$_POST['criteres']);
+	$criteres=split(' ',$_GET['criteres']);
 	//déterminer les types
 	$types=0;
 	foreach ($criteres as $crit) {
@@ -166,15 +166,15 @@ function afficheResultat($resultats,$table) {
 
 //!!! pour test/développement
 //$mid=1;
-if (isset($_GET['criteres']))
+/*if (isset($_GET['criteres']))
 	$_POST['criteres']=$_GET['criteres'];
 else
-	$_POST['criteres']="Roger 2013/03/11";
-$_POST['type']="global";
+	$_POST['criteres']="Roger 2013/03/11";*/
+//$_POST['type']="global";
 //!!! fin pour test/développement
 	
 //recherche selon le type de requête
-if ($_POST['type']=="global") {
+if ($_GET['type']=="global") {
 //définir les types de la recherche
 	typesCriteres();
 	
@@ -183,7 +183,7 @@ if ($_POST['type']=="global") {
 	$tables=requete($req);
 
 //afficher le conteneur
-	echo "<div class='resultats'>\n";
+	echo "<article>\n<div class='resultats'>\n";
 	
 //passer les tables en revue
 	foreach ($tables as $ent) {
@@ -266,7 +266,7 @@ if ($_POST['type']=="global") {
 		}
 	}
 	//fermer la boite des résultats globaux
-	echo "</div>\n";
+	echo "</div>\n</article>\n";
 	
 } else {
 //!!! section pour la recherche fine

@@ -48,7 +48,7 @@
 		?>
          
         <li>
-                <a href="#">Recherche</a>
+                <a href="index.php?page=recherche">Recherche</a>
                 
         </li>
          
