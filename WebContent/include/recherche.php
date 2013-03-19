@@ -27,11 +27,12 @@
 		afficheResultat($resultats,$table);
 
 */
+$type=Array();
 
 session_start();
 require_once "sql.php";
 connect();
-
+error_reporting(E_ALL);
 //fonctions
 
 //		spécifiques au cas 'global'
@@ -179,7 +180,8 @@ if ($_GET['type']=="global") {
 	typesCriteres();
 	
 //obtenir la liste des tables
-	$req="SHOW TABLES FROM ".BASE." LIKE 'lapin_%'";
+//	$req="SHOW TABLES FROM ".BASE." LIKE 'lapin_%'";
+	$req="SHOW TABLES LIKE 'lapin_%'";
 	$tables=requete($req);
 
 //afficher le conteneur
