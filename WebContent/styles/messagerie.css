@@ -13,6 +13,7 @@
 }
 .liste_boite li div:first-of-type {
 	width:1em;
+	text-align:center;
 }
 .pmMess {
 	width:1em;
@@ -26,12 +27,14 @@
 }
 .liste_boite li ul li div {
   display: inline-block;
-  width: 20%;
+  width: 24%;
 	cursor:pointer;
-/*  float: left;*/
+	text-align:center;
+	/*  float: left;*/
 }
 .liste_boite li ul li div:first-of-type {
-	width:20%;
+	width:24%;
+	text-align:left;
 }
 .message div {
 /*	border: 1px solid darkgray;*/

@@ -283,10 +283,10 @@ article {
 
 /*pied de page*/
 footer {
-	position:absolute;
+/*	position:absolute;*/
 	color:#009533;
 	width: 100%;
-	bottom:0;
+/*	bottom:0;*/
 	text-align: center;
 	font-size : 13px; 
 }
