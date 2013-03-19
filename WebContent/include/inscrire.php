@@ -167,7 +167,7 @@ if( $erreur ){
 		//c'est bon
 		
 		//GESTION DE LA PHOTO			
-		require_once "upload_photo.inc.php";
+	/*	require_once "upload_photo.inc.php";
 		if(isset($_FILES['trombine'])){
 			$fich =  enregistrer_photo($_FILES['trombine'], $user );
 			if( $fich  ){//succes upload
@@ -176,7 +176,7 @@ if( $erreur ){
 			}
 			
 		}
-		
+		*/
 
 		//if( ! isset($_SESSION['identifiant']) ){  // modif dom : dans tous les cas réinitialiser l'identifiant
 		$_SESSION['identifiant'] =$user;//

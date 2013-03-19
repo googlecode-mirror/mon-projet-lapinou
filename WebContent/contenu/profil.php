@@ -82,6 +82,7 @@ if( $prive ){ //champs prives
 	echo "</form>\n";
 }else if( isset($_SESSION['identifiant']) ){ //profil public, etat connecte : proposer comme ami
 	echo "<a href=\"\">ajouter aux amis</a>";
+	include "include/messagerie/contact_profil.php";
 }
 //afficher les lapins ici
 ?>

@@ -42,7 +42,7 @@ if (connect()) {
 			header('Content-Type: application/xml');
 			$data="<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<boite>";
 			foreach ($liste_mess as $mess) {
-				$data.="<message><id>$mess->id_mess</id><titre>$mess->titre</titre><nom>$mess->nomL</nom><date>$mess->date</date><proprio>$mess->nom $mess->prenom</proprio></message>\n";
+				$data.="<message><id>$mess->id_mess</id><titre>$mess->titre</titre><nom>$mess->idLap</nom><date>$mess->date</date><proprio>$mess->nom $mess->prenom</proprio></message>\n";
 			}
 			$data.="\n</boite>";
 			echo $data;
