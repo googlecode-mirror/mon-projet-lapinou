@@ -1,5 +1,5 @@
 <?
-/*
+
 echo "<pre>";
 print_r($_REQUEST);
 print_r($_POST);
@@ -7,7 +7,7 @@ print_r($_GET);
 print_r($_SESSION);
 print_r($personne);
 echo "</pre>";
-*/
+
 ?>
 <br />
 <a href="#" onclick="el=document.getElementById('fdisc');if (el.style.display=='block') el.style.display='none'; else el.style.display='block'; return false;">lancer une discussion</a>
