@@ -1,7 +1,11 @@
 
 		<script type="text/javascript" language="Javascript" src="scripts/inscription.js"></script>
 		<script type="text/javascript" language="Javascript" src="scripts/sha1.js"></script>
-
+<?php
+//protection
+session_destroy();
+session_start();
+?>
 
 <!--formulaire inscription proprietaire-->
 <noscript>Vous ne pouvez pas vous inscrire car javascript n'est pas activé.</noscript>

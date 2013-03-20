@@ -33,7 +33,7 @@
         <li>
                 <a href="#">Membres</a>
                 <ul>
-						<li><a href="index.php?page=inscription">Inscription</a></li>
+						<?php if( ! isset($_SESSION['identifiant']) ) echo '<li><a href="index.php?page=inscription">Inscription</a></li>' ;?>
 						<li><a href="index.php?page=messagerie">Messagerie</a></li>
 						<?php if( isset($_SESSION['identifiant']) ) echo '<li><a href="index.php?page=profil">Profil</a></li>' ;?>
                 </ul>
