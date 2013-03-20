@@ -50,6 +50,9 @@ if( count($date) != 3 ){
 	if( ! checkdate($date[0], $date[1], $date[2] ) ){
 		$erreur = true;
 		$probleme .= "age invalide<br/>";		
+	}else{
+		//mise en forme
+		$age = $date[2]."-".$date[1]."-".$date[0];
 	}
 }
 

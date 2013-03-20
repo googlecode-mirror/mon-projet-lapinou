@@ -16,12 +16,14 @@ function affiche_lapin( $lapin ){
 		//on est sur la session du proprietaire
 		if( $_SESSION['identifiant'] == $lapin['identifiant'] ) $est_proprietaire=true;
 	}
+	$date = explode("-",$lapin['agelap']);
+	
 	echo "<div class=\"profil_lapin\">\n";
 	echo 	"\t<h2>".$lapin['nomlap']."</h2>\n";
 	echo "<table><tr><td>\n";
 	echo	"\t<ul>\n";
 	echo		"\t\t<li>race : ".$lapin['race']."</li>\n";
-	echo		"\t\t<li>date de naissance : ".$lapin['agelap']."</li>\n";
+	echo		"\t\t<li>date de naissance : ".$date[2]."/".$date[1]."/".$date[0]."</li>\n";
 	echo		"\t\t<li>sexe : ".$lapin['sexe']."</li>\n";
 	echo		"\t\t<li>couleur : ".$lapin['couleur']."</li>\n";
 	echo	"\t</ul>\n";
