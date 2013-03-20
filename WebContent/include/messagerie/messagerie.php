@@ -69,7 +69,6 @@ ref.type="text/javascript";
 document.getElementsByTagName("head")[0].appendChild(ref);
 </script>
 <script type="text/javascript" language="Javascript" src="scripts/ajax.js"></script>
-<script type="text/javascript" language="Javascript" src="scripts/messagerie.js"></script>
 
 
 <?php
@@ -197,6 +196,9 @@ echo "</pre>"; */
 
 //est-ce toujours nécessaire ? La connexion est peut-être encore utile => l'ajouter systématiquement dans un document générique (moteur) ?
 	disconnect();
+?>
+	<script type="text/javascript" language="Javascript" src="scripts/messagerie.js"></script>
+<?php 
 }
 
 //$pid=$_SESSION['pid'];

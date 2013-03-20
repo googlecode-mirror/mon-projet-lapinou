@@ -146,7 +146,10 @@ function afficheResultat($resultats,$table) {
 				if (eregi("[a-z]",$chp)) {
 				//ajouter cette clé à l'entête et sa valeur au contenu
 					$entete.="<th>$chp</th>";
-					$chn.="<td>$val</td>";
+					if ((preg_match('/Message/i',$table)) && ($chp=="id_mess"))
+						$chn.="<td><a href='index.php?page=messagerie&disc=".$res['id_disc']."&mess=".$res['id_mess']."'>$val</a></td>";
+					else
+						$chn.="<td>$val</td>";
 				}
 		//fermer les lignes
 			$entete.="</tr>";
