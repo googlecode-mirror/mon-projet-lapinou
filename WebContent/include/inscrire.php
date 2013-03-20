@@ -66,7 +66,7 @@ if( preg_match("/^([0-9]{5})$/",$codepostal) != 1 ){
 }
 //pas de test pour la region...
 //test e-mail
-if( preg_match("/^[0-9A-Za-z\-_\.]{3,}@[0-9A-Za-z\-_]{3,}\.[A-Za-z]{2,3}$/",$email) != 1 ){
+if( preg_match("/^[0-9A-Za-z\-_\.]{3,}@[0-9A-Za-z\-_\.]{3,}\.[A-Za-z]{2,3}$/",$email) != 1 ){
 	$erreur = true;
 	$probleme .= "email invalide<br/>";	
 }
@@ -167,7 +167,7 @@ if( $erreur ){
 		//c'est bon
 		
 		//GESTION DE LA PHOTO			
-	/*	require_once "upload_photo.inc.php";
+		require_once "upload_photo.inc.php";
 		if(isset($_FILES['trombine'])){
 			$fich =  enregistrer_photo($_FILES['trombine'], $user );
 			if( $fich  ){//succes upload
@@ -176,7 +176,7 @@ if( $erreur ){
 			}
 			
 		}
-		*/
+		
 
 		//if( ! isset($_SESSION['identifiant']) ){  // modif dom : dans tous les cas réinitialiser l'identifiant
 		$_SESSION['identifiant'] =$user;//

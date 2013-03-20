@@ -48,7 +48,7 @@ if( preg_match("/^([0-9]{1,2})$/",$age) != 1 ){
 }
 
 //test sexe
-$sexe_valide =  array('male', 'femelle');
+$sexe_valide =  array('m', 'f');
 if( ! in_array( $sexe, $sexe_valide) ){
 	$erreur = true;
 	$probleme .= "lapin sans sexe<br/>";	

@@ -26,8 +26,8 @@ if (!connect() ) {
 		<tr><td><label>Nom du lapin(e) :</label></td><td><input type="text" name="nomlapi"/></td></tr>
 		<tr><td><label>Age :</label></td><td><input type="text" name="age"></td></tr>
 		<tr><td colspan="2"><label>Sexe :</label>
-			<input type="radio" name="sex" value="male"/>Mâle
-			<input type="radio" name="sex" value="femelle"/>Femelle</td></tr>
+			<input type="radio" name="sex" value="m"/>Mâle
+			<input type="radio" name="sex" value="f"/>Femelle</td></tr>
 		<tr><td><label>Race :</label></td><td>
 			<select name="race"/>
 				<option value="null">Races proposées</option>

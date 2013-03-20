@@ -73,6 +73,7 @@ function switch_conversation( nom ){
 				conversations[n].get('date') != '0') ){	//nouveaux messages
 			connectes.select('option')[conversations[n].get('num')].
 				style.color = "blue";//bleu
+			montrer_lapiphone();//si une conversation presente, on affiche
 		}else {
 
 			if( conversations[n].get('present') ){
@@ -109,6 +110,7 @@ function afficher_conversation( conversation ){
 
 function ecouter(){
 	new Ajax.Request('include/chat_import.php', { //PROTOTYPE API
+		method: "get",
 		onSuccess: function(response) {
 			var xmlDoc = new Element('div').update(response.responseText).childElements()[0];
 
@@ -193,9 +195,6 @@ function ecouter(){
 				switch_conversation( plusRecent );//ou le message le plus recent
 			}
 
-			if( xmlDoc.down('conversation') ){montrer_lapiphone();};
-			//si une conversation presente, on affiche
-
   		}
 	});
 }
@@ -209,6 +208,7 @@ function envoyer(){
 		courant = connectes.select('option')[connectes.options.selectedIndex].text;
 		new Ajax.Request('include/chat_send_message.php', { //PROTOTYPE API
 			parameters: {dest: courant , texte: $('message').value},
+			method: "get",
 			onSuccess: function(response) {
 				$('message').value =''; //on efface
 			}
