@@ -156,7 +156,7 @@ print_r($liste_disc);
 echo "</pre>"; */
 	if ($liste_disc!==null) {
 	//affichage de la messagerie
-		$code="<div class='boite'>\n";
+		$code="<article>\n<h2>Messagerie de ".$_SESSION[identifiant]."</h2>\n<div class='boite'>\n";
 		$code.=habille_boite($liste_disc);
 		$code.="<div class='message' id='texte'></div>\n";
 	
@@ -186,7 +186,7 @@ echo "</pre>"; */
 			}
 		}
 		
-		$code.="</div>\n";
+		$code.="</div>\n</article>\n";
 		echo $code;
 	//mettre à jour l'heure de dernière consultation
 		$req_date=MajConsultation ($mid);

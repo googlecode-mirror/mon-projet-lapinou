@@ -31,6 +31,7 @@ $type=Array();
 
 session_start();
 require_once "sql.php";
+include_once "affiche_lapin.inc.php";
 connect();
 error_reporting(E_ALL);
 //fonctions
@@ -126,8 +127,8 @@ function controle_supp($req,$table) {
 }
 
 function afficheResultat($resultats,$table) {
-//affiche au format html les résultats de la recherche globale 
-//pour cette table s'il y en a
+//affichage générique au format html des résultats de la recherche
+//globale pour cette table s'il y en a
 //!!! affiche directement, ne retourne pas de chaîne !
 	//vérifier qu'il y a des résultats à afficher
 	$nb=count($resultats);
@@ -165,6 +166,41 @@ function afficheResultat($resultats,$table) {
 	}
 }
 
+function afficheLienProprio($resultats,$table) {
+//affichage générique au format html des résultats de la recherche
+//globale pour cette table s'il y en a
+//!!! affiche directement, ne retourne pas de chaîne !
+	//vérifier qu'il y a des résultats à afficher
+	$nb=count($resultats);
+	if ($nb!=0) {
+		$s=(($nb==0)?"":"s");	//gestion du pluriel
+		$chn="";	//contiendra le contenu de la table générée
+		$entete="<tr>";		//contiendra l'entête de la table (rééccrit)
+		$entete.="<th>pseudo</th><th>nom</th><th>prénom</th><th>région</th><th>adresse</th>";
+		$entete.="</tr>";
+	//passer les résultats en revue
+		foreach ($resultats as $res) {
+		//nouvelles lignes
+			$lien="<a href='index.php?page=profil&user=".$res['identifiant']."'>";
+			$chn.="<tr>";
+		//afficher les champs pertinents
+			$chn.="<td>$lien".$res['identifiant']."</a></td><td>$lien".$res['nom']."</a></td><td>$lien".$res['prenom']."</a></td><td>$lien".$res['region']."</a></td><td>$lien".$res['mail']."</a></td>";
+		//fermer les lignes
+			$chn.="</tr>\n";
+		}
+	//les résultats ont été formatés : les afficher
+	//!!! ou les retourner !
+		echo "<div class='resultatRch'>
+	<p>$nb résultat$s trouvé$s dans $table.</p>
+	<div id='rch_$table'>
+		<table>
+			$entete
+			$chn
+		</table>
+	</div>
+</div>\n";
+	}
+}
 //!!! pour test/développement
 //$mid=1;
 /*if (isset($_GET['criteres']))
@@ -255,15 +291,39 @@ if ($_GET['type']=="global") {
 				}
 			}
 		//supprimer les finales
+			if (preg_match("/_proprietaire/i",$ent[0]))
+				$liste.="identifiant, ";
 			$liste=substr($liste,0,strlen($liste)-2);
 			$req=substr($req,0,strlen($req)-3);
-			$req=str_replace('*',$liste,$req);
+			if (!preg_match("/_lapin/i",$ent[0])) {
 		
-			if ($liste!="") {
-				$req=controle_supp($req,$ent[0]);
+				if ($liste!="")
+					$req=controle_supp($req,$ent[0]);
+			}
 			//il existe au moins un champ interrogable : requête
-				$resultat=requete($req);
-				afficheResultat($resultat,$ent[0]);
+				if ($liste!="") {
+					$resultat=requete($req);
+					if (preg_match("/_lapin/i",$ent[0])) {
+						$compteur=0;
+						echo "<table>\n";
+						foreach ($resultat as $lapin) {
+							if( $compteur % 2 == 0 ) {
+								echo "<tr><td>\n";
+								affiche_lapin($lapin);
+								echo "</td>";
+							} else {
+								echo "<td>";
+								affiche_lapin($lapin);
+								echo "</td></tr>\n";
+							}
+							$compteur++;
+						}
+						echo "</table>\n";
+					} else
+						if (preg_match("/_proprietaire/i",$ent[0])) {
+							afficheLienProprio($resultat,$ent[0]);
+						} else
+							afficheResultat($resultat,$ent[0]);
 			}
 		}
 	}
