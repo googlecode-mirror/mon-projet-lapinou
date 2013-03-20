@@ -21,7 +21,7 @@ function affiche_lapin( $lapin ){
 	echo "<table><tr><td>\n";
 	echo	"\t<ul>\n";
 	echo		"\t\t<li>race : ".$lapin['race']."</li>\n";
-	echo		"\t\t<li>age : ".$lapin['agelap']." ans</li>\n";
+	echo		"\t\t<li>date de naissance : ".$lapin['agelap']."</li>\n";
 	echo		"\t\t<li>sexe : ".$lapin['sexe']."</li>\n";
 	echo		"\t\t<li>couleur : ".$lapin['couleur']."</li>\n";
 	echo	"\t</ul>\n";

@@ -24,7 +24,7 @@ if (!connect() ) {
 	<p id="problemes"><?php if( isset( $_GET['mess'] ) ) echo $_GET['mess']; ?></p>
 	<table>
 		<tr><td><label>Nom du lapin(e) :</label></td><td><input type="text" name="nomlapi"/></td></tr>
-		<tr><td><label>Age :</label></td><td><input type="text" name="age"></td></tr>
+		<tr><td><label>Date de naissance :</label></td><td><input type="text" name="age" placeholder="30/01/2012"></td></tr>
 		<tr><td colspan="2"><label>Sexe :</label>
 			<input type="radio" name="sex" value="m"/>Mâle
 			<input type="radio" name="sex" value="f"/>Femelle</td></tr>

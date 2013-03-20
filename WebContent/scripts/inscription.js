@@ -162,7 +162,7 @@ function verif_lapin(){
 		bool = false;
 	}
 
-	var reg = new RegExp('^[0-9]{1,2}$','g');
+	var reg = new RegExp('^[0-9]{2}/[0-9]{2}/[0-9]{4}$','g');
 	if( !(reg.test( document.inscLapin.age.value ) ) ){ //age
 		alarm.innerHTML += "- age non mentionne<br/>";
 		document.inscLapin.age.focus();

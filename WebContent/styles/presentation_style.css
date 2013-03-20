@@ -271,6 +271,9 @@ div.profil_lapin dl * {
 div.profil_lapin dt {
 	text-decoration:underline;
 }
+div.profil_lapin ul {
+	padding:0px;
+}
 /* article */
 article {
 	width:600px;

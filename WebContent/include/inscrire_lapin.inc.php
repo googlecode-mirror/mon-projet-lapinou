@@ -42,10 +42,17 @@ if( preg_match("/[A-Za-z\-\x{00e0}-\x{00fc}]{3,}+/u",$nom) != 1 ){
 }
 
 //test age
-if( preg_match("/^([0-9]{1,2})$/",$age) != 1 ){
+$date = explode("/",$age);
+if( count($date) != 3 ){
 	$erreur = true;
 	$probleme .= "age invalide<br/>";	
+}else{
+	if( ! checkdate($date[0], $date[1], $date[2] ) ){
+		$erreur = true;
+		$probleme .= "age invalide<br/>";		
+	}
 }
+
 
 //test sexe
 $sexe_valide =  array('m', 'f');
@@ -77,15 +84,15 @@ $sql = "SELECT * FROM lapin_lapin WHERE identifiant = '".$user."' AND nomlap = '
 $resultat = mysql_query($sql);
 if ( !$resultat  ){
 	$erreur = true;
-	$message = " \nun probleme s'est produit.";
+	$probleme = " \nun probleme s'est produit.";
 	disconnect();  //deconnexion MySQL
 } else if (mysql_num_rows($resultat) > 0) { // l'identifiant existe déjà
 	$erreur = true;
-	$message = "Un lapin similaire existe deja";
+	$probleme = "Un lapin similaire existe deja";
 	disconnect();  //deconnexion MySQL
 }
 if( $erreur ){
-	header('Location: ../index.php?page=ajouter_lapin&mess='.urlencode($message));	
+	header('Location: ../index.php?page=ajouter_lapin&mess='.urlencode($probleme));	
 	exit(0);
 }
 
