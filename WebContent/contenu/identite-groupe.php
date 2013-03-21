@@ -2,7 +2,7 @@
 <article>
 <h2>Pr&eacute;sentation du Groupe</h2>
 <br /> 
-<img src="img/lapinous.jpg"/>
+<div id="groupe"><img src="img/lapinous.jpg" /></div>
 <p>
 Nous sommes un groupe d'&eacute;tudiant de l'universit&eacute; d'Orl&eacute;ans (promotion CCI ann&eacute;e 2012/2013). Notre projet s'inclut dans le cadre de nos &eacute;tudes. Il a pour but 
 de comprendre comment fonctionne un site, comment il s'harmonise mais &eacute;galement comment se g&egrave;re une &eacute;quipe.
