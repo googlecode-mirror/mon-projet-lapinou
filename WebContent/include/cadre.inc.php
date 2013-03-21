@@ -56,6 +56,11 @@ else {
 		include("include/recherche.php");
 		$redirige = true;
 	}
+		// index.php?page='ami'
+	if ($_GET['page']=='amis') {
+		include("contenu/amis.php");
+		$redirige = true;
+	}
 	// à compléter
 	
 	

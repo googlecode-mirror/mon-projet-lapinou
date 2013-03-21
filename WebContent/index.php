@@ -41,7 +41,7 @@
 		<?php
 			if( isset($_SESSION['identifiant']) ){ //necessite une connexion
 			echo "<li>\n";
-			echo "\t<a href=\"#\">Amis</a>\n";
+			echo "\t<a href=\"index.php?page=amis\">Amis</a>\n";
 			echo "</li>\n";
 			
 			}
