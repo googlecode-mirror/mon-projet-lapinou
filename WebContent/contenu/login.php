@@ -21,6 +21,7 @@
 	if (isset($_POST) and isset($_POST['logout']) and isset($_SESSION['identifiant'])) {
 		unset($_SESSION['identifiant']);
 		$_SESSION['mesLogin'] = "Déconnexion réussie";
+		header("location: ".$ch."index.php");
 		
 	}
 
@@ -100,6 +101,7 @@
 	{
 		include("contenu/formLogin.php");
 	}
+	
 
 ?>
 
