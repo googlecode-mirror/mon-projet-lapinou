@@ -1,3 +1,4 @@
+<article>
 <h2>Liens</h2>
 <br /> 
 <nav>
@@ -22,3 +23,4 @@
 
 </nav>
 <br><br>
+</article>
