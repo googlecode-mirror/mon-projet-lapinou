@@ -61,6 +61,11 @@ else {
 		include("contenu/amis.php");
 		$redirige = true;
 	}
+	// index.php?page='erreur'
+	if ($_GET['page']=='erreur') {
+		include("contenu/erreur.php");
+		$redirige = true;
+	}
 	// à compléter
 	
 	
