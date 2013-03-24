@@ -71,6 +71,21 @@ else {
 		include("contenu/modifier_lapin.php");
 		$redirige = true;
 	}
+	// index.php?page='rencontre' formulaire de recherche
+	if ($_GET['page']=='rencontre') {
+		include("contenu/rencontre.php");
+		$redirige = true;
+	}
+	// index.php?page='rencontrer' réponse
+	if ($_GET['page']=='rencontrer') {
+		include("contenu/rencontrer.php");
+		$redirige = true;
+	}
+	// index.php?page='lapin' profil d'un lapin
+	if ($_GET['page']=='lapin') {
+		include("contenu/lapin.php");
+		$redirige = true;
+	}
 	// à compléter
 	
 	
