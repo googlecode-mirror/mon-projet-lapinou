@@ -43,6 +43,10 @@ function affiche_lapin( $lapin ){
 		echo	"<input type=\"hidden\" name=\"id\" value=\"".$lapin['id_lapin']."\" >\n";
 		echo	"<input type=\"submit\" value=\"modifier\" >\n";
 		echo	"</form>\n";
+		// dom le 24/03/2013
+		echo 	"<form method=\"post\" action=\"index.php?page=rencontre&lapin=".$lapin['nomlap']."\">\n";
+		echo	"<input type=\"submit\" value=\"rencontre <3\">\n";
+		echo	"</form>";
 	}
 	echo "</div>\n";
 }
