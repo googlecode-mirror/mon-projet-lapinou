@@ -69,8 +69,8 @@ if( $erreur ){
 		if( $fich  ){//succes upload
 			$sql = "UPDATE lapin_proprietaire SET trombine = '".$fich."' WHERE identifiant = '".$user."';";
 			mysql_query($sql);
-		}else die('pb');
-	}else die('pb');
+		}
+	}
 	
 	disconnect();
 	//dans tous les cas

@@ -39,7 +39,8 @@ function affiche_lapin( $lapin ){
 		echo	"<input type=\"hidden\" name=\"id\" value=\"".$lapin['id_lapin']."\" >\n";
 		echo	"<input type=\"submit\" value=\"supprimer\" >\n";
 		echo	"</form>\n";
-		echo	"<form>\n";
+		echo	"<form action=\"index.php?page=modif_lapin\" method=\"post\" >\n";
+		echo	"<input type=\"hidden\" name=\"id\" value=\"".$lapin['id_lapin']."\" >\n";
 		echo	"<input type=\"submit\" value=\"modifier\" >\n";
 		echo	"</form>\n";
 	}

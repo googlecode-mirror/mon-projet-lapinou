@@ -66,6 +66,11 @@ else {
 		include("contenu/erreur.php");
 		$redirige = true;
 	}
+	// index.php?page='modif_lapin'
+	if ($_GET['page']=='modif_lapin') {
+		include("contenu/modifier_lapin.php");
+		$redirige = true;
+	}
 	// à compléter
 	
 	
