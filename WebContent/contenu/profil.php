@@ -2,7 +2,7 @@
 /////////////////////////////////////
 // afficher un profil proprietaire //
 /////////////////////////////////////
-session_start();
+session_start(); 
 /********************
  * variables utiles *
  ********************/
