@@ -74,6 +74,7 @@ function switch_conversation( nom ){
 			connectes.select('option')[conversations[n].get('num')].
 				style.color = "blue";//bleu
 			montrer_lapiphone();//si une conversation presente, on affiche
+	alert(conversations[n].get('date'));
 		}else {
 
 			if( conversations[n].get('present') ){
@@ -136,6 +137,9 @@ function ecouter(){
 			//pour chaque connecte
 			xmlDoc.select('ami').each( function (ami){
 				var valeur =null;
+				//creation d'une div
+				nouvDiv = new Element('div', { 'class': 'sup'}); 
+				nouvDiv.style.height = affichage.getHeight();
 				
 				//conversation avec cette personne
 				if( ami.down('conversation') ){
@@ -147,9 +151,7 @@ function ecouter(){
 						plusRecent = ami.down('nom').innerHTML;
 					}
 					
-					//creation d'une div
-					nouvDiv = new Element('div', { 'class': 'sup'}); 
-					nouvDiv.style.height = affichage.getHeight();
+
 					var ul = new Element('ul'); //une liste
 					ami.select('message').each( function (mess){
 						ul.insert({
@@ -170,7 +172,7 @@ function ecouter(){
 					//{ #nom, #div, #value, #date_consult, #present?}
 
 				}else {
-					valeur = new Hash({name: ami.down('nom').innerHTML, div: vide, num: 0, date: '', present : true  });
+					valeur = new Hash({name: ami.down('nom').innerHTML, div: nouvDiv, num: 0, date: '', present : true  });
 					//on relie le nom a la div vide
 				}
 				conversations[ami.down('nom').innerHTML] = valeur;
