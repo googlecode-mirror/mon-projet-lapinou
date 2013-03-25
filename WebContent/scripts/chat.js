@@ -74,7 +74,7 @@ function switch_conversation( nom ){
 			connectes.select('option')[conversations[n].get('num')].
 				style.color = "blue";//bleu
 			montrer_lapiphone();//si une conversation presente, on affiche
-	alert(conversations[n].get('date'));
+	
 		}else {
 
 			if( conversations[n].get('present') ){
