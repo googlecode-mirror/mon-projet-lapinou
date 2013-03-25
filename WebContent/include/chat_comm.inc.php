@@ -33,10 +33,10 @@
 	 * CLASSES            *
 	 **********************/
 	class Binome { //deux personnes pretes a converser, classees par ordre alphabetique
-		public $nom1;
-		public $nom2;
-		public $session1;
-		public $session2;
+		var $nom1;
+		var $nom2;
+		var $session1;
+		var $session2;
 		
 		function Binome( $nom ){//constructeur
 			global $id, $session_time, $table_general;
@@ -210,10 +210,10 @@
 	 * CLASSES            *
 	 **********************/
 	class Message {
-		public $expediteur;
-		public $destinataire;
-		public $date;
-		public $texte;
+		var $expediteur;
+		var $destinataire;
+		var $date;
+		var $texte;
 		
 		function Message($exp,$dest,$date,$texte){
 			$this->expediteur = $exp;
@@ -227,8 +227,8 @@
 		return -1;
 	}
 	class Conversation {
-		public $date;
-		public $messages; //array<Message>
+		var $date;
+		var $messages; //array<Message>
 		
 		function Conversation(){//constructeur
 			$this->messages = array();
@@ -245,8 +245,8 @@
 		}
 	}	
 	class Ami {
-		public $nom;
-		public $conversation;
+		var $nom;
+		var $conversation;
 		
 		function Ami($nom, $conv){//constructeur
 			$this->nom = $nom;
@@ -259,8 +259,8 @@
 	}
 	
 	class Resultat {
-		public $derniere_MAJ;
-		public $amis; //array<Ami>
+		var $derniere_MAJ;
+		var $amis; //array<Ami>
 		
 		function Resultat(){//constructeur
 			$this->amis = array();
