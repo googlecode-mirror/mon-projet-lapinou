@@ -24,8 +24,8 @@ if ( !$resultat  ){ // le lapin n'appartient à la personne qui tente d'accéder
 $profil = mysql_fetch_array($resultat);
 
  
-$races=["grande","moyenne","petite","naine","belier","rustique","fourrure","zombie","toons","cretin","mutante","cuite","indetermine"];
-$couleurs=["unicolore","panache","mosaique","tachete","agouti","argente"];
+$races=array("grande","moyenne","petite","naine","belier","rustique","fourrure","zombie","toons","cretin","mutante","cuite","indetermine");
+$couleurs=array("unicolore","panache","mosaique","tachete","agouti","argente");
 
 //TODO vérifier l'intégrité du formulaire
 $post = $_POST;	

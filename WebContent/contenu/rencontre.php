@@ -39,7 +39,7 @@ $profil = mysql_fetch_array($resultat);
 			<td><input type="radio" name="sex" value="m"/></td><td>Les garçons</td>
 		<tr><td><label><h2>Race</h2></label></td><td>pas du tout</td><td>un peu</td><td>beaucoup</td><td>à la folie</td></tr>
 <?php 
-	$liste=["grande","moyenne","petite","naine","belier","rustique","fourrure","zombie","toons","cretin","mutante","cuite","indetermine"];
+	$liste=array("grande","moyenne","petite","naine","belier","rustique","fourrure","zombie","toons","cretin","mutante","cuite","indetermine");
 	for($i=0, $m=count($liste);$i<$m;$i++) {
 		echo '<tr><td>'.$liste[$i].'</td>'.
 			'<td><input type="radio" name="'.$liste[$i].'" value="-3"></td>'.
@@ -50,7 +50,7 @@ $profil = mysql_fetch_array($resultat);
 ?>
 		<tr><td><label><h2>Couleur</h2></label></td><td>pas du tout</td><td>un peu</td><td>beaucoup</td><td>à la folie</td>
 <?php 
-	$liste=["unicolore","panache","mosaique","tachete","agouti","argente"];
+	$liste=array("unicolore","panache","mosaique","tachete","agouti","argente");
 	for($i=0, $m=count($liste);$i<$m;$i++) {
 		echo '<tr><td>'.$liste[$i].'</td>'.
 			'<td><input type="radio" name="'.$liste[$i].'" value="-3"></td>'.
