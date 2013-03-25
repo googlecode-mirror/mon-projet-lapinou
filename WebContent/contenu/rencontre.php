@@ -32,11 +32,16 @@ $profil = mysql_fetch_array($resultat);
 
 <form name="rencontre" action="index.php?page=rencontrer" method="post">
 <fieldset>
-	<legend><?php echo $lapin; ?> aime :</legend>
+	<legend><h1><?php echo $lapin; ?> aime :</h1></legend>
 	<table>
 		<tr><td style="width: 30%"><label><h2>Sexe</h2></label></td>
 			<td><input type="radio" name="sex" value="f"/></td><td>Les filles</td>
 			<td><input type="radio" name="sex" value="m"/></td><td>Les garçons</td>
+		</tr>
+		<tr><td style="width: 30%"><label><h2>Région</h2></label></td>
+			<td><input type="radio" name="region" value="1"/></td><td>Sa région</td>
+			<td><input type="radio" name="region" value="2"/></td><td>La France</td>
+		</tr>
 		<tr><td><label><h2>Race</h2></label></td><td>pas du tout</td><td>un peu</td><td>beaucoup</td><td>à la folie</td></tr>
 <?php 
 	$liste=array("grande","moyenne","petite","naine","belier","rustique","fourrure","zombie","toons","cretin","mutante","cuite","indetermine");
