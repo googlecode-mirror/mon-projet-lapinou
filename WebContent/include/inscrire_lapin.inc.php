@@ -6,13 +6,13 @@
 if( isset($_SESSION['identifiant']) ){
 	$user = $_SESSION['identifiant'];
 }else {
-	header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
+	header('Location: ../index.php?page=erreur');	
 	exit(0);
 }
 
 require_once("sql.php");
 if (!connect() ) {
-	header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
+	header('Location: ../index.php?page=erreur');	
 	exit(0);
 }
 
@@ -99,8 +99,8 @@ if( $erreur ){
 	exit(0);
 }
 
-//OK insertion
-//recuperer l'id_profil du prorietaire -merci Florent...
+//OK : insertion
+
 $sql = "SELECT id_profil FROM lapin_proprietaire WHERE identifiant = '".$user."';";
 $resultat = mysql_query($sql);
 $idProprietaire = mysql_fetch_array($resultat);

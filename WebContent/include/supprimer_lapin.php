@@ -21,7 +21,6 @@ if (!connect() ) {
 $sql = "DELETE FROM lapin_lapin WHERE id_lapin = ".$_POST['id'].";";
 mysql_query($sql) ;
 
-echo $sql;
 //sortie
 header('Location: ../index.php?page=profil');	
 exit(0);

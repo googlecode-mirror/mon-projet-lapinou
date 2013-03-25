@@ -1,4 +1,8 @@
 <?php
+/************************************
+ * Mise en forme de la requete ajax *
+ * d'envoi des messages             *
+ ************************************/
 	require_once("sql.php");
 	connect(); //connexion MySQL
 

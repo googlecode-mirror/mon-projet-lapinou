@@ -1,5 +1,6 @@
 <?php
 /////////////////////////////////////
+// formulaire pour                 //
 // ajouter un lapin                //
 /////////////////////////////////////
 //session_start();
@@ -7,16 +8,12 @@
 if( isset($_SESSION['identifiant']) ){
 	$user = $_SESSION['identifiant'];
 }else {
-	header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
+	header('Location: ../index.php?page=erreur');
 	exit(0);
 }
 
-require_once("include/sql.php");
-if (!connect() ) {
-	header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
-	exit(0);
-}
 ?>
+<!-- le formulaire -->
 <script type="text/javascript" language="Javascript" src="scripts/inscription.js"></script>
 <form name="inscLapin" onsubmit="return verif_lapin();" action="include/inscrire_lapin.inc.php" method="post" enctype="multipart/form-data">
 <fieldset>

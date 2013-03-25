@@ -32,6 +32,8 @@ $lapin = mysql_fetch_array($resultat);
 $date = explode("-",$lapin['agelap']);
 
 ?>
+
+<!-- le formulaire -->
 <script type="text/javascript" language="Javascript" src="scripts/inscription.js"></script>
 <form name="inscLapin" onsubmit="return verif_lapin();" action="include/update_lapin.php" method="post" enctype="multipart/form-data">
 <fieldset>

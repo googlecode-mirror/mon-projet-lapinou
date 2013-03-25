@@ -37,11 +37,17 @@ $personne = mysql_fetch_array($resultat);
 echo "<script type=\"text/javascript\" src=\"scripts/inscription.js\"></script>\n";
 //debut de la section.
 echo "<article>\n";
+
 //titre
 echo "<h2>Profil de ".$user."</h2>\n";
 //photo
 if( $personne['trombine'] )	echo "\n<img src='img/".$personne['trombine']."' alt='".$user."' title='".$user."' />\n";
 
+/*************************************
+ * partie si encours de modification *
+ * les champs sont des champs de     *
+ * formulaire editables              *
+ *************************************/
 if( $prive && $_GET['modifier'] ){
 	echo "<p id=\"problemes\"></p>\n";//messages d'erreur
 	echo "<form name =\"inscription\" action=\"include/modifier_profil.inc.php\" method=\"post\" 
@@ -53,8 +59,15 @@ if( $prive && $_GET['modifier'] ){
 	echo "<label>Code postal :</label><input type=\"text\" name=\"cp\" title=\"au format 00000\" 
 		onkeyup=\"explicitRegion()\" value=\"".$personne['code_postal']."\"/><br/>\n";
 	echo "<p class=\"readonly\"><label>R&eacute;gion :</label><input type=\"text\" name=\"region\" readonly></p>\n";
-}else echo "<p>Localisation : ".$personne['code_postal']." (".$personne['region'].")</p>\n";
-
+}else 
+	/*******************
+	 * partie publique *
+	 *******************/
+	echo "<p>Localisation : ".$personne['code_postal']." (".$personne['region'].")</p>\n";
+/*************************************
+ * partie si l'utilisateur consulte  *
+ * son profil                        *
+ *************************************/
 if( $prive ){ //champs prives
 	echo "<p>Nom : ".$personne['nom']."</p>\n";
 	echo "<p>Prenom : ".$personne['prenom']."</p>\n";
@@ -95,7 +108,7 @@ $compteur = 0;
 require_once("include/affiche_lapin.inc.php");
 $resultat = mysql_query( "SELECT * FROM lapin_lapin WHERE identifiant = '".$user."';" );
 
-//affichage en tableau X x 2
+//affichage en tableau a 2 colonnes
 while ($lapin = mysql_fetch_array($resultat) ){
 	if( $compteur % 2 == 0 ) {
 		echo "<tr><td>";

@@ -1,13 +1,13 @@
 <?php
-/*****************************************
+/******************************************
  * gestion de l'enregistrement des photos *
- *****************************************/
+ ******************************************/
  
  /**
   * enregistrer une photo sur le serveur
   * $fichier = $_FILES['nomdefichier']
-  * $user = nouveau nom -> img/user.jpg
-  * retourne vrai si OK
+  * $user = nouveau nom -> img/user#####.jpg
+  * retourne le nom si OK
   * retourne faux si erreur
   */ 
 function enregistrer_photo( $fichier, $user ){

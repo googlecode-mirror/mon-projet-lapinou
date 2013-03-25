@@ -6,14 +6,6 @@
 	// Cyril THURIER            //
 	//////////////////////////////
 
-	/*** ulterieurement en include config.inc.php ***/
-	/*
-	$hostDB = 'localhost';
-	$userDB = 'root';
-	$passwd = 'root';
-	$dataBase = 'LAPI.NET';*/
-	/***************************************/
-
 	$table_general = 'lapin_proprietaire';
 	$table_conversations = 'lapin_tchat_conversation';
 	$table_messages = 'lapin_tchat_message';
@@ -25,7 +17,7 @@
 	}
 	$id = $_SESSION['identifiant'];
 	if( ! isset($_SESSION['session_time']) ){
-		$_SESSION['session_time'] = date('Y-m-d H:i:s');//DATETIME inialise ici !
+		$_SESSION['session_time'] = date('Y-m-d H:i:s');//DATETIME initialise ici !
 	}
 	$session_time = $_SESSION['session_time'];
 	
@@ -33,6 +25,7 @@
 	 * CLASSES            *
 	 **********************/
 	class Binome { //deux personnes pretes a converser, classees par ordre alphabetique
+					// ce qui permet de comparer directement 2 binomes.
 		var $nom1;
 		var $nom2;
 		var $session1;
@@ -71,9 +64,11 @@
 	 * FONCTIONS          *
 	 **********************/
 	
-	/**********************
-	 * envoyer un message *
-	 **********************/
+	/*************************
+	 * envoyer un message    *
+	 * crée une conversation *
+	 * au besoin             *
+	 *************************/
 	function envoyer_message( $destinataire, $texte ){
 		//var globales
 		global $table_conversations, $id;
@@ -363,7 +358,7 @@
 	 * return true si OK      *
 	 * return false sinon     *
 	 **************************/	 
-	function emit_signal(){ //pour les tests, ne pas oublier d'inserer des noms...
+	function emit_signal(){ 
 		//variables globales
 		global $table_general, $id, $session_time;
 		 

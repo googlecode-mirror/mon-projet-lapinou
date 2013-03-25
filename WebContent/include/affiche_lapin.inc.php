@@ -34,6 +34,8 @@ function affiche_lapin( $lapin ){
 	echo	"\t<dl><dt>description :</dt><dd>".$lapin['description']."</dd></dl>\n";
 	echo	"\t<dl><dt>Centres d'interet : </dt><dd>".$lapin['centreInteret']."</dd></dl>\n";
 	echo	"\t<a href=\"index.php?page=profil&user=".$lapin['identifiant']."\">mon proprietaire</a>\n";
+	
+	//partie "privée"
 	if( $est_proprietaire ){
 		echo	"<form method=\"post\" action=\"include/supprimer_lapin.php\" onsubmit=\"return confirmation_supp_lapin();\">\n";
 		echo	"<input type=\"hidden\" name=\"id\" value=\"".$lapin['id_lapin']."\" >\n";

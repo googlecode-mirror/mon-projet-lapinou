@@ -1,4 +1,5 @@
-<!--lapiphone-->
+
+<!--interface graphique lapiphone-->
 <div id="lapiphone">
 	<div id="deco"><img src="img/oreilles.png" /></div>
 	<div id="phone">

@@ -6,13 +6,13 @@
 if( isset($_SESSION['identifiant']) ){
 	$user = $_SESSION['identifiant'];
 }else {
-	header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
+	header('Location: ../index.php?page=erreur');
 	exit(0);
 }
 
 require_once("sql.php");
 if (!connect() ) {
-	header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
+	header('Location: ../index.php?page=erreur');
 	exit(0);
 }
 
