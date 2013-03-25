@@ -115,10 +115,10 @@
 
 	<img src="img/barre-lapin.gif"  alt="barre" title="barre lapin"/><img>
 	<br>
-	<a href="index.php" target="_blank" title="Aller à l'accueil">Accueil </a>|
-	<a href="index.php?page=contact" target="_blank" title="Contactez-nous">Contact </a>|
-	<a href="index.php?page=identite-groupe" target="_blank" title="Qui sommes nous">Qui sommes-nous ? </a>|
-	<a href="index.php?page=liens" target="_blank" title="Liens">Liens</a>
+	<a href="index.php" title="Aller à l'accueil">Accueil </a>|
+	<a href="index.php?page=contact" title="Contactez-nous">Contact </a>|
+	<a href="index.php?page=identite-groupe" title="Qui sommes nous">Qui sommes-nous ? </a>|
+	<a href="index.php?page=liens" title="Liens">Liens</a>
 	
 
 </footer>
