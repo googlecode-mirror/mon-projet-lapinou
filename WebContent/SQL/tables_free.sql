@@ -226,6 +226,20 @@ CREATE TABLE IF NOT EXISTS `lapin_tchat_message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
+
+--
+-- Structure de la table `lapin_Ami`
+--
+
+DROP TABLE IF EXISTS `lapin_Ami`;
+CREATE TABLE IF NOT EXISTS `lapin_Ami` (
+  `idProprio` varchar(30) collate latin1_general_ci NOT NULL default '',
+  `idAmi` varchar(30) collate latin1_general_ci NOT NULL default '',
+  PRIMARY KEY  (`idProprio`,`idAmi`),
+  KEY `FKAmi2` (`idAmi`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+
 --
 -- 			Jeu par défaut
 --
