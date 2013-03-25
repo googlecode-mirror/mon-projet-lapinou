@@ -29,7 +29,7 @@
 */
 $type=Array();
 
-session_start();
+//session_start();
 require_once "sql.php";
 include_once "affiche_lapin.inc.php";
 connect();

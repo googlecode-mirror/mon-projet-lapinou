@@ -5,7 +5,7 @@
  * 		écrit par Florent Arnould	-	3 mars 2013
  */
 
-session_start();
+//session_start();
 if (isset($_SESSION["identifiant"])) {
 // ajout du cadre et du javascript de mise à jour
 	?>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 
 //Rq : puisque la distinction des réponses ne se fait plus dans loadXML 
 //mais par la fonction de traitement qui lui est passée, il n'est plus 

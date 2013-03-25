@@ -2,7 +2,7 @@
 /////////////////////////////////////
 // ajouter un lapin                //
 /////////////////////////////////////
-session_start();
+//session_start();
 
 if( isset($_SESSION['identifiant']) ){
 	$user = $_SESSION['identifiant'];

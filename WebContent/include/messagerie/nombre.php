@@ -4,7 +4,7 @@
  * 		écrit par Florent Arnould	-	3 mars 2013
  */
 
-session_start();
+//session_start();
 require_once "../sql.php";
 require_once "sqlMess.php";
 

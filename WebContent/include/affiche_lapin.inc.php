@@ -7,7 +7,7 @@
  * par $lapin = mysql_fetch_array($resultat);                      *
  *******************************************************************/
 
-session_start();
+//session_start();
 
 
 function affiche_lapin( $lapin ){

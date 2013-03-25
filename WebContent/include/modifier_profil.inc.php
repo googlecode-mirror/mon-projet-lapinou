@@ -11,7 +11,7 @@
 require_once "sql.php"; // avant les mysql_real_escape_string
 connect();
 
-session_start();
+//session_start();
 //t'as rien a foutre là...
 if( !isset($_SESSION['identifiant']) ){
 	header('Location: ../index.php?page=erreur');
