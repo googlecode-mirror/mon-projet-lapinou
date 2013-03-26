@@ -2,7 +2,7 @@
 /***********************************************
  * inscription effective du lapin cote serveur *
  ***********************************************/
-//session_start();
+session_start();
 if( isset($_SESSION['identifiant']) ){
 	$user = $_SESSION['identifiant'];
 }else {
