@@ -14,6 +14,7 @@
 	<script type="text/javascript" language="Javascript" src="scripts/prototype.js"></script>
 	<script type="text/javascript" language="Javascript" src="scripts/jquery.min.js"></script>
 	<script type="text/javascript" language="Javascript" src="scripts/chat.js"></script>
+	<script type="text/javascript" language="Javascript" src="scripts/titre.js"></script>
 </head>
 <body>
 

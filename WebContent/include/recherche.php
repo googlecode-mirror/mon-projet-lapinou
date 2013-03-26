@@ -339,6 +339,9 @@ if ($_GET['type']=="global") {
 	echo "<p>Aucun résultat trouvé.</p>\n";
 	//fermer la boite des résultats globaux
 	echo "</div>\n</article>\n";
+	echo "\n<script>
+	completerTitre('Recherche');
+	</script>\n";
 	
 } else {
 //!!! section pour la recherche fine
