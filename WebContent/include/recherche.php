@@ -194,7 +194,7 @@ function afficheLienProprio($resultats,$table) {
 	//les résultats ont été formatés : les afficher
 	//!!! ou les retourner !
 		echo "<div class='resultatRch'>
-	<p>$nb résultat$s trouvé$s dans $table.</p>
+	<p>$nb propriétaire$s trouvé$s.</p>
 	<div id='rch_$table'>
 		<table>
 			$entete

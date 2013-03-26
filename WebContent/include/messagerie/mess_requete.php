@@ -53,7 +53,7 @@ if (connect()) {
 			//!!! gérer la sécurité (ne pas inclure GET directement !)
 				$req_mess=LireLeMessage($_GET['id_mess']);
 				//"select texte from `${prefixe}Message` where id_mess='".$_GET['id_mess']."'";
-				$corps=requete_champ_unique($req_mess);
+				$corps=str_replace("\n","<br />",requete_champ_unique($req_mess));
 
 				header('Content-Type: application/xml');
 				$data="<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<message>";

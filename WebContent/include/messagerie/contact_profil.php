@@ -7,9 +7,21 @@
  *************************************************/
 ?>
 <br />
+<script>
+function verif_form() {
+	el=document.reponse;
+	if (el.intitule.value.length>64) {
+//		alert("Le titre est trop long.");
+		document.erreur.innerHTML="Le titre est trop long.";
+		return false;
+	} else {
+		return true;
+	}
+}
+</script>
 <a href="#" onclick="el=document.getElementById('fdisc');if (el.style.display=='block') el.style.display='none'; else el.style.display='block'; return false;">lancer une discussion</a>
 <div id="fdisc" style="display:none;">
-<form action="include/messagerie/ouvrir_disc.php" method="POST" name="contact">
+<form action="include/messagerie/ouvrir_disc.php" method="POST" name="contact" onsubmit="return verif_form()">
 	<fieldset>
 		<legend>Nouvelle discussion</legend>
 		<input type="hidden" name="page" value="profil"></input>
@@ -42,7 +54,8 @@ foreach ($res as $lap)
 ?>
 </select>
 <br />
-titre : <input type="text" name="intitule" value=""></input>
+<span id="erreur"></span>
+titre : <input type="text" name="intitule" value="" maxlength="64"></input>
 <br />
 message : <textarea name="texte" prototype="votre message">
 </textarea>

@@ -163,6 +163,9 @@ function ouvrir_message(no) {
 
 function ajout_message() {
 	el=document.reponse;
+	if (el.titre.value.length>64)
+		alert("Le titre est trop long.");
+	else {
 	//vérification des données;
 	//construction de la requête
 	req="id_mess="+el.id_mess.value+"&id_disc="+el.id_disc.value+"&titre="+el.titre.value+"&corps="+el.corps.value;
@@ -170,6 +173,7 @@ function ajout_message() {
 	paramAjax ["url"]="include/messagerie/mess_requete.php?"+req;
 	paramAjax ["disc"]=el.id_disc.value;
 	loadXMLDoc(reponseMessagerie);
+	}
 	}
 
 function ajout_discussion(){
@@ -189,7 +193,7 @@ function formReponse(no,disc) {
 	txt+="<input type='hidden' name='id_mess' value='"+no+"'>\n";
 	txt+="<input type='hidden' name='id_disc' value='"+disc+"'>\n";
 	txt+="<fieldset>\n<legend>Réponse au message</legend>\n" +
-			"<label>Titre du message : </label> <br \>\n<input type='texte' name='titre'> <br \>\n";
+			"<label>Titre du message : </label> <br \>\n<input type='texte' name='titre' maxlength='64'> <br \>\n";
 	txt+="<label>Détails : </label> <br \>\n<textarea name='corps'></textarea> <br \>";
 	txt+="<input type='submit' name='submit' value='Envoyer' />\n</form>";
 	motif=/<form>.*<.form>/i;
