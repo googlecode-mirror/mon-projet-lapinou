@@ -28,6 +28,7 @@ $email = mysql_real_escape_string($_POST['mail']);
 
 
 
+
 /*****************************
  * verifications des donnees *
  * envoyees                  *
@@ -177,9 +178,13 @@ if( $erreur ){
 			
 		}
 		
-
+		
+	//ne pas oublier l'identifiant du profil pour la messagerie et la recherche
+		$sql = "SELECT id_profil FROM lapin_proprietaire WHERE identifiant = '".$user."'";
+		$mid = requete_champ_unique($sql);
 		//if( ! isset($_SESSION['identifiant']) ){  // modif dom : dans tous les cas réinitialiser l'identifiant
 		$_SESSION['identifiant'] =$user;//
+		$_SESSION['mid'] =$mid;//
 		session_regenerate_id(true);
 		//}			
 		//goto profile page

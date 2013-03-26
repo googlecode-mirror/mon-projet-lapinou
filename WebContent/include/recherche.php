@@ -227,7 +227,11 @@ if ($_GET['type']=="global") {
 	echo "<article>\n<div class='resultats'>\n";
 	
 //passer les tables en revue
+	$nbRes=0;
 	foreach ($tables as $ent) {
+		if (eregi("tchat",$ent[0]))
+		//éliminer les tables de chat de la recherche
+			break;
 //!!! il faudrait déjà faire un premier tri des tables
 //!!! - certaines n'ayant aucun intérêt/ne devant pas être visibles
 //!!! - d'autant ne pouvant être accessible qu'une fois connecté		
@@ -306,7 +310,8 @@ if ($_GET['type']=="global") {
 			//il existe au moins un champ interrogable : requête
 				if ($liste!="") {
 					$resultat=requete($req);
-					if (preg_match("/_lapin/i",$ent[0])) {
+					$nbRes=$nbRes+nbResultats();
+					if ($resultat && preg_match("/_lapin/i",$ent[0])) {
 						$compteur=0;
 						echo "<table>\n";
 						foreach ($resultat as $lapin) {
@@ -330,6 +335,8 @@ if ($_GET['type']=="global") {
 			}
 		}
 	}
+	if ($nbRes==0)
+	echo "<p>Aucun résultat trouvé.</p>\n";
 	//fermer la boite des résultats globaux
 	echo "</div>\n</article>\n";
 	

@@ -3,7 +3,8 @@ error_reporting(0);
 
 include_once 'codes.php.inc';
 
-$cnx=null;
+$cnx=null;		//connexion en cours
+$rep=null;		//résultat de la dernière requête
 
 $serveur=$_SERVER["SERVER_NAME"];
 $prefixe='lapin_';
@@ -67,6 +68,8 @@ function disconnect(){
  * requêtes *
  ***********/
 function requete($req) {
+	global $rep;
+	
 	$rep=mysql_query($req);
 	$resultat=null;
 	while ($res=mysql_fetch_array($rep))
@@ -77,6 +80,8 @@ function requete($req) {
 		
 function requeteObj($req) {
 	//retourne un tableau d'objets contenant une ligne de résultat
+	global $rep;
+	
 	$rep=mysql_query($req);
 	$resultat=null;
 	while ($res=mysql_fetch_object($rep))
@@ -85,6 +90,8 @@ function requeteObj($req) {
 }		
 
 function requete_par_ligne($req) {
+	global $rep;
+	
 	$rep=mysql_query($req);
 	$resultat=null;
 	if ($res=mysql_fetch_array($rep))
@@ -93,6 +100,8 @@ function requete_par_ligne($req) {
 }		
 		
 function requete_par_ligneObj($req) {
+	global $rep;
+	
 	$rep=mysql_query($req);
 	$resultat=null;
 	if ($res=mysql_fetch_object($rep))
@@ -101,11 +110,23 @@ function requete_par_ligneObj($req) {
 }		
 		
 function requete_champ_unique($req) {
+	global $rep;
+	
 	$rep=mysql_query($req);
 	$resultat=null;
 	if ($res=mysql_fetch_row($rep))
 		$resultat=$res[0];
 	return $resultat;
+}
+
+function nbResultats(){
+	//retourne le nombre de lignes de la dernière requête effectuée.
+	global $rep;
+	
+	if ($rep!=null)
+		return mysql_num_rows($rep);
+	else
+		return 0;
 }
 
 	connect();
