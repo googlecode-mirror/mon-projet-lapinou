@@ -1,13 +1,16 @@
 <?php
+/*****************************************************
+ *	script effectuant la recherche dans les tables	**
+ *	soit à partir :									**
+ *	- d'une liste de mots-clés cherchés dans toutes	**
+ *	les tables et champs pertinents ou sans risque	**
+ *	- des données structurées envoyées par un		**
+ *	formulaire destinées à seuls certaines tables 	**
+ *	et champs										**
+ * 													**
+ * 		Florent Arnould	-	20 mars 2013			**
+ *****************************************************/
 /*
-		script effectuant la recherche dans les tables soit
-		- à partir d'une liste de mots-clés cherchés dans toutes 
-		les tables et champs pertinents ou sans risque
-		- à partir des données structurées envoyées par un 
-		formulaire et destinées à seuls certaines tables et champs
-
-		Florent Arnould	-	14 mars 2013
-
 	1er cas :
 		- déterminé par la présence de 'global' dans $_POST
 		- attend la liste des critères comme une chaîne de 
@@ -27,13 +30,17 @@
 		afficheResultat($resultats,$table);
 
 */
+
+//tableau du type de chaque champ
 $type=Array();
 
-//session_start();
+//inclure la connexion à la base et l'affichage de la fiche d'un lapin
 require_once "sql.php";
 include_once "affiche_lapin.inc.php";
+
+//accès à la base
 connect();
-error_reporting(E_ALL);
+
 //fonctions
 
 //		spécifiques au cas 'global'
@@ -44,12 +51,12 @@ function chercheCrit($genre) {
 	global $criteres, $type;
 
 	$tab=null;
-	//on  parcours la liste des critères
+//on  parcours la liste des critères
 	foreach ($type as $i => $tp) 
-	//on vérifie si son type est l'un de ceux attendus
+//on vérifie si son type est l'un de ceux attendus
 		if (($tp&$genre)) 	//!!! était (($tp|$genre)!=0)
 			$tab[]=$criteres[$i];
-	//on retourne le tableau construit
+//on retourne le tableau construit
 	return $tab;
 }
 
@@ -59,9 +66,9 @@ function typesCriteres() {
 //tout est transmis en variables globales
 	global $criteres, $types, $type;
 
-	//obtenir les critères séparés
+//obtenir les critères séparés
 	$criteres=split(' ',$_GET['criteres']);
-	//déterminer les types
+//déterminer les types
 	$types=0;
 	foreach ($criteres as $crit) {
 		if (eregi('^[0-9]+$',$crit)) {
@@ -104,7 +111,6 @@ function nettoyerChamps($chps) {
 		if (eregi("pa?s?swo?r?d",$chp['Field']))
 		//mot de passe
 			unset ($chps[$i]);
-//!!!penser à inclure d'autres champs (ex.cle*)
 	}
 	return $chps;
 }
@@ -114,14 +120,14 @@ function controle_supp($req,$table) {
 //complète et retourne la requête fournie si nécessaire
 	global $prefixe;
 
-	//il faut l'identifiant du membre pour le filtrage
+//il faut l'identifiant du membre pour le filtrage
 	$mid=$_SESSION['mid'];
-	//contrôles
+//contrôles
 	if ($table==$prefixe."Discussion")
-	//contrôle d'un participant à la discussion
+//contrôle d'un participant à la discussion
 		$req.=" and (`auteur`=$mid OR `dest`=$mid)";
 	if ($table==$prefixe."Message")
-	//contrôle d'un participant à la discussion dont le message est issu
+//contrôle d'un participant à la discussion dont le message est issu
 		$req.=" AND id_disc in (SELECT id_disc FROM ${prefixe}Discussion WHERE `auteur`='$mid' OR `dest`='$mid')";
 	return $req;
 }
@@ -129,24 +135,27 @@ function controle_supp($req,$table) {
 function afficheResultat($resultats,$table) {
 //affichage générique au format html des résultats de la recherche
 //globale pour cette table s'il y en a
-//!!! affiche directement, ne retourne pas de chaîne !
-	//vérifier qu'il y a des résultats à afficher
+//Rq : affiche directement, ne retourne pas de chaîne !
+	global $prefixe;
+	
+//vérifier qu'il y a des résultats à afficher
 	$nb=count($resultats);
 	if ($nb!=0) {
 		$s=(($nb==0)?"":"s");	//gestion du pluriel
 		$chn="";	//contiendra le contenu de la table générée
-		//passer les résultats en revue
+	//passer les résultats en revue
 		foreach ($resultats as $res) {
 		//nouvelles lignes
 			$entete="<tr>";		//contiendra l'entête de la table (rééccrit)
 			$chn.="<tr>";
-			//passer les champs en revue
+		//passer les champs en revue
 			foreach ($res as $chp =>$val)
 			//ne garder que les clés aphanumériques (noms) du tableau
 				if (eregi("[a-z]",$chp)) {
 				//ajouter cette clé à l'entête et sa valeur au contenu
 					$entete.="<th>$chp</th>";
 					if ((preg_match('/Message/i',$table)) && ($chp=="id_mess"))
+					//message : ajout d'un lien vers la messagerie
 						$chn.="<td><a href='index.php?page=messagerie&disc=".$res['id_disc']."&mess=".$res['id_mess']."'>$val</a></td>";
 					else
 						$chn.="<td>$val</td>";
@@ -156,9 +165,9 @@ function afficheResultat($resultats,$table) {
 			$chn.="</tr>\n";
 		}
 	//les résultats ont été formatés : les afficher
-	//!!! ou les retourner !
+	//Rq : ou les retourner !
 		echo "<div class='resultatRch'>
-	<p>$nb résultat$s trouvé$s dans $table.</p>
+	<p>$nb résultat$s trouvé$s dans ".str_replace($prefixe,"",$table).".</p>
 	<div id='rch_$table'>
 		<table>
 			$entete
@@ -172,8 +181,8 @@ function afficheResultat($resultats,$table) {
 function afficheLienProprio($resultats,$table) {
 //affichage générique au format html des résultats de la recherche
 //globale pour cette table s'il y en a
-//!!! affiche directement, ne retourne pas de chaîne !
-	//vérifier qu'il y a des résultats à afficher
+//Rq : affiche directement, ne retourne pas de chaîne !
+//vérifier qu'il y a des résultats à afficher
 	$nb=count($resultats);
 	if ($nb!=0) {
 		$s=(($nb==0)?"":"s");	//gestion du pluriel
@@ -192,7 +201,7 @@ function afficheLienProprio($resultats,$table) {
 			$chn.="</tr>\n";
 		}
 	//les résultats ont été formatés : les afficher
-	//!!! ou les retourner !
+	//Rq : ou les retourner !
 		echo "<div class='resultatRch'>
 	<p>$nb propriétaire$s trouvé$s.</p>
 	<div id='rch_$table'>
@@ -204,14 +213,6 @@ function afficheLienProprio($resultats,$table) {
 </div>\n";
 	}
 }
-//!!! pour test/développement
-//$mid=1;
-/*if (isset($_GET['criteres']))
-	$_POST['criteres']=$_GET['criteres'];
-else
-	$_POST['criteres']="Roger 2013/03/11";*/
-//$_POST['type']="global";
-//!!! fin pour test/développement
 	
 //recherche selon le type de requête
 if ($_GET['type']=="global") {
@@ -219,8 +220,8 @@ if ($_GET['type']=="global") {
 	typesCriteres();
 	
 //obtenir la liste des tables
-//	$req="SHOW TABLES FROM ".BASE." LIKE 'lapin_%'";
-	$req="SHOW TABLES LIKE 'lapin_%'";
+//	$req="SHOW TABLES LIKE 'lapin_%'";
+	$req="SHOW TABLES LIKE '$prefixe%'";
 	$tables=requete($req);
 
 //afficher le conteneur
@@ -232,9 +233,10 @@ if ($_GET['type']=="global") {
 		if (eregi("tchat",$ent[0]))
 		//éliminer les tables de chat de la recherche
 			break;
-//!!! il faudrait déjà faire un premier tri des tables
-//!!! - certaines n'ayant aucun intérêt/ne devant pas être visibles
-//!!! - d'autant ne pouvant être accessible qu'une fois connecté		
+//Rq : il faudrait déjà faire un premier tri des tables
+//		- certaines n'ayant aucun intérêt/ne devant pas être visibles
+//		- d'autant ne pouvant être accessible qu'une fois connecté		
+//		mais propose un outil de recherche générique.
 		
 	//obtenir la liste des champs de cette table
 		$chps=donneChamps($ent[0]);
@@ -309,9 +311,12 @@ if ($_GET['type']=="global") {
 			}
 			//il existe au moins un champ interrogable : requête
 				if ($liste!="") {
+				//effectuer la recherche
 					$resultat=requete($req);
 					$nbRes=$nbRes+nbResultats();
+				//affichage
 					if ($resultat && preg_match("/_lapin/i",$ent[0])) {
+					//cas de lapins : voir leur fiche en paire
 						$compteur=0;
 						echo "<table>\n";
 						foreach ($resultat as $lapin) {
@@ -328,16 +333,20 @@ if ($_GET['type']=="global") {
 						}
 						echo "</table>\n";
 					} else
+					//autre cas
 						if (preg_match("/_proprietaire/i",$ent[0])) {
+						//propriétaire : lien vers leur fiche
 							afficheLienProprio($resultat,$ent[0]);
 						} else
+						//tous le reste : affichage simple
 							afficheResultat($resultat,$ent[0]);
 			}
 		}
 	}
 	if ($nbRes==0)
-	echo "<p>Aucun résultat trouvé.</p>\n";
-	//fermer la boite des résultats globaux
+	//rien n'a été trouvé : remplacer le contenu
+		echo "<p>Aucun résultat trouvé.</p>\n";
+//fermer la boite des résultats globaux
 	echo "</div>\n</article>\n";
 	echo "\n<script>
 	completerTitre('Recherche');

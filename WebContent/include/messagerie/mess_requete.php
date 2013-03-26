@@ -221,7 +221,7 @@ if (connect()) {
 					//on peut maintenant enregistrer le nouveau message
 						$req=ecrireMessage($auteur,$id_d,$intitule,$texte);
 						requete($req);
-						if (mysql_errno()==0)
+						if (mysql_errno()==0) {
 //						if (requete($req)==null) {
 							header('Content-Type: application/xml');
 							$data="<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<discussion>";
@@ -230,7 +230,7 @@ if (connect()) {
 							$data.="</discussion>";
 							echo $data;
 						} else
-  							xmlErreur("erreur lors de la création du message d'ouverture.";
+  							xmlErreur("erreur lors de la création du message d'ouverture.");
  					}
 				}
 			}
