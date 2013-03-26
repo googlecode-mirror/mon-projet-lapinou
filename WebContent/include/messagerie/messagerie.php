@@ -22,6 +22,11 @@ $chm_sql= dirname($_SERVER[ 'SCRIPT_FILENAME'])."/include/";
 require_once $chm_sql."sql.php";
 require_once "sqlMess.php";
 
+//mettre le titre à jour
+echo "<script>
+	completerTitre('Messagerie');
+	</script>\n";
+
 /*
 $_SESSION['fiche']=8;
 print_r($_SESSION);
