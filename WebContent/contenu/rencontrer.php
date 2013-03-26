@@ -27,9 +27,10 @@ $profil = mysql_fetch_array($resultat);
 
 // la region de l'auteur de la recherche
 $sql = "SELECT region FROM lapin_proprietaire WHERE identifiant = '".$_SESSION['identifiant']."';";
-$resultat = mysql_query($sql) or die(mysql_error());	
-$region = mysql_fetch_array($resultat)['region'];
-print_r($region);
+$resultat = mysql_query($sql);	
+$region = mysql_fetch_array($resultat);
+$region = $region['region'];
+//print_r($region);
  
 $races=array("grande","moyenne","petite","naine","belier","rustique","fourrure","zombie","toons","cretin","mutante","cuite","indetermine");
 $couleurs=array("unicolore","panache","mosaique","tachete","agouti","argente");
@@ -62,7 +63,7 @@ $sql = "SELECT nomlap, (srace + scoul) as score, identifiant, region ".
 		" ORDER BY score DESC ;";
 
 
-$resultat = mysql_query($sql) or die($sql.mysql_error());
+$resultat = mysql_query($sql);
 
 ?>
 <fieldset>
