@@ -4,7 +4,7 @@
  * 		écrit par Florent Arnould	-	3 mars 2013
  */
 
-//session_start();
+session_start();
 require_once "../sql.php";
 require_once "sqlMess.php";
 
@@ -32,7 +32,7 @@ if (!connect()) {
 		join `${prefixe}Consultation` c on (d.auteur=c.id_profil or d.dest=c.id_profil)
 		where c.id_profil='$mid' and m.date>c.derniere";*/
 //	echo $req_disc;
-	$nb_disc=requete_champ_unique($req_disc);
+	$nb_disc=requete_champ_unique($req_disc) or 0;
 	
 	header('Content-Type: application/xml');
 	$data="<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<nouveaux>";
