@@ -47,7 +47,7 @@ if( count($date) != 3 ){
 	$erreur = true;
 	$probleme .= "age invalide<br/>";	
 }else{
-	if( ! checkdate($date[0], $date[1], $date[2] ) ){
+	if( ! checkdate($date[1], $date[0], $date[2] ) ){
 		$erreur = true;
 		$probleme .= "age invalide<br/>";		
 	}else{

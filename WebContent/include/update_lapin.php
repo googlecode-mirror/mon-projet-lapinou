@@ -41,7 +41,7 @@ if( count($date) != 3 ){
 	$erreur = true;
 	$probleme .= "age invalide<br/>";	
 }else{
-	if( ! checkdate($date[0], $date[1], $date[2] ) ){
+	if( ! checkdate($date[1], $date[0], $date[2] ) ){ //month, day, year
 		$erreur = true;
 		$probleme .= "age invalide<br/>";		
 	}else{
@@ -78,7 +78,7 @@ if ($_FILES['photo'] && $_FILES['photo']['size'] > 1048576) { // >1Mo
 }
 
 if( $erreur ){
-	header('Location: ../index.php?page=ajouter_lapin&mess='.urlencode($probleme));	
+	header('Location: ../index.php?page=update_lapin&mess='.urlencode($probleme));	
 	exit(0);
 }
 
