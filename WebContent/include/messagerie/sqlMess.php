@@ -1,10 +1,17 @@
 <?php
-//requêtes de la messagerie
+/*************************************************
+ *	compilation des requêtes de la messagerie	**
+ *	Permet de centraliser les modifications à	**
+ *	faire éventuellement.						**
+ * 												**
+ * 		Florent Arnould	-	12 mars 2013		**
+ *************************************************/
 
 // requêtes utilisées par messagerie.php
+
 function DiscProprio($mid) {
 	global $prefixe;
-	//requête des discussions du membre connecté
+//requête des discussions du membre connecté
 	return "select * from `${prefixe}Discussion` 
 			d join `${prefixe}lapin` l1 on d.auteur=l1.id_lapin 
 			join `${prefixe}lapin` l2 on d.dest=l2.id_lapin 
@@ -15,13 +22,14 @@ function DiscProprio($mid) {
 
 function DiscLapin($lid) {
 	global $prefixe;
-	//requête des discussions du lapin du membre connecté
+//requête des discussions du lapin du membre connecté
 	return "select * from `${prefixe}Discussion` 
 			where auteur='$lid' or dest='$lid'";
 }
 
 function DiscAutreCommun () {
 	global $prefixe;
+//bout de requête des discussions liées à un autre membre
 	return "select * from `${prefixe}Discussion` 
 		d join `${prefixe}lapin` l1 on d.auteur=l1.id_lapin 
 		join `${prefixe}lapin` l2 on d.dest=l2.id_lapin 
@@ -31,23 +39,27 @@ function DiscAutreCommun () {
 
 function DiscAutreProprio ($mid,$pid) {
 	global $prefixe;
+//requête des discussions d'un autre membre
 	return DiscAutreCommun()."where (p1.id_profil='$mid' and p2.id_profil='$pid')
 			or (p2.id_profil='$mid' and p1.id_profil='$pid')";
 }
 
 function DiscAutreLapin ($mid,$fiche) {
 	global $prefixe;
+//requête des discussions du lapin d'un autre membre
 	return DiscAutreCommun()."where (p1.id_profil='$mid' and l2.id_lapin ='$fiche')
 			or (p2.id_profil='$mid' and l1.id_lapin ='$fiche')";
 }
 
 function IdNomLapin($proprio) {
 	global $prefixe;
+//requête pour obtenir les détails d'un lapin connaissant son propriétaire
 	return "SELECT id_lapin, nomlap FROM lapin_lapin WHERE `id_profil`='$proprio'";
 }
 
 function MajConsultation ($mid) {
 	global $prefixe;
+//insertion de la date de consulation
 	return "INSERT INTO `${prefixe}Consultation` VALUES ('$mid', now()) ON DUPLICATE KEY UPDATE `derniere`=now()";
 }
 
@@ -55,7 +67,7 @@ function MajConsultation ($mid) {
 
 function LireMessages($id_disc) {
 	global $prefixe;
-	//requête pour obtenir la liste des messages de la discussion donnée
+//requête pour obtenir la liste des messages de la discussion donnée
 	return "select * from `${prefixe}Message` natural join 
 		`${prefixe}lapin` natural join `${prefixe}proprietaire` 
 		where id_disc='$id_disc' order by date";
@@ -63,14 +75,14 @@ function LireMessages($id_disc) {
 	
 function LireLeMessage($id_mess) {
 	global $prefixe;
-	//requête pour obtenir le contenu du message donné
+//requête pour obtenir le contenu du message donné
 	return "select texte from `${prefixe}Message` 
 	where id_mess='$id_mess'";
 }
 
 function LireLapinDiscussion($mid,$id_disc) {
 	global $prefixe;
-	//requête pour obtenir l'id du lapin qui écrit, celui du propriétaire courant
+//requête pour obtenir l'id du lapin qui écrit, celui du propriétaire courant
 	return "SELECT id_lapin FROM `${prefixe}Discussion` d 
 			join ${prefixe}lapin l on d.dest=l.id_lapin
 			WHERE id_disc='$id_disc' and l.id_profil='$mid' 
@@ -82,7 +94,7 @@ function LireLapinDiscussion($mid,$id_disc) {
 
 function ecrireMessage($lid,$id_disc,$titre,$corps) {
 	global $prefixe;
-	//requête pour ajouter un nouveau message à la discussion
+//requête pour ajouter un nouveau message à la discussion
 	return "insert into `${prefixe}Message` values 
 		('', '$titre','$corps',NOW(),'$id_disc','$lid')";
 	//ou (null, ...
@@ -90,21 +102,21 @@ function ecrireMessage($lid,$id_disc,$titre,$corps) {
 
 function coherenceProprioLapin($mid,$auteur) {
 	global $prefixe;
-	//requête pour tester le lien entre un propriétaire et un lapin
+//requête pour tester le lien entre un propriétaire et un lapin
 	return "select id_profil, id_lapin from `${prefixe}lapin` 
 		where id_profil=$mid and id_lapin='$auteur'";
 }
 
 function existeLapin($lapin) {
 	global $prefixe;
-	//requête pour vérifier que le lapin existe bien
+//requête pour vérifier que le lapin existe bien
 	return "select id_lapin from `${prefixe}lapin` 
 			where id_lapin=$lapin";
 }
 
 function creerDiscussion($sujet,$intitule,$auteur,$dest) {
 	global $prefixe;
-	//requête pour ajouter une nouvelle discussion
+//requête pour ajouter une nouvelle discussion
 	return "insert into `${prefixe}Discussion` 
 			(sujet,intitule,auteur,dest) 
 			value ('$sujet','$intitule',$auteur,$dest)";
@@ -112,16 +124,17 @@ function creerDiscussion($sujet,$intitule,$auteur,$dest) {
 
 function derniereDiscussion($sujet,$intitule,$auteur,$dest,$date) {
 	global $prefixe;
-	//requête pour ajouter une nouvelle discussion
+//requête pour ajouter une nouvelle discussion
 	return "select id_disc from `${prefixe}Discussion` 
 			where sujet='$sujet' and intitule='$intitule' 
 			and auteur=$auteur and dest=$dest and date>='$date'";
 }
 
 // requêtes liées à la boite d'avertissement.
+
 function nonLus($mid) {
 	global $prefixe;
-	//requête pour ajouter une nouvelle discussion
+//requête pour ajouter une nouvelle discussion
 	return "select count(*) from `${prefixe}Discussion` d
 		join `${prefixe}Message` m on d.id_disc=m.id_disc 
 		join `${prefixe}Consultation` c on (d.auteur=c.id_profil or d.dest=c.id_profil)

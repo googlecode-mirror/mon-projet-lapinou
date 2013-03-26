@@ -1,39 +1,46 @@
 <?php
-/*		script de comptage des derniers messages reçus
- * 
- * 		écrit par Florent Arnould	-	3 mars 2013
- */
+/*****************************************************
+ *	script de comptage des derniers messages reçus	**
+ * 													**
+ * 		Florent Arnould	-	12 mars 2013			**
+ *****************************************************/
 
+//est appelé indépendemment avant de retourner sur le site : session nécessaire
 session_start();
+
+//inclure la connexion à la base et la gestion des requêtes SQL
 require_once "../sql.php";
 require_once "sqlMess.php";
 
-
+//le compte ne se fait qu'en étant connecté
 if (isset($_SESSION["identifiant"])) {
 //connecté : afficher les messages en relation avec le membre et la fiche
-$mid=$_SESSION['mid'];
 
-if (!connect()) {
+//identifier le membre connecté
+	$mid=$_SESSION['mid'];
+
+//connecté à la base ?
+	if (!connect()) {
 	//gestion de l'erreur
-		echo "<div class='erreur'>\nLa messagerie n'est pas accessible actuellement.</div>\n";
-		exit;
+		header("Location: ../../index.php?page=erreur&message=La messagerie n'est pas accessible actuellement.");
+//		echo "<div class='erreur'>\nLa messagerie n'est pas accessible actuellement.</div>\n";
+//		exit;
 	}
 
+//aucun membre identifié (ou un des ses lapins)
 	if (!isset($mid) && !isset($_SESSION['lid'])) {
 	//gestion de l'erreur
-	//à priori inutile avec la connexion ; conservé pour éviter un appel direct
-		echo "<div class='erreur'>\nVous devez être identifié pour accéder à la messagerie.</div>\n";
-		exit;
+	//Rq : à priori inutile avec la connexion ; conservé pour éviter un appel direct
+		header("Location: ../../index.php?page=erreur&message=Vous devez être identifié pour accéder à la messagerie.");
+	//	echo "<div class='erreur'>\nVous devez être identifié pour accéder à la messagerie.</div>\n";
+	//	exit;
 	}
 
+//rechercher le nombre de nouveaux messages depuis le dernier accès à sa messagerie
 	$req_disc=nonLus($mid);
-	/*"select count(*) from `${prefixe}Discussion` d
-		join `${prefixe}Message` m on d.id_disc=m.id_disc 
-		join `${prefixe}Consultation` c on (d.auteur=c.id_profil or d.dest=c.id_profil)
-		where c.id_profil='$mid' and m.date>c.derniere";*/
-//	echo $req_disc;
 	$nb_disc=requete_champ_unique($req_disc) or 0;
 	
+//envoyer le résultat
 	header('Content-Type: application/xml');
 	$data="<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<nouveaux>";
 	$data.="<nombre>$nb_disc</nombre>";

@@ -3,15 +3,15 @@
  *	Gère l'affichage du formulaire d'ouverture	**
  *	d'une discussion avec un autre membre.		**
  * 												**
- * 		Florent Arnould	-	19 mars 2013		**
+ * 		Florent Arnould	-	26 mars 2013		**
  *************************************************/
 ?>
 <br />
 <script>
 function verif_form() {
-	el=document.reponse;
+//vérifie que la longueur du titre soit convenable
+	el=document.contact;
 	if (el.intitule.value.length>64) {
-//		alert("Le titre est trop long.");
 		document.erreur.innerHTML="Le titre est trop long.";
 		return false;
 	} else {
