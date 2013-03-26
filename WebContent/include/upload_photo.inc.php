@@ -17,6 +17,11 @@ function enregistrer_photo( $fichier, $user ){
 	$extensions_valides =  array('jpg', 'jpeg', 'gif',  'png' );
 	$extension_upload =  strtolower( substr( strrchr( $fichier['name'], '.') ,1) );
 	if( ! in_array( $extension_upload, $extensions_valides) ) return false;
+		// vérifie qu'il n'y a pas de caractères spéciaux
+	if(preg_match('#[\x00-\x1F\x7F-\x9F/\\\\]#', $fichier['name'])) return false;
+
+
+
 	
 	$nouveau_nom = $user.time().".".$extension_upload;//+ path relatif a include/
 	$chemin = "../img/".$nouveau_nom;
