@@ -88,18 +88,18 @@ if (!$utf) {
 	$req="insert into `${prefixe}Discussion` (sujet,intitule,auteur,dest) value (".$ids[1].",'$intitule',$idAok,".$ids[1].")";
 	$res=requete($req);
 	if (mysql_errno()>0)
-		echec("$res erreur lors de la création de la discussion.";
+		echec("$res erreur lors de la création de la discussion.");
 //puisqu'on ne peut garantir qu'il n'y a pas eu d'autre insertion entre les deux, LAST_INSERT_ID() ne peut être utilisée
 //on recherche donc la discussion créée avec ces paramètres depuis quelques secondes;
 	$req="select id_disc from `${prefixe}Discussion` where sujet='".$ids[1]."' and intitule='$intitule' and auteur=$idAok and dest=".$ids[1]." and date>='$date'";
 	$id_d=requete_champ_unique($req);
 //Rq : il ne faut SURTOUT PAS tenter d'affecter un retour en comparant ave une valeur : $var=fonction()==null ne met pas le résultat de fonction dans var mais rien (pas même false ou true apparemment) !
 	if ($id_d==null || trim($id_d)=="")
-		echec("erreur : discussion introuvable. Sans doute non créée.";
+		echec("erreur : discussion introuvable. Sans doute non créée.");
 	$req="insert into `${prefixe}Message` value (null,'$intitule','$texte',NOW(), $id_d, $auteur)";
 	requete($req);
 	if (mysql_errno()==0)
 		header("Location: ../../index.php?page=messagerie");
 	else
-  echec("erreur lors de la création du message d'ouverture.";
+  echec("erreur lors de la création du message d'ouverture.");
   ?>

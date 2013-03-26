@@ -76,8 +76,8 @@ var ref=document.createElement('script');
 ref.src="scripts/ajax.js";
 ref.type="text/javascript";
 document.getElementsByTagName("head")[0].appendChild(ref);
-</script>
 //ajout de la fonctionnalité de communication
+</script>
 <script type="text/javascript" language="Javascript" src="scripts/ajax.js"></script>
 
 <?php
