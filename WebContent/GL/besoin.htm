@@ -4,21 +4,34 @@
    <META NAME="Author" CONTENT="F. ARNOULD, J. DURAND, D. PAYANT, J. PHILIBERT, C. THURIER">
    <META NAME="GENERATOR" CONTENT="Mozilla/4.02 [en] (Win95; I) [Netscape]">
    <TITLE>D&eacute;finition des besoins</TITLE>
+   <style>
+   body {
+		<!--color :#2394F7;-->
+		font-size : 150%;
+		text-align: justify;
+	}
+	H1{		
+		color :#7EBDF4;
+   }
+   table {
+		width:900;
+		text-align:center;
+	}
+   </style>
 </HEAD>
 <BODY>
 
 <CENTER><FONT COLOR="#000000"><FONT SIZE=+4>D&eacute;finition des besoins</FONT></FONT>
 <HR WIDTH="100%"></CENTER>
 
-<H1>
-<FONT COLOR="#000000">1- Description g&eacute;n&eacute;rale</FONT></H1>
+<H1><!--<FONT COLOR="#000000">-->1- Description g&eacute;n&eacute;rale<!--</FONT>--></H1>
 
 <p>Nous nous sommes plac&eacute;s dans la position d’un regroupement de personnes passionn&eacute;es de lapins. La cr&eacute;ation d’un site pour aider les propri&eacute;taires de
 lapins à les faire reproduire n’existe pas encore et pourrait &ecirc;tre utile par exemple pour la sauvegarde de certaine race. L’objectif de ce projet est donc
 de cr&eacute;er un site de rencontre pour les lapins à la mani&egrave;re des r&eacute;seaux sociaux afin de favoriser les &eacute;changes et rencontres entre lapins par le biais d’une
-inscription sur le site, d’outils g&eacute;n&eacute;riques de discussion, organisation d’événements (concours…). Le concept de ce site serait de r&eacute;aliser un site
+inscription sur le site, d’outils g&eacute;n&eacute;riques de discussion, organisation d’&eacute;v&eacute;nements (concours…). Le concept de ce site serait de r&eacute;aliser un site
 interactif avec une partie mod&eacute;rateur. Les propri&eacute;taires des lapins pourront correspondre avec d'autres propri&eacute;taires de lapins. Notre site n’est pas à but
- lucratif pour le moment. Il pourrait le devenir par la suite si l’on décide de cr&eacute;er des partenariats avec des marques commerciales par la suite
+ lucratif pour le moment. Il pourrait le devenir par la suite si l’on d&eacute;cide de cr&eacute;er des partenariats avec des marques commerciales par la suite
  (&eacute;quipement de lapins, nourriture pour lapins, partenariats avec des concours etc.) <br/><br/>
  <i>Objectifs secondaires : </i>
  <ul>
@@ -35,7 +48,6 @@ interactif avec une partie mod&eacute;rateur. Les propri&eacute;taires des lapin
 
 <p>Prototype POWERPOINT mise en ligne PDF pour que se soit accessible <a href="PrototypeLapin_NetFinal.pdf">ici </a>&eacute;galement.<br/>
 Prototype Tchat pour que l'on puisse d&eacute;cider de l'int&eacute;grer au site<br/>
-Prototype Forum<br/>
 </p>
 
 
@@ -46,13 +58,106 @@ Prototype Forum<br/>
 
 <b>Les diff&eacute;rentes fonctions allou&eacute;es au site :</b>
 <UL>
-<li>Inscription</li>
-<li>Profil + gestion (lapin / propri&eacute;taire)</li>
-<li>Recherche</li>
-<li>Messages priv&eacute;s</li>
-<li>Commentaires</li>
-<li>Contact (nous) : liens en pied de page</li>
-<LI>Messages tchat</LI>
+<li><b>Inscription</b>: Se fait par le biais d'un formulaire d'inscription. Ce formulaire permet d'obtenir les renseignements d'un individus qui cherche à 
+s'inscrire sur le site. Elle est obligatoire pour acc&eacute;der aux divers informations (recherches de fiches lapins, tchat, messagerie etc.). 
+L'authentification permet de rendre légitime l'utilisateur. De plus il peut accéder à ses lapins, amis pour communiquer et échanger.
+Dans ce formulaire, nous retrouvons divers informations importantes:<BR><BR>
+
+Propri&eacute;taire : <BR>
+
+	<ul><li>Nom utilisateur </li>
+		<li>Mot de passe et confirmation du mot de passe</li>
+		<li>Nom du propri&eacute;taire</li>
+		<li>Pr&eacute;nom du propri&eacute;taire</li>
+		<li>Code postal => renvoie la r&eacute;gion grâce aux deux premiers chiffres</li>
+		<li>e-mail du propri&eacute;taire</li>
+		<li>photo du propri&eacute;taire</li>
+	</ul></li><BR>
+
+Lapin : <BR>
+
+	<ul><li>Nom du lapin</li>
+		<li>Date de naissance</li>
+		<li>Sexe</li>
+		<li>Race</li>
+		<li>Couleur</li>
+		<li>Centre d'int&eacute;rêt</li>
+		<li>Description</li>
+		<li>photo du propri&eacute;taire</li>
+	</ul></li><BR>
+
+<li><b>Profil + gestion </b>(lapin / propri&eacute;taire / amis) : Chaque utilisateur ayant remplit un formulaire, dispose d'un profil. Il peut le modifier
+par la suite (à l'exception de son identité). <BR>
+			<ul>
+			<li>Image</li>
+			<li>Code Postal</li>
+			<li>Région</li>
+			<li>Email</li>
+			<li>Ajout/Suppression de lapin </li>
+			<li>Ajout/Suppression d'un ami</li>
+			</ul>
+La gestion comprend pour l'utilisateur l'ajout, la modification ou suppression des lapins qu'il possède mais 
+également l'ajout et/ou suppression des amis. Cette fonction n'est possible que si l'on est connecté. <BR>
+</li> <BR>
+<li><b>Identification</b> : Connexion à son compte par le biais d'un mot de passe et d'un login. Cet accès n'est accessible que pour les utilisateurs déjà
+inscrit sur le site.</li> <BR>
+
+<li><b>Navigation</b>: deux choix possibles. <BR>
+	<ul><li><i>publique</i> : C'est le mode "Non-connecté". Tous les champs du menu ne sont pas accessibles notamment "amis", "messagerie". En revenche, il est 
+	possible de s'inscrire (dans la barre de menu) ou de se connecter (à droite : "Connexion").
+			<ul>
+			<li>Accueil</li>
+			<li>Membres</li>
+			<li>Recherche</li>
+			<li>GL</li>
+			<li>Plus</li>
+			<li>Connexion</li>
+			</ul>
+		</li>
+	</ul><BR>
+	<ul><li>ou <i>priv&eacute;e</i> : C'est l'espace "Membre". Il faut s'être connecté ou s'inscrire pour y avoir accès. L'utilisateur peut mettre à jour ses 
+	informations (profil, lapins, amis) grâce aux différents onglets prévus à cet effet "Membres", "Amis". Il est également possible de chatter avec des amis
+	connectés en même temps et de se déconnecter (bouton "Deconnexion" à droite). 
+			<ul>
+			<li>Accueil</li>
+			<li>Membres</li>
+			<li>Amis</li>
+			<li>Recherche</li>
+			<li>GL</li>
+			<li>Plus</li>
+			<li>Deconnexion</li>
+			</ul>
+		</li>
+	</ul><BR>
+</li>
+<li><b>Recherche</b> : L'onglet recherche permet de rechercher un individu "utilisateur" 
+du site ou un "lapin". Si l'on n'inscrit rien dans l'onglet, on peut faire une recherche 
+large et afficher tous les membres utilisateurs du site. Une recherche est possible par différents critères :
+	<ul>
+	<li>Sexe</li>
+	<li>Race</li>
+	<li>Couleur</li>
+	</ul>
+</li><BR>
+<li><b>Messages priv&eacute;s</b> : Pour pouvoir bénéficier de la messagerie, il faut s'être connecté. La messagerie permet de contacter d'autres 
+propriétaires pour échanger de manière privés. </li><BR>
+
+<li><b>Messages tchat</b> : Le "Lapiphone" est une messagerie instantanée accessible pour les personnes "connectées" au site. Elles ont la possiblité de communiquer directement avec les 
+autres personnes connectées. Ces autres personnes sont visibles. En cliquant sur le nom, il est possible d'envoyer un message.</li><BR>
+
+<li><b>Contact (nous) </b>: liens en pied de page mais également dans l'onglet "plus". Le contact se fait par le biais d'un formulaire à remplir. </li><BR>
+
+<li><b>Qui sommes-nous ?</b>: Cette partie permet de connaître les individus à l'origine de ce site, de ce concept. C'est l'espace de présentation
+ du groupe.</li> <BR>
+
+<li><b>Pied de page</b> : Le pied de page reprend les liens clicables importants
+	<ul>
+	<li>Acueil : renvoie à l'accueil.</li>
+	<li>Contact : Nous renvoie au formulaire à remplir qui est retourné à l'adminstrateur. </li>
+	<li>Qui sommes-nous ? : renvoie à la page de présentation du groupe.</li>
+	<li>Liens : partenariat</li>
+	</ul>
+</li><BR>
 </UL>
 
 <B>Les plus si le temps nous le permet :</B>
@@ -67,53 +172,271 @@ Prototype Forum<br/>
 <H1>
 4- Besoins non fonctionnels</H1>
 
-<p>D'un point de vue du lapin, il est demandé à ce projet de permettre que des lapins puissent se rencontrer. Cette rencontre est permise grâce à une 
-inscription donnant une visibilté des profils de chaque lapin. Le site doit être facile d'accès, facile d'utilisation. Un lapin doit pouvoir trouver 
-facilement l'information qu'il cherche.<br>
-Du point de vue du propriétaire, il doit pouvoir inscrire ses lapins facilement et ne pas trouver de difficultés pour passer d'un profil à l'autre. De plus,
-il doit pouvoir télécharger des fichiers tel que des photos facilement. <br>
-D'un point de vue plus générale, le site doit être ergonomique, plaisant à utilisé et il doit être facile de trouver l'information recherché (comme un profil
-par exemple).<br>
-Les outils utilisés par ce site doivent être performants. Ainsi, la base de données doit être remplie de manière cohérente et doit pouvoir être fonctionnelle.
-Il n'est pas permis que des erreurs de requêtes puissent aparaître à l'écran de l'utilisateur. Un message ne doit pas être dupliqué. Il doit pouvoir être
-lisible et la réponse qu'un lapin pourrait faire est à prévoir (la fonction répondre est impérative). De même, le rafraichissement du chat doit être 
-opérationnel pour que le lapin puisse communiquer en temps réel avec qui il lui souhaite de communiquer. Pour cela, l'écriture du chat doit être cohérente
-avec la logique attendue. L'écriture de la fonction doit être pertinente et juste pour que l'effet soit au rendez-vous.<br> <br>
-D'un point de vue ergonomique, le site doit être plaisant, les couleurs ne doivent pas être criardes ni laisser un sentiment d'agacement lors de son 
-utilisation. Une certaine charte graphique est attendue : couleurs en cohérence avec le thème des lapin, c'est-à-dire du vert et du orange pour rappeler la 
-couleur de l'aliment principal du lapin (la carotte). De plus, l'information recherchée ne doit pas être trouvée en plus de 3 seconde dans la survole des 
-onglets ni à l'intérieur de chaque onglet (lors du déroulement des sous-onglets).</p>
+<p>
+<ul><li><b>Du point de vue du lapin</b>, il est demand&eacute; à ce projet de permettre que <b>des lapins puissent se rencontrer</b>. Cette rencontre est permise 
+grâce à une inscription donnant une visibilt&eacute; des profils de chaque lapin. <b>Le site doit être facile d'accès</b>, facile d'utilisation. Un lapin doit 
+pouvoir trouver facilement l'information qu'il cherche.</li><br>
+
+<li><b>Du point de vue du propri&eacute;taire</b>, il doit <b>pouvoir inscrire ses lapins facilement</b> et ne pas trouver de difficult&eacute;s pour passer 
+d'un profil à l'autre. De plus, il doit pouvoir t&eacute;l&eacute;charger des fichiers tel que des photos facilement. </li><br>
+
+<li><b>D'un point de vue plus g&eacute;n&eacute;rale</b>, le site doit être <b>ergonomique</b>, plaisant à utilis&eacute; et il doit être facile de trouver
+ l'information recherch&eacute; (comme un profil par exemple).</li><br>
+ 
+<li>Les outils utilis&eacute;s par ce site doivent être performants. Ainsi, <b>la base de donn&eacute;es </b>doit être remplie de manière coh&eacute;rente
+ et doit pouvoir être fonctionnelle. Il n'est pas permis que des erreurs de requêtes puissent aparaître à l'&eacute;cran de l'utilisateur. Un message 
+ ne doit pas être dupliqu&eacute;. Il doit pouvoir être lisible et la r&eacute;ponse qu'un lapin pourrait faire est à pr&eacute;voir (la fonction 
+ r&eacute;pondre est imp&eacute;rative). De même, <b>le rafraichissement</b> du chat doit être op&eacute;rationnel pour que le lapin puisse communiquer
+ en temps r&eacute;el avec qui il lui souhaite de communiquer. Pour cela, l'&eacute;criture du chat doit être coh&eacute;rente avec la logique attendue.</li><br>
+ 
+<li><b>D'un point de vue ergonomique</b>, le site doit être plaisant, <b>les couleurs</b> ne doivent pas être criardes ni laisser un sentiment d'agacement 
+lors de son utilisation. Une certaine <b>charte graphique</b> est attendue : couleurs en coh&eacute;rence avec le thème des lapin, c'est-à-dire du vert et 
+du orange pour rappeler la couleur de l'aliment principal du lapin (la carotte). <b>Le logo</b> doit faire référence au site et au lapin. Par conséquent
+<b>la couleur du logo</b> devra être verte et orange et présenter une tête de lapin. Le nom du site ("LAPI.NET") doit apparaître dans le logo. De plus, 
+<b>la police et la taille de la police</b> doivent être concordantes sur toutes les pages du site. Enfin, <b>l'information recherch&eacute;e</b> doit être 
+trouv&eacute;e en moins de 3 seconde dans la survole des onglets ni à l'int&eacute;rieur de chaque onglet (lors du d&eacute;roulement des sous-onglets).
+<b>Le contenu des pages HTML</b> doit être sobre par le biais d'une police sobre et classique. Le contenu doit être clair, aéré.Une logique dans chacune 
+des pages doit être suivie. Le contenu des pages web sont écrites sur fond orangé pour rappeler la couleur des carottes.</li>
+<br>
+<br>
+<li><b>La structure des pages</b> : 
+	<ul><li><b>le logos</b> en haut et centré.</li>
+		<li><b>le menu</b> en dessous du logo et centré également</li>
+		<li><b>le corps de la page</b> dans laquelle se trouve les informations essentielles (informations movibles en fonction de la page sélectionnée)</li>
+		<li>à droite de la page : <b>la partie login et tchat</b></li>
+		<li><b>le pied de page</b> : cliquable. Les liens cliquables redirige l'internaute ou il le souhaite</li>
+	</ul>
+</li>
+<br>
+<li><b>L'hébergement du site :</b><BR>
+	<ul><li><b>Le serveur Free</b> : imposé dans le cadre du projet car gratuit et facile à utiliser.</li>
+		<li><b>La base de données MySQL</b> : La base de données MySQL est utilisée par l’hébergeur retenu, en l’occurrence Free. (Disponible avec Free et/ou EasyPHP et/ou WAMP).</li>
+		<li><b>Le nom du site</b> :  L’URL du site est http://arnould.f.free.fr/projet/index.php (En raison d'un compte déjà existant dans notre groupe)</li>
+	</ul>
+</li>
+<br>
+<li><b>L'environnement physique prévu :</b>
+	<ul><li><<b>La compatibilité des navigateurs </b>: Le site doit pouvoir s’afficher correctement sur la plus grande majorité des navigateurs internet 
+	(Firefox, Safari, Chrome, Opéra) sauf Internet Explorer ne respectant pas les normes W3C.</li>
+		<li><b>La rédaction html/php/css </b>: Les logiciels ont été réalisés sous Notpad++; gedit; </li>
+	</ul>
+</li>
+<br>
+<li><b>La conception :</b> 
+	<ul><li><b>Le prototype papier</b> : Donne	un aperçu des futures pages html.Cela permet de réfléchir aux fonctionnalités à proposer et d’organiser au mieux le 
+	contenu des pages web.</li>
+		<li><b>Le Diagramme des cas d’utilisation </b>: Un cas d'utilisation représente une unité discrète d'interaction entre un utilisateur (humain ou machine) 
+		et un système. Cela permet de donner une vision globale du comportement fonctionnel du site.</li>
+		<li><b>Le Diagramme d’activité</b> : Permet de représenter le déclenchement d'événements en fonction des états du système.Permettent d’exprimer une
+		dimension temporelle sur une partie du modèle.</li>
+		<li><b>Le Planning</b> : Une planification des tâches à réaliser durant la création du site. Cela aide à gérer le temps alloué aux différentes tâches au 
+		cours du développement du site.</li>
+		<li><b>Le Modèle entité-association</b> : Fournit une description graphique pour représenter des modèles conceptuels de données sous la forme de diagrammes
+		contenant des entités et des associations. Permet de décrire les besoins en information et/ou le type d'information qui doit être enregistré dans la 
+		Bas de Données.</li>
+		<li><b>Le Modèle logique de données :</b> Une vue logique en terme d’organisation de données nécessaire à un traitement. Etape nécessaire avant 
+		l'insertion des différentes données dans la base de données.</li>
+	</ul>
+</li>
+
+
+
+
+<H1>
+4- Plate-forme cible et de d&eacute;veloppement</H1>
+<li>Plate-forme cible :
+<ul><p>L'hébergement du site est effectué chez free.fr.
+Les pages personnelles de Free sont proposées gratuitement à tous les utilisateurs de Free quelle que soit leur offre de connexion choisie avec un espace 
+personnel de 10 Go sur le web sans bandeau publicitaire. Elles supportent MySQL 5 ainsi que langage PHP (PHP 4 et PHP 5). 
+La seule contrainte est de disposer d’adresses web du type http://login.free.fr.<br>
+Parmi les particularités de l'hébergement Free, nous constatons que certaines fonctions sont désactivées. Pour avoir des informations sur la version de php 
+installée, il faut créer un fichier infos.php.
+
+Voici une liste de fonctions PHP désactivées sur le serveur Free :</p>
+<table border="1" width="80%">
+<ul>
+<tr><td>chown</td><td> chmod</td><td> get_current_user</td></tr>
+<tr><td> php_uname</td><td> putenv</td><td> set_time_limit</td></tr>
+<tr><td> getmyuid</td><td> getmypid</td><td> dl</td></tr>
+<tr><td> ini_alter</td><td> ini_restore</td><td> ini_set</td></tr>
+<tr><td> exec</td><td> passthru</td><td> system</td></tr>
+<tr><td> popen</td><td> pclose</td><td> leak</td></tr>
+<tr><td> mysql_list_dbs</td><td> listen</td><td> chgrp</td></tr>
+<tr><td> disk_total_space</td><td> disk_free_space</td><td> rmdir</td></tr>
+<tr><td> realpath</td><td> tmpfile</td><td> link</td></tr>
+<tr><td> shell_exec</td><td> proc_open</td><td> chroot</td></tr>
+<tr><td> openlog</td><td> closelog</td><td> syslog</td></tr>
+<tr><td> flock</td><td> socket_create_listen</td><td> socket_accept</td></tr>
+<tr><td> socket_listen</td><td> sleep</td><td> usleep</td></tr>
+<tr><td> umask</td><td> set_include_path</td><td> restore_include_path</td></tr>
+<tr><td> symlink</td><td> setlocale</td><td> imagerotate</td></tr></table><br/>
+</ul>
+</p>
+<p>La fonction <b>mail()</b> fonctionne avec un quota d'envois (2 000 eMails par semaine).<br> Les modules FTP et IMAP ne sont pas installés.</p>
+<p><b>Une configuration détaillée du serveur Free est présentée sur cette page web :</b> <a href="phpinfo_free.htm">PHP INFO FREE</a></p>
+<p>Pour gérer des sessions PHP : Avant toute utilisation des sessions PHP, un répertoire sessions doit être créé à la racine du compte.</p>
+</ul></li><br>
+
+
+<li>Plate-forme de développement :
+<ul>
+<p>EasyPHP a servi de plate-forme de développement pour notre site de rencontre pour lapin. C'est un logiciel simple et gratuit qui a pour 
+ambition de simplifier l’approche du monde du développement de site Internet dynamique. Il s'agit en fait d'une plateforme de développement Web, 
+permettant de faire fonctionner localement (sans se connecter à un serveur externe) des scripts PHP. EasyPHP n'est pas en soi un logiciel, 
+mais un environnement comprenant deux serveurs (un serveur web Apache et un serveur de bases de données MySQL), un interpréteur de script (PHP),
+ ainsi qu'une administration SQL phpMyAdmin. Il dispose d'une interface d'administration permettant de gérer les alias 
+ (dossiers virtuels disponibles sous Apache), et le démarrage/arrêt des serveurs. Il permet donc d'installer en une seule fois 
+ tout le nécessaire au développement local du PHP. Par défaut, le serveur Apache crée un nom de domaine virtuel (en local) 127.0.0.1 ou localhost. 
+ Ainsi, quand on choisit « Web local » dans le menu d'EasyPHP, le navigateur s'ouvre sur cette URL et affiche la page index.php de ce site qui 
+ correspond en fait au contenu du dossier www d'EasyPHP.<br><br>
+EasyPHP a été retenu en tant que plate-forme de développement de notre site de covoiturage car il réunit tous les logiciels libres utiles pour créer
+ un univers de travail prêt à l’emploi pour pouvoir développer des sites en PHP avec MySQL.</p>
+<p>Chose la plus importante, EasyPHP propose le téléchargement en une fois et l'installation en un assistant des trois programmes précédemment cités, 
+Apache, PHP et MySQL. Cela permet d'installer automatiquement ceux-ci, en se libérant des problèmes liés à la configuration manuelle qui 
+est souvent nécessaire lorsqu'on les installe séparément. Lorsqu'EasyPHP est lancé, les serveurs Apache et MySQL sont automatiquement lancés 
+(il est même possible de le faire automatiquement au démarrage de Windows). Une petite icône s'installe dans la barre des tâches, 
+à côté de l'horloge, permettant un accès rapide aux <b>fonctions proposés par EasyPHP :</b></p>
+<ul>
+	<li>Arrêter et Redémarrer les serveurs Apache et MySQL</li>
+	<li>Accéder au "Web local", c'est-à-dire la racine des sites webs</li>
+	<li>Un panneau d'administration en PHP</li>
+	<li>Un outil de configuration d'EasyPHP</li>
+	<li>L'accès aux logs</li>
+	<li>L'aide</li>
+</ul>
+<p><b>Une configuration détaillée de EasyPHP est présentée sur cette page web : </b> <a href="phpinfo_local.htm">PHP INFO EASYPHP</a></p>
+<p>On a également utilisé tout au long du développement de notre site web les outils suivants faisant partie intégrante de la plate-forme
+de développement :</p>
+	<ul>
+	<li>Outils de dessin :
+		<ul>
+			<li>PAINT, GIMP, PPT</li>
+		</ul>
+	 </li>
+
+	<li>Environnement de programmation :
+		<ul>
+			<li>Langages de programmation : PHP, HTML, CSS, Javascript, Ajax, JQuery</li>
+			<li>Systèmes d'exploitation : Windows 7, Vista ainsi que Linux</li>
+			<li>LAMP & WAMP, EasyPHP (Apache, PHP, MySQL)</li>
+			<li>FileZilla (transfert de pages web vers le serveur Free)</li>
+			<li>Editeurs de texte Notepad++, GEDIT</li>
+			<li>Logiciel de gestion des versions SVN (RapidSVN)</li>
+			<li>Assembla (serveur pour la gestion des versions de fichiers)</li>
+			<li>Serveur Free</li>
+		</ul>
+	 </li>
+	 <li>Outils Génie logiciel :
+		<ul>
+			<li>DIA (réalisation de diagrammes UML)</li>
+			<li>Microsoft Project & GANTT (gestion de tâches, planning)</li>
+			<li>ArGOUML (conception de diagrammes entités-associations)</li>
+		</ul>
+	 </li>
+	 <li>Outils de test :
+		<ul>
+			<li>PHPUnit (réalisation de tests unitaires)</li>
+			<li>Navigateurs : Firefox, Chrome</li>
+		</ul>
+	 </li>
+	</ul>
+</p>
+</ul>
+</li>
 
 <H1>
 5- Crit&egrave;res de validation</H1>
 
 <H1>
 6- Plate-forme cible et de d&eacute;veloppement</H1>
-<p>Site internet sur free : </p><a href="../index.php">http://arnould.f.free.fr/projet/</a>
+<p>Site internet sur le serveur free : </p><a href="../index.php">http://arnould.f.free.fr/projet/</a>
 
 <H1>
 7- Analyse des risques</H1>
-<ol>
-<li>Concurrence avec d’autres sites qui pourraient se créer en même temps : Palier à cette hypothèse en proposant des fonctionnalités supplémentaires (être 
-et demeurer unique)</li>
-<li>Pas assez de public touché : augmenter ses chances de toucher plus de public proposant des partenariat, faire parler du site par le biais d'une 
-communication autour de se site. En parler sur des forums ou autre.</li>
-<li>Site trop ambitieux pour réaliser le projet dans les temps : Proposer les fonctionnalités principales (inscription, visibilité des profils, communication
- entre lapins)</li>
-<li>Le jury ne le valide pas : faire en sorte de répondre au minimum attendu par le jury (certaines fonctionnalités de base et mise à jour des pages en GL)</li>
-<li>Pas de réseau internet ce jour là : proposer de présenter par le biais du SVN et proposer aux membres du jury d'essayer de s'inscrire et utiliser le site
-).</li>
-<li>Echec du projet : Si les fonctionnalités sont présentes et si le sujet répond aux attentes d'un site de rencontre, il ne peut , à priori, pas y avoir 
-d'échec.</li>
-<li>Résultat du projet ne soit pas le résultat escompté : si deux lapins sont dans la possibilité de communiquer (chat ou message), si l'inscription est 
-possible et si les profils sont accessibles alors il ne peut pas y avoir d'echec.</li>
-<li>Les membres du groupes ne puissent avoir suffisamment de temps pour assumer son rôle jusqu’au bout : L'abandon de certains membres n'est pas un problème
- si elle est évoquée suffisement tôt et si le groupe est en capacité de pouvoir remédier à ces absences.</li>
-<li>Stress : Fait et rendu dans les temps et préparé, le stress est minimisé. Bien qu'il ne puisse disparaitre, il ne sera pas à son apogée. De plus, le 
-fait de travailler en équipe permet aux membres de cette dernière d'être soudée et de se soutenir les uns les autres.</li>
-<li>Contraintes personnelles : En cas de contrainte, si elle est suffisement prise à l'avance, les autres membres de l'équipe peuvent être en mesure de 
-remplacer la personne qui fallisse à ses obligations.</li>
-</ol>
+<p>Risque en Gestion de projet : Une condition ou un &eacute;v&eacute;nement incertain ayant une cause et, 
+lorsqu’il se produit, a un effet positif ou n&eacute;gatif sur les objectifs du projet ainsi qu’une incidence sur les coûts, 
+l’&eacute;ch&eacute;ancier ou la qualit&eacute; du projet.</p>
+<table border="1" >
+	<tr>
+		<th width="10%">Nature du risque</th>
+		<th width="40%">Description du risque</th>
+		<th width="40%">Actions correctives</th>
+		<th width="10%">Indice  du risque(1)</th>
+
+	</tr>
+	<tr>
+		<td>Environnement ext&eacute;rieur</td>
+		<td>Concurrence avec d’autres sites qui pourraient se cr&eacute;er en même temps</td>
+		<td>Palier à cette hypothèse en proposant des fonctionnalit&eacute;s suppl&eacute;mentaires<br>
+			(être et demeurer unique)<br></td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<td>Environnement ext&eacute;rieur</td>
+		<td>Pas assez de public touch&eacute; </td>
+		<td>augmenter ses chances de toucher un plus large de public proposant des partenariat<BR>
+		    Communiquer autour de se site (sur des forums ou autre)<BR></td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<td>Technique</td>
+		<td>Site trop ambitieux pour être r&eacute;alis&eacute; dans les temps</td>
+		<td>Proposer les fonctionnalit&eacute;s principales (inscription, visibilit&eacute; des profils, communication
+			entre lapins)<BR></td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<td>Appr&eacute;ciation</td>
+		<td>Ne soit pas valid&eacute; par le jury</td>
+		<td>r&eacute;pondre au minimum attendu par le jury <BR>
+		(certaines fonctionnalit&eacute;s de base et mise à jour des pages en GL)</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>Appr&eacute;ciation</td>
+		<td>Echec du projet</td>
+		<td>Fonctionnalit&eacute;s pr&eacute;sentes <BR>
+		Le sujet r&eacute;pond aux attentes d'un site de rencontre</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>Appr&eacute;ciation</td>
+		<td>R&eacute;sultat du projet n'est pas le r&eacute;sultat escompt&eacute;</td>
+		<td>Deux lapins doivent avoir la possibilit&eacute; de communiquer (chat ou message), si l'inscription est possible et si les profils sont accessibles.
+		</td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<td>R&eacute;seaux</td>
+		<td>Pas de r&eacute;seau internet le jour de la pr&eacute;sentation</td>
+		<td>Proposer une pr&eacute;sentation par le biais du SVN <BR>
+		proposer aux membres du jury d'essayer de s'inscrire <BR>
+		utiliser le site</td>
+		<td>5</td>
+	</tr>	
+	<tr>
+		<td>Risque d'abandon</td>
+		<td>Les membres du groupes ne puissent avoir suffisamment de temps pour assumer son rôle jusqu’au bout</td>
+		<td>L'abandon de certains membres n'est pas un problème puisque le groupe communique fr&eacute;quemment sur les tâches de chacun et la poursuite du travail<BR>
+		De plus, les &eacute;l&eacute;ments "à risque" se sont d&eacute;sign&eacute;s comme tel dès le d&eacute;but.</td>
+		<td>2</td>
+</tr>	
+<tr>
+		<td>Contraintes personnelles </td>
+		<td>Le rythme du travail est perturb&eacute; par les contraintes personnelles qui les empêchent de travailler le soir</td>
+		<td>En cas de contrainte, si elle est suffisement prise à l'avance, les autres membres de l'&eacute;quipe peuvent être en mesure de remplacer la personne qui a ses obligations.</td>
+		<td>2</td>
+</tr>
+<tr>
+		<td>Stress</td>
+		<td>Le surmenage des membres du groupe soit d&eacute;clencheur de maisentente au sein du groupe</td>
+		<td>Un travail fait et rendu dans les temps permet de minimiser le stress. Bien qu'il ne puisse disparaitre, il ne sera pas à son apog&eacute;e.</td>
+		<td>3</td>
+</tr>
+</table>
+<p>(1) 1 = mineur; 2 = moyen; 3 = important; 4 = majeur</p>
+
+
 
 
 
