@@ -44,7 +44,8 @@ var reponseBoite = function (xmlhttp,x) {
 			try {
 				txt=txt + "<div"+clic+((j==0)?" id=\"mess"+noMess+"\"":"")+">" + xx[0].firstChild.nodeValue + "</div>";
 			} catch (er) {
-				txt=txt + "<div>&nbsp;</div>";
+				txt=txt;
+//				txt=txt + "<div>&nbsp;</div>";
 			}
 		}
 		txt=txt+"</li>\n"; 

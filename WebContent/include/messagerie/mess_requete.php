@@ -13,6 +13,8 @@
 //mais par la fonction de traitement qui lui est passée, il n'est plus 
 //nécessaire d'avoir des balises racines xml différentes (sauf pour l'erreur).
 
+session_start();
+
 //inclure la connexion à la base et la gestion des requêtes SQL
 require_once "../sql.php";
 require_once "sqlMess.php";
@@ -52,7 +54,8 @@ if (connect()) {
 			header('Content-Type: application/xml');
 			$data="<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<boite>";
 			foreach ($liste_mess as $mess) {
-				$data.="<message><id>$mess->id_mess</id><titre>$mess->titre</titre><nom>$mess->idLap</nom><date>$mess->date</date><proprio>$mess->nom $mess->prenom</proprio></message>\n";
+				$data.="<message><id>$mess->id_mess</id><titre>$mess->titre</titre><nom>$mess->idLap</nom><date>$mess->date</date><proprio>$mess->nomlap</proprio></message>\n";
+//				$data.="<message><id>$mess->id_mess</id><titre>$mess->titre</titre><nom>$mess->idLap</nom><date>$mess->date</date><proprio>$mess->nom $mess->prenom</proprio></message>\n";
 			}
 			$data.="\n</boite>";
 			echo $data;

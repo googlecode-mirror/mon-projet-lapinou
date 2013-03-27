@@ -12,7 +12,7 @@
 function DiscProprio($mid) {
 	global $prefixe;
 //requête des discussions du membre connecté
-	return "select * from `${prefixe}Discussion` 
+	return "select id_disc, intitule, date, l1.nomlap as nomlap from `${prefixe}Discussion` 
 			d join `${prefixe}lapin` l1 on d.auteur=l1.id_lapin 
 			join `${prefixe}lapin` l2 on d.dest=l2.id_lapin 
 			join `${prefixe}proprietaire` p1 on p1.id_profil=l1.id_profil 
@@ -30,7 +30,7 @@ function DiscLapin($lid) {
 function DiscAutreCommun () {
 	global $prefixe;
 //bout de requête des discussions liées à un autre membre
-	return "select * from `${prefixe}Discussion` 
+	return "select id_disc, intitule, date, l1.nomlap as nomlap from `${prefixe}Discussion` 
 		d join `${prefixe}lapin` l1 on d.auteur=l1.id_lapin 
 		join `${prefixe}lapin` l2 on d.dest=l2.id_lapin 
 		join `${prefixe}proprietaire` p1 on p1.id_profil=l1.id_profil 

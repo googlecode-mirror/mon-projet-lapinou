@@ -91,7 +91,8 @@ document.getElementsByTagName("head")[0].appendChild(ref);
 				<div class='pmMess' onclick=\"ouvrir_fil($disc->id_disc)\">+</div>
 				<div>$disc->intitule</div>
 				<div>$disc->date</div>
-				<div>$disc->nom $disc->prenom</div></li>\n";
+				<div>$disc->nomlap</div></li>\n";
+//				<div>$disc->nom $disc->prenom</div></li>\n";
 		}
 		$code.="</ul>\n</div>\n";
 		return $code;

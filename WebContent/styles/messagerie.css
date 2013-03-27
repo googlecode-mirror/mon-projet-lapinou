@@ -9,13 +9,24 @@
 }
 .liste_boite li div {
   display: inline-block;
-  width: 30%;
+  width: 27%;
   margin:1px;
-/*  float: left;*/
+  /*  float: left;*/
 }
 .liste_boite li div:first-of-type {
 	width:1em;
 	text-align:center;
+}
+.liste_boite li > div:nth-of-type(2) {
+  display: inline-block;
+  width: 44%;
+  margin:1px;
+/*  float: left;*/
+}
+.liste_boite li div:last-of-type {
+  display: inline-block;
+  width: 21%;
+  margin:1px;
 }
 .pmMess {
 	width:1em;
@@ -27,16 +38,22 @@
   margin-left:2em;
   padding:0em;
 }
-.liste_boite li ul li div {
+.liste_boite li ul li div:nth-of-type(2) {
   display: inline-block;
-  width: 24%;
+  width: 27%;
 	cursor:pointer;
 	text-align:center;
+  margin:1px;
 	/*  float: left;*/
 }
 .liste_boite li ul li div:first-of-type {
-	width:24%;
+	width:46%;
 	text-align:left;
+  margin:1px;
+}
+.liste_boite li ul li div:last-of-type {
+	width:21%;
+  margin:1px;
 }
 .message div {
 /*	border: 1px solid darkgray;*/
