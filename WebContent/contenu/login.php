@@ -22,7 +22,7 @@
 		unset($_SESSION['identifiant']);
 		$_SESSION['mesLogin'] = "Déconnexion réussie";
 		header("location: ".$ch."index.php");
-		
+		exit(0);
 	}
 
 
