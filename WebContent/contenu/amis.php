@@ -27,8 +27,9 @@ echo "<article>\n";
 echo "<h2>Mes Amis </h2>\n";
 while ($ami = mysql_fetch_array($resultat) ){
 	//une ligne par ami
-	echo "<p><a href='index.php?page=profil&user=".$ami['idAmi']."'>".$ami['idAmi']."</a> <a href='include/supprimerAmi.php?ami=".$ami['idAmi']."'>Supprimer</a></p>";
+	echo "<p><a href='index.php?page=profil&user=".$ami['idAmi']."'><input type=\"button\"/>".$ami['idAmi']."</a> <a href='include/supprimerAmi.php?ami=".$ami['idAmi']."'><input type=\"button\"/>Supprimer</a></p>";
 }
 echo "</article>\n";
 ?>
+
 
