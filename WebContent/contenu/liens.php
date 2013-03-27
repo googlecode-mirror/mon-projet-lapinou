@@ -13,12 +13,14 @@
 		<dd><a href="http://leforumdulapin.superforum.fr/"><img id="part" src="img/passion.jpg"  alt="Forum sur la vie de nos lapins" title="Forum pasionément"/></a> Sujets divers et variés sur les lapins </dd>
 		<dd><a href="http://patapons.rabbitforum.org/"><img id="part" src="img/patapon.jpg"  alt="Forum lapin bélier" title="Forum lapin bélier"/></a> Spécialisé pour les lapins bélier </dd>
 		<dd><a href="http://www.lapinous.fr/"><img id="part" src="img/lapinous.jpg"  alt="Site lapin nain" title="Tout sur le lapin nain"/></a> Spécialisé pour les lapins nains </dd>
-	
-	
-	
+		
 	<dt>Alimentation</dt>
 		<dd><a href="http://3-petits-lapins.over-blog.com/article-1636925.html"><img id="part" src="img/3petits.gif"  alt="Site des 3 petits lapins" title="3 petits lapins"/></a> Quel type d'alimentation ? </dd>
 		<dd><a href="http://wamiz.com/rongeurs/lapin-3/comment-nourrir-son-lapin-880.html"><img id="part" src="img/wamiz.jpg"  alt="Site de wamiz" title="régime alimentaire"/></a> Comment nourrir son lapin ? </dd>
+		
+	<dt>Partenaires</dt>
+		<dd><a href="http://www.univ-orleans.fr/"><img id="part" src="img/LogoOrleans.gif" alt="Site de l'université d'Orléans" title="Université d'Orléans" /></a> Université d'Orléans</dd>
+		<dd><a href="http://www.univ-orleans.fr/sciences/info"><img id="part" src="img/LogoInfo.gif" alt="Site du département informatique" title="Département informatique" /></a> Département informatique de la faculté des sciences</dd>
 </dl>
 
 </nav>

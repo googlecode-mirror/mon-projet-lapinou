@@ -22,7 +22,7 @@
 <header>
 <div class="bandeau">
 <br>
-<img src="img/LOGO_new.png" alt="LAPI.NET" title="LAPI.NET"></img>
+<img src="img/LOGO_new.png" width="550" alt="LAPI.NET" title="LAPI.NET"></img>
 <br>
 </div>
 </header>

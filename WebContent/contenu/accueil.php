@@ -1,12 +1,12 @@
 <h2>Présentation</h2>
 <br /> 
-<p>
-<div class="colonne"> 
-	<h3>Accueil</h3>
-	<p>Tu es seul ? Tu aimerais trouver un ou une lapine qui te correspond ? Ne cherches pas plus loin, pleins d'autres lapins sont inscrits sur ce site. Plus besoin de chercher
+<img id="accueil" src="img/bisou-lapin.jpg" width="200" alt="Image d'un couple" title="Le bonheur!" />
+<h3>Accueil</h3>
+<p id="accueil">Tu es seul ? Tu aimerais trouver un ou une lapine qui te correspond ? Ne cherches pas plus loin, pleins d'autres lapins sont inscrits sur ce site. Plus besoin de chercher
 ailleurs. En t'inscrivant sur ce site, tu pourras faire la rencontre d'autres lapins qui te correspond et qui ont les mêmes attentes que toi.
 Tu pourras, entre autre, faire la connaissance de la ou du lapin de ta vie... alors n'ésites plus, cliques et profites...</p>
-</div>
+<br class="retour" />
+<p>
 <div class="colonne"> 
 	<h3>Les news</h3> 
 	<p>***Site en construction*** il te faudra patienter un peu pour avoir des nouvelles. Tout ce que nous pouvons vous dire pour le moment, c'est que les lapins

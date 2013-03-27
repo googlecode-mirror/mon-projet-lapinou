@@ -1,12 +1,13 @@
+/*Pour tout le fichier*/
 html, body {
     height: 100%;
-    /*Cyril proposition police */
     font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "Luxi Sans", sans-serif;
 	line-height:1.2em;
 	font-size:small;
 }
 body {
 	background-color:#FFDA8C; 
+	text-align : justify;
 	
 }
 /*Bandeau Titre*/
@@ -110,9 +111,16 @@ h2 {
 	color:#FF5900;
 	text-align:center;
 }
+img#accueil {
+	float:left;
+	margin:10px;
+}
+p#accueil {
+	margin-right:20px;
+}
 .colonne { 
 	float : left;  
-	width : 30%; 
+	width : 47%; 
 	border-right : 1px dashed #009533; 
 	padding : 0 1% 1% 1%; 
 	text-align:justify;
@@ -148,6 +156,19 @@ input {
 
 #contenu .readonly {
 	color:#BAB5AB;
+}
+/* article */
+article {
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+	padding:1em;
+	border:1px solid black;
+	background-color:#ffe3a6;
+}
+article p {
+	text-align:justify;
+	text-indent:50px;
 }
 /*liste des liens partenaires*/
 dt {
@@ -274,19 +295,7 @@ div.profil_lapin dt {
 div.profil_lapin ul {
 	padding:0px;
 }
-/* article */
-article {
-	width:600px;
-	margin-left:auto;
-	margin-right:auto;
-	padding:1em;
-	border:1px solid black;
-	background-color:#ffe3a6;
-}
-article p {
-	text-align:justify;
-	text-indent:50px;
-}
+
 /*pied de page*/
 footer {
 /*	position:absolute;*/
