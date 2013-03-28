@@ -123,12 +123,14 @@ function controle_supp($req,$table) {
 //il faut l'identifiant du membre pour le filtrage
 	$mid=$_SESSION['mid'];
 //contrôles
-	if ($table==$prefixe."Discussion")
+	if ($table==$prefixe."Discussion"){
 //contrôle d'un participant à la discussion
-		$req.=" and (`auteur`=$mid OR `dest`=$mid)";
+		$ids_lap="IN (SELECT id_lapin FROM lapin_lapin WHERE id_profil =$mid)";
+		$req.=" and (`auteur` $ids_lap OR `dest` $ids_lap)";
+	}
 	if ($table==$prefixe."Message")
 //contrôle d'un participant à la discussion dont le message est issu
-		$req.=" AND id_disc in (SELECT id_disc FROM ${prefixe}Discussion WHERE `auteur`='$mid' OR `dest`='$mid')";
+		$req.=" AND id_disc in (SELECT id_disc FROM ${prefixe}Discussion WHERE `auteur` $ids_lap OR `dest` $ids_lap)";
 	return $req;
 }
 

@@ -3,8 +3,8 @@
 		<script type="text/javascript" language="Javascript" src="scripts/sha1.js"></script>
 <?php
 //protection
-session_destroy();
-session_start();
+//session_destroy();
+session_regenerate_id();
 ?>
 
 <!--formulaire inscription proprietaire-->
