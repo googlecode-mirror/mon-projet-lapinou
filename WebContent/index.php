@@ -71,6 +71,7 @@
                         <li><a href="index.php?page=contact">Contactez-nous</a></li>
                         <li><a href="index.php?page=identite-groupe">Qui sommes-nous ?</a></li>
                         <li><a href="index.php?page=liens">Liens</a></li>
+                        <li><a href="GL/manuelDUtilisation-LAPI.pdf">Fonctionnement du site</a></li>
                                                 
                 </ul>
         </li>
@@ -120,7 +121,8 @@
 	<a href="index.php" title="Aller à l'accueil">Accueil </a>|
 	<a href="index.php?page=contact" title="Contactez-nous">Contact </a>|
 	<a href="index.php?page=identite-groupe" title="Qui sommes nous">Qui sommes-nous ? </a>|
-	<a href="index.php?page=liens" title="Liens">Liens</a>
+	<a href="index.php?page=liens" title="Liens">Liens </a>|
+	<a href="GL/manuelDUtilisation-LAPI.pdf">Fonctionnement du site</a>
 	
 
 </footer>
