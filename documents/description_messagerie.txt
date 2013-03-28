@@ -1,0 +1,24 @@
+La messagerie comprend 10 fichiers et utilise la bibliothèque SQL sql.php. Il utilise les tables
+- appartientA
+- aSupprimer
+- Consultation
+- Discussion
+- Message
+- repondA
+- lapin
+- proprietaire
+de la base SQL, les deux dernières ne lui étant pas spécifique. 
+La messagerie s'articule autour de trois axes :
+- l'ouverture de la discussion entre deux lapins,
+- la consultation des messages de chaque discussion et la réponse à ceux-ci,
+- l'avertisement de l'arrivée de nouveaux messages.
+
+L'ouverture se fait depuis la page de profil d'un autre membre depuis un lien qui révèle un formulaire. Celui-ci est créé par le script contact_profil.php qui n'utilise aucun autre fichier hormis celui la bibliothèque SQL sql.php et du style général.
+Le formulaire est envoyé au script ouvrir_disc.php qui se charge de contrôler la validité des données transmises et avant de créer la nouvelle discussion dans la base sql et de retourner à la page d'origine. Il n'utilise que la bibliothèque SQL.
+
+La consultation de la messagerie est plus complexe et se répartie entre plusieurs scripts php et javascript. L'idée est de ne charger que ce qui est nécessaire à chaque étape de consultation. Dans un premier temps seule la description des discussions est affichée ; cela se fait par le script messagerie.php qui utilise le fichier de requêtes sqlMess.php et les scripts javascript ajax.js et messagerie.js pour assurer la communication ultérieure avec le serveur sans recharger la page. La mise en forme est assurée par le style messagerie.css.
+La lecture et l'envoi de messages se font en réceptionnant des données ou en en envoyant au serveur par une requête http générée par messagerie.js. Elle est traité par le script mess_requete.php. Selon les paramètres fournis il renvoi la liste des messages dans la discussion, le corps d'un message en particulier, le formulaire de rédaction d'un message ou le bon envoi d'un nouveau message. La réponse est traitée côté client par messagerie.js qui se charge de l'afficher ou d'afficher un message d'erreur. Le script ajax.js n'est qu'une bibliothèque de fonctions pour gérer l'envoi de la requête depuis javascript.
+mess_requete.php utilise les mêmes scripts php.
+
+L'avertissement est composé des deux scripts nouveaux.php et nombre.php utilisant sqlMess.php, sql.php et ajax.js. Le premier inclu une division dans la colonne du site puis consulte régulièrement le second et affiche un message en conséquence. Le comptage relève le nombre de messages plus récents que le dernier accès à sa messagerie du membre. L'accès remet le compte à zéro qu'il y ait eu lecture ou pas des nouveaux messages.
+  
