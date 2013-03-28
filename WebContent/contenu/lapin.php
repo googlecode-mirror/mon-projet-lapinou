@@ -1,6 +1,6 @@
 <?php 
-/** Profil des lapins 
- * accessible depuis une recherche par ex
+/** Profil d'un lapin
+ * accessible depuis une recherche par ex : obsolète
  */
 
 /********************

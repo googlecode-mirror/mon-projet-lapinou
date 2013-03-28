@@ -78,7 +78,7 @@
 			
 			// connexion OK : variable de session initialisée
 			// pour des raisons de sécurité, il est aussi préférable de réinitialiser la session
-			$_SESSION['identifiant'] = $_POST['user'];
+			$_SESSION['identifiant'] = $result['identifiant'];//$_POST['user']; se prémunir contre les futurs injections sql
 			session_regenerate_id(true);
 			$_SESSION['mesLogin'] = "";
 			$_SESSION['mid'] = $result['id_profil'];

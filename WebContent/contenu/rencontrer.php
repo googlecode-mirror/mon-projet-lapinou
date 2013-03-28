@@ -36,28 +36,30 @@ $races=array("grande","moyenne","petite","naine","belier","rustique","fourrure",
 $couleurs=array("unicolore","panache","mosaique","tachete","agouti","argente");
 
 //----------------> TODO vérifier l'intégrité du formulaire
+// à minima, protection contre les injections sql des champs insérés dans la base à l'aide de mysql_real_escape_string
 $post = $_POST;	
+
 
 // construction de la requête 
 // Case pour les races
 $sqlrace = "CASE race ";
 for($i=0; $i < count($races);$i++) {
-	$sqlrace .= "WHEN '".$races[$i]."' THEN ".$post[$races[$i]]." \n ";
+	$sqlrace .= "WHEN '".$races[$i]."' THEN ".mysql_real_escape_string($post[$races[$i]])." \n ";
 }
 $sqlrace .= " END as srace ";
 
 // case pour les couleurs
 $sqlcoul = "CASE couleur ";
 for($i=0; $i < count($couleurs);$i++) {
-	$sqlcoul .= "WHEN '".$couleurs[$i]."' THEN ".$post[$couleurs[$i]]." \n ";
+	$sqlcoul .= "WHEN '".$couleurs[$i]."' THEN ".mysql_real_escape_string($post[$couleurs[$i]])." \n ";
 }
 $sqlcoul .= " END as scoul ";;
 
 // assemblage de la requête
-$sql = "SELECT nomlap, (srace + scoul) as score, identifiant, region ".
-		"FROM ( SELECT nomlap, ".$sqlrace.", ".$sqlcoul.", sexe, identifiant ".
+$sql = "SELECT *, (srace + scoul) as score ".
+		"FROM ( SELECT *, ".$sqlrace.", ".$sqlcoul.
 		"       FROM lapin_lapin ) lapiscore NATURAL JOIN lapin_proprietaire".// ON lapin_lapin.identifiant = lapin_proprietaire.identifiant ".
-		"   WHERE ".((isset($post['sex']) AND $post['sex']<>"") ? " sexe = '".$post['sex']."' AND " : "").
+		"   WHERE ".((isset($post['sex']) AND $post['sex']<>"") ? " sexe = '".mysql_real_escape_string($post['sex'])."' AND " : "").
 		((isset($post['region']) AND $post['region']="1") ? " region = '".$region."' AND " : "").
 		" 		identifiant <> '".$_SESSION['identifiant']."' ".
 		" ORDER BY score DESC ;";
@@ -65,12 +67,32 @@ $sql = "SELECT nomlap, (srace + scoul) as score, identifiant, region ".
 
 $resultat = mysql_query($sql);
 
+
+require_once("include/affiche_lapin.inc.php");
+
+
 ?>
 <fieldset>
-	<legend>Trouves tu ton âme soeur ?</legend><br/>
+	<legend><h1>Trouves tu ton âme soeur ?</h1></legend><br/>
+	<div><table>
 <?php		
-while ($lapin = mysql_fetch_array($resultat) ){ 
-	echo "<a href=index.php?page=lapin&lapin=".$lapin['nomlap']."&proprio=".$lapin['identifiant'].">".$lapin['nomlap']."</a><br/>";
-	}				
+$compteur = 0;
+
+//affichage en tableau a 2 colonnes
+while ($lapin = mysql_fetch_array($resultat) ){
+	if( $compteur % 2 == 0 ) {
+		echo "<tr><td>";
+		affiche_lapin( $lapin );
+		echo "</td>";
+	}else {
+		echo "<td>";
+		affiche_lapin( $lapin );
+		echo "</td></tr>";
+	}
+	$compteur++;
+}
+if( $compteur % 2 == 1 ) 
+	echo "</tr>";
 ?>
+	</table></div>
 </fieldset>

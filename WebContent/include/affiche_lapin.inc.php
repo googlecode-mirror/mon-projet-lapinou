@@ -19,7 +19,7 @@ function affiche_lapin( $lapin ){
 	$date = explode("-",$lapin['agelap']);
 	
 	echo "<div class=\"profil_lapin\">\n";
-	echo 	"\t<h2>".$lapin['nomlap']."</h2>\n";
+	echo 	"\t<h2>".$lapin['nomlap']."</h2>".((isset($lapin['score'])) ? "score : ".$lapin['score'] : "")."\n";
 	echo "<table><tr><td>\n";
 	echo	"\t<ul>\n";
 	echo		"\t\t<li>race : ".$lapin['race']."</li>\n";
