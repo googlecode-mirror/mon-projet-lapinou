@@ -191,7 +191,7 @@ document.getElementsByTagName("head")[0].appendChild(ref);
 		$req_date=MajConsultation ($mid);
 		$lapins=requete_champ_unique($req_date);
 	} else
-		echo "<i>Aucun profil trouvé.</i> ";
+		echo "<i>Aucune discussion trouvée.</i> ";
 
 //est-ce toujours nécessaire ? La connexion est peut-être encore utile => l'ajouter systématiquement dans un document générique (moteur) ?
 	disconnect();

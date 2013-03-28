@@ -74,7 +74,7 @@
 	font-style:italic;
 	font-size:small;
 }	
-#reponse input:not([type=submit]), #reponse textarea {
+#reponse input:not([type=submit]), textarea {
 	margin-left:1em;
 	margin-right:1em;
 	width:93%;

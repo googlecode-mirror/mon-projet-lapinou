@@ -18,6 +18,14 @@ function verif_form() {
 		return true;
 	}
 }
+
+//ajout du style structurant de la messagerie
+var ref=document.createElement('link');
+ref.rel="stylesheet";
+ref.href="styles/messagerie.css";
+ref.type="text/css";
+document.getElementsByTagName("head")[0].appendChild(ref);
+
 </script>
 <a href="#" onclick="el=document.getElementById('fdisc');if (el.style.display=='block') el.style.display='none'; else el.style.display='block'; return false;">lancer une discussion</a>
 <div id="fdisc" style="display:none;">
