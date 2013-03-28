@@ -31,8 +31,8 @@ function affiche_lapin( $lapin ){
 	echo	"\t<img src=\"img/".$lapin['photo']."\" title=\"".$lapin['nomlap']."\"/>\n";
 	echo "</td></tr></table>\n";
 	echo	"\t<br/>\n";
-	echo	"\t<dl><dt>description :</dt><dd>".$lapin['description']."</dd></dl>\n";
-	echo	"\t<dl><dt>Centres d'interet : </dt><dd>".$lapin['centreInteret']."</dd></dl>\n";
+	echo	"\t<dl><dt>description :</dt><dd>".stripslashes($lapin['description'])."</dd></dl>\n";
+	echo	"\t<dl><dt>Centres d'interet : </dt><dd>".stripslashes($lapin['centreInteret'])."</dd></dl>\n";
 	echo	"\t<a href=\"index.php?page=profil&user=".$lapin['identifiant']."\">mon proprietaire</a>\n";
 	
 	//partie "privée"
