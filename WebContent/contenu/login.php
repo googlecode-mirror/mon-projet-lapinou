@@ -53,10 +53,9 @@
 			$rq = "SELECT id_profil, identifiant, passwd FROM lapin_proprietaire WHERE identifiant = '" . mysql_real_escape_string($_POST['user']) . "'";
 			$result = mysql_fetch_assoc(mysql_query($rq));
 			
-			
 			// il n'existe pas : message d'erreur
 			if (!$result) {
-				$_SESSION['mesLogin'] = "Nom d'utilisateur invalide";
+				$_SESSION['mesLogin'] = "Nom d\'utilisateur invalide";
 				header("location: ".$ch."index.php");
 				exit(0);
 			}
@@ -72,7 +71,7 @@
 			
 			// le pwd est faux : message d'erreur
 			if ($_POST['pass'] != $cle) { // mot de passe incorrect
-				$_SESSION['mesLogin'] = "Mot de passe invalide \n$cle\n".$_POST['pass']."\n".$result['passwd'];
+				$_SESSION['mesLogin'] = "Mot de passe invalide";
 				header("location: ".$ch."index.php");
 				exit(0);
 			}
