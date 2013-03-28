@@ -48,7 +48,8 @@ var reponseBoite = function (xmlhttp,x) {
 //				txt=txt + "<div>&nbsp;</div>";
 			}
 		}
-		txt=txt+"</li>\n"; 
+	//	txt=txt+"<div><input type='checkbox' name='cb"+noMess+"'>\n"; 
+		txt=txt+"</li>\n";
 	}
 	txt=txt+"</ul>\n";
 //ajout après l'item (li) cliqué
@@ -145,10 +146,27 @@ var reponseDiscussion = function (xmlhttp,x) {
 	if (txt=="ok") {
     //recharger la page pour afficher les discussions
 	//Rq : cela ferme toutes les branches !
-//	alert("rechargement ...");
 		window.location.reload();
 	}
 }
+
+var reponseSuppression = function (xmlhttp,x) {
+	//gère la réponse à la suppression de messages
+	// x.nodeName=="suppression" normalement
+	//Rq: on ne se sert pas de contexte pour l'instant
+	//obtenir le contexte d'envoi
+		x=donneRacine(xmlhttp,"nombre");
+		try {
+			txt=x[0].firstChild.nodeValue;
+		} catch (er) {
+			alert(er+"Erreur ! Veuillez recommencer"+txt);
+		}
+		if (txt>0) {
+	    //recharger la page pour afficher les discussions
+		//Rq : cela ferme toutes les branches !
+			window.location.reload();
+		}
+	}
 
 //fonctions de gestion des requêtes ajax
 
@@ -159,6 +177,19 @@ function ouvrir_fil(no) {
 	paramAjax ["dernier"]=false;
 	loadXMLDoc(reponseBoite);
 }
+
+function supprime_messages() {
+	//gère la suppression de messages
+		el=document.formDiscs.childNodes;
+		txt=""
+		for (i=0;i<el.length;i++) {
+		   if (el[i].checked)
+			   txt=txt+" "+el[i].nodeName;
+		}
+		paramAjax ["url"]="include/messagerie/mess_requete.php?liste="+txt;
+		loadXMLDoc(reponseSuppression);
+		return false;
+	}
 
 function ouvrir_message(no) {
 //gère l'ouverture d'un message

@@ -86,6 +86,7 @@ document.getElementsByTagName("head")[0].appendChild(ref);
 	function habille_boite($liste) {
 	//dispose les entêtes de discussions dans leurs boites HTML
 		$code="<div class='liste_boite'>\n<ul>\n";
+//		$code.="<form name='formDiscs' action='' onsubmit='return supprime_messages()'>\n";
 		foreach ($liste as $disc) {
 			$code.="<li id=\"li$disc->id_disc\">
 				<div class='pmMess' onclick=\"ouvrir_fil($disc->id_disc)\">+</div>
@@ -94,6 +95,7 @@ document.getElementsByTagName("head")[0].appendChild(ref);
 				<div>$disc->nomlap</div></li>\n";
 //				<div>$disc->nom $disc->prenom</div></li>\n";
 		}
+//		$code.="<input type='submit' name='submit' value='Supprimer'>\n</form>\n";
 		$code.="</ul>\n</div>\n";
 		return $code;
 	}

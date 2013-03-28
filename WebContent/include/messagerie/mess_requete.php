@@ -76,7 +76,20 @@ if (connect()) {
 				$data.="<corps>$corps</corps>";
 				$data.="\n</message>";
 				echo $data;
-			}
+			} /*else {
+			//suppression
+			//en cours de développement
+				$nos=str_replace('cb','',$_GET['liste']);
+				$nos=str_replace(' ',',',$nos);
+				$req="select * from ${prefixe} where id_mess in (select $nos)";
+				$tab=requete($req);
+				$txt=implode(':',$tab);
+				header('Content-Type: application/xml');
+				$data="<?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<suppression>";
+				$data.="<nombre>$txt</nombre>";
+				$data.="\n</suppression>";
+				echo $data;
+			}*/
 	} else {
 	//un message est envoyé pour ajout
 
