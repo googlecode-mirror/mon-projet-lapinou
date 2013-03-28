@@ -27,11 +27,13 @@ if (!connect() ) {
 //recherche de la personne		
 $sql = "SELECT * FROM lapin_proprietaire WHERE identifiant = '".$user."';";
 $resultat = mysql_query($sql);	
-if ( !$resultat  ){
+if ( !$resultat || mysql_num_rows($resultat) ==0 ){
 		disconnect();  //deconnexion MySQL
 		header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
 		exit(0);
 }	
+
+
 $personne = mysql_fetch_array($resultat);
 
 echo "<script type=\"text/javascript\" src=\"scripts/inscription.js\"></script>\n";
