@@ -9,7 +9,7 @@
 	/*** ulterieurement en include config.inc.php ***/
 	$hostDB = 'localhost';
 	$userDB = 'root';
-	$passwd = 'root';
+	$passwd = '';
 	$dataBase = 'LAPI.NET';
 	$liendb = null;
 	/***************************************/
