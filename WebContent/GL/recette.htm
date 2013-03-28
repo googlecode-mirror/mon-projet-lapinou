@@ -4,6 +4,15 @@
    <META NAME="Author" CONTENT="F. ARNOULD, J. DURAND, D. PAYANT, J. PHILIBERT, C. THURIER">
    <META NAME="GENERATOR" CONTENT="Mozilla/4.02 [en] (Win95; I) [Netscape]">
    <TITLE>Cahier de recette</TITLE>
+   <style type="text/css">
+    body {
+		text-align: justify;
+	}
+	H1{		
+		color :#7EBDF4;
+   }
+   
+   </style>
 </HEAD>
 <BODY>
 
@@ -12,11 +21,51 @@
 <CENTER>
 <HR WIDTH="100%"></CENTER>
 
-<H1>
-1- Objectif - Couverture des tests</H1>
+<H1>1- Objectif - Couverture des tests</H1>
 
-<H1>
-2- Cas de test</H1>
+<p>De part le temps imparti pour le projet et le volume des besoins choisis, nous avons effectués les tests au fur et à mesure du développement du site. 
+Par conséquent, le développement du site a suivis le "cyle en spirale" pour la création du logiciel (voir schéma ci-dessous).</p>
+<center><img src="ModeleSpirale.jpeg" alt="Schéma du développement en spirale" title="Schéma du développement en spirale" /></center>  
+<p>Ce modèle permet d'encadrer le développement par des phases consacrées à la détermination des objectifs et à l'analyse des risques. Il met l'accent sur l'analyse du risque et se déroule en 4 phases :</p>
+<ol>
+	<li>Détermination
+		<ul><li>des objectifs en fonctions des besoins du client.</li>
+			<li>des solutions alternatives.</li>
+			<li>des contraintes, à partir des résultats des cycles précédents ou s'il n'y en a pas, faire l'analyse préliminaire des besoins. </li>
+		</ul>
+	</li>
+	<li>Analyse des risques, évaluation des alternatives et mise en place d'un prototype.</li>
+	<li>Développement, test de fonctionnement, test d'intégration à la version précédente si elle existe et vérification de la solution retenue par rapport aux besoins initiaux.</li>
+	<li>Revue des résultats par le groupe et planification du cycle suivant. </li>
+		
+
+</ol>
+
+
+<H1>2- Cas de test</H1>
+
+<p>Les différentes pages web du projet ont été testées au fur et à mesure que nous les développions. Les principaux tests que nous avons réalisés sont les suivants:</p>
+<ul>
+	<li><u>Inscription :</u> vérification du remplissage des champs obligatoires, insertion dans la base de données.</li>
+	<br />
+	<li><u>Connexion :</u> vérifier que les mots de pass sont bien stockés et cryptés.</li>
+	<br />
+	<li><u>Profil :</u> affichage et récupération dans la base de données des données de la personne connectée.</li>
+	<br />
+	<li><u>Messagerie :</u> envoie d'un message dans un fil de discussion avec remplissage de la table associé et de l'autre côté réception du message par le destinataire.</li>
+	<br />
+	<li><u>Tchat :</u> envoi de message en simultané avec deux comptes différents, vérification de la création de la table associée.</li>
+	<br />
+	<li><u>Amis :</u> création de la liste d'amis dans la base de données afin de pouvoir l'afficher.</li>
+	<br />
+	<li><u>Recherche :</u> vérification des mots cherchés dans les tables de propriétaire et lapin et affichage du résultat.</li>
+	<br />
+	<li><u>Rencontre sur la fiche du lapin :</u> recherche multi-critères, vérification des mots recherchés dans la base de données des lapins et affichage du résultats.</li>
+	<br />
+	<li><u>Contactez-nous :</u> vérification du remplissage des champs et de l'envoi de l'email à la personne responsable du site.</li>
+	
+</ul>
+
 
 <HR WIDTH="100%">
 <BR><A HREF="acceuil.htm">SOMMAIRE GENIE LOGICIEL DU PROJET LAPI.NET</A>

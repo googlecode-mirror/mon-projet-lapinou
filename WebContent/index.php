@@ -59,6 +59,7 @@
                         <li><a href="GL/acceuil.htm">Sommaire</a></li>
                         <li><a href="GL/plan.htm">Plan de développement</a></li>
                         <li><a href="GL/besoin.htm">Définition des besoins</a></li>
+                        <li><a href="GL/recette.htm">Cahier de recette</a></li>
                         <li><a href="GL/conception.htm">Dossier de conception</a></li>
                         <li><a href="GL/prototype.htm">Prototype</a></li>
 						<li><a href="GL/presentation.htm">Documents de présentation</a></li>
@@ -123,6 +124,7 @@
 	
 
 </footer>
+<br /><br />
 </div>
 <?php 
 	include("include/chat.inc.php");

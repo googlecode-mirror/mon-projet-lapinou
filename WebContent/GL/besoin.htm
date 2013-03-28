@@ -4,7 +4,7 @@
    <META NAME="Author" CONTENT="F. ARNOULD, J. DURAND, D. PAYANT, J. PHILIBERT, C. THURIER">
    <META NAME="GENERATOR" CONTENT="Mozilla/4.02 [en] (Win95; I) [Netscape]">
    <TITLE>D&eacute;finition des besoins</TITLE>
-   <style>
+   <style type="text/css">>
    body {
 		<!--color :#2394F7;-->
 		font-size : 150%;
@@ -238,12 +238,14 @@ des pages doit être suivie. Le contenu des pages web sont écrites sur fond orang
 		l'insertion des différentes données dans la base de données.</li>
 	</ul>
 </li>
-
-
-
+</ul>
+<H1>
+5- Crit&egrave;res de validation</H1>
 
 <H1>
-4- Plate-forme cible et de d&eacute;veloppement</H1>
+6- Plate-forme cible et de d&eacute;veloppement</H1>
+<p>Site internet sur le serveur free : </p><a href="../index.php">http://arnould.f.free.fr/projet/</a>
+<ul>
 <li>Plate-forme cible :
 <ul><p>L'hébergement du site est effectué chez free.fr.
 Les pages personnelles de Free sont proposées gratuitement à tous les utilisateurs de Free quelle que soit leur offre de connexion choisie avec un espace 
@@ -254,7 +256,7 @@ installée, il faut créer un fichier infos.php.
 
 Voici une liste de fonctions PHP désactivées sur le serveur Free :</p>
 <table border="1" width="80%">
-<ul>
+
 <tr><td>chown</td><td> chmod</td><td> get_current_user</td></tr>
 <tr><td> php_uname</td><td> putenv</td><td> set_time_limit</td></tr>
 <tr><td> getmyuid</td><td> getmypid</td><td> dl</td></tr>
@@ -271,11 +273,11 @@ Voici une liste de fonctions PHP désactivées sur le serveur Free :</p>
 <tr><td> umask</td><td> set_include_path</td><td> restore_include_path</td></tr>
 <tr><td> symlink</td><td> setlocale</td><td> imagerotate</td></tr></table><br/>
 </ul>
-</p>
+
 <p>La fonction <b>mail()</b> fonctionne avec un quota d'envois (2 000 eMails par semaine).<br> Les modules FTP et IMAP ne sont pas installés.</p>
 <p><b>Une configuration détaillée du serveur Free est présentée sur cette page web :</b> <a href="phpinfo_free.htm">PHP INFO FREE</a></p>
 <p>Pour gérer des sessions PHP : Avant toute utilisation des sessions PHP, un répertoire sessions doit être créé à la racine du compte.</p>
-</ul></li><br>
+</li><br>
 
 
 <li>Plate-forme de développement :
@@ -306,50 +308,10 @@ est souvent nécessaire lorsqu'on les installe séparément. Lorsqu'EasyPHP est lan
 </ul>
 <p><b>Une configuration détaillée de EasyPHP est présentée sur cette page web : </b> <a href="phpinfo_local.htm">PHP INFO EASYPHP</a></p>
 <p>On a également utilisé tout au long du développement de notre site web les outils suivants faisant partie intégrante de la plate-forme
-de développement :</p>
-	<ul>
-	<li>Outils de dessin :
-		<ul>
-			<li>PAINT, GIMP, PPT</li>
-		</ul>
-	 </li>
-
-	<li>Environnement de programmation :
-		<ul>
-			<li>Langages de programmation : PHP, HTML, CSS, Javascript, Ajax, JQuery</li>
-			<li>Systèmes d'exploitation : Windows 7, Vista ainsi que Linux</li>
-			<li>LAMP & WAMP, EasyPHP (Apache, PHP, MySQL)</li>
-			<li>FileZilla (transfert de pages web vers le serveur Free)</li>
-			<li>Editeurs de texte Notepad++, GEDIT</li>
-			<li>Logiciel de gestion des versions SVN (RapidSVN)</li>
-			<li>Assembla (serveur pour la gestion des versions de fichiers)</li>
-			<li>Serveur Free</li>
-		</ul>
-	 </li>
-	 <li>Outils Génie logiciel :
-		<ul>
-			<li>DIA (réalisation de diagrammes UML)</li>
-			<li>Microsoft Project & GANTT (gestion de tâches, planning)</li>
-			<li>ArGOUML (conception de diagrammes entités-associations)</li>
-		</ul>
-	 </li>
-	 <li>Outils de test :
-		<ul>
-			<li>PHPUnit (réalisation de tests unitaires)</li>
-			<li>Navigateurs : Firefox, Chrome</li>
-		</ul>
-	 </li>
-	</ul>
-</p>
+de développement.</p>
 </ul>
-</li>
-
-<H1>
-5- Crit&egrave;res de validation</H1>
-
-<H1>
-6- Plate-forme cible et de d&eacute;veloppement</H1>
-<p>Site internet sur le serveur free : </p><a href="../index.php">http://arnould.f.free.fr/projet/</a>
+</ul>
+	
 
 <H1>
 7- Analyse des risques</H1>
