@@ -29,7 +29,7 @@ $sql = "SELECT * FROM lapin_proprietaire WHERE identifiant = '".$user."';";
 $resultat = mysql_query($sql);	
 if ( !$resultat || mysql_num_rows($resultat) ==0 ){
 		disconnect();  //deconnexion MySQL
-		header('Location: ../index.php?page=erreur');	//TODO une page erreur <---------------------------------------
+		header('Location: index.php?page=erreur');	//TODO une page erreur <---------------------------------------
 		exit(0);
 }	
 
