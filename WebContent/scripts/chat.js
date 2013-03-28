@@ -73,7 +73,7 @@ function switch_conversation( nom ){
 				conversations[n].get('date') != '0') ){	//nouveaux messages
 			connectes.select('option')[conversations[n].get('num')].
 				style.color = "blue";//bleu
-			montrer_lapiphone();//si une conversation presente, on affiche
+			//montrer_lapiphone();//si une conversation presente, on affiche
 	
 		}else {
 
