@@ -128,9 +128,11 @@ function controle_supp($req,$table) {
 		$ids_lap="IN (SELECT id_lapin FROM lapin_lapin WHERE id_profil =$mid)";
 		$req.=" and (`auteur` $ids_lap OR `dest` $ids_lap)";
 	}
-	if ($table==$prefixe."Message")
+	if ($table==$prefixe."Message") {
 //contrôle d'un participant à la discussion dont le message est issu
+		$ids_lap="IN (SELECT id_lapin FROM lapin_lapin WHERE id_profil =$mid)";
 		$req.=" AND id_disc in (SELECT id_disc FROM ${prefixe}Discussion WHERE `auteur` $ids_lap OR `dest` $ids_lap)";
+}
 	return $req;
 }
 
@@ -155,10 +157,17 @@ function afficheResultat($resultats,$table) {
 			//ne garder que les clés aphanumériques (noms) du tableau
 				if (eregi("[a-z]",$chp)) {
 				//ajouter cette clé à l'entête et sa valeur au contenu
-					$entete.="<th>$chp</th>";
-					if ((preg_match('/Message/i',$table)) && ($chp=="id_mess"))
+					if (!((preg_match('/Message/i',$table)) && ($chp=="id_mess")))
+						$entete.="<th>$chp</th>";
+					if (preg_match('/Message/i',$table))
+						if ($chp=="titre")
 					//message : ajout d'un lien vers la messagerie
-						$chn.="<td><a href='index.php?page=messagerie&disc=".$res['id_disc']."&mess=".$res['id_mess']."'>$val</a></td>";
+							$chn.="<td><a href='index.php?page=messagerie&disc=".$res['id_disc']."&mess=".$res['id_mess']."'>$val</a></td>";
+						else
+							if ($chp=="id_mess")
+								;	//ne pas afficher l'identifiant
+							else
+								$chn.="<td>$val</td>";
 					else
 						$chn.="<td>$val</td>";
 				}
@@ -249,7 +258,7 @@ if ($_GET['type']=="global") {
 
 		//composer la requête
 //!!! une façon plus efficace serait de trier les critères selon leur genre avant => fait une seule fois
-			$req="SELECT * FROM ".$ent[0]." WHERE ";
+			$req="SELECT * FROM ".$ent[0]." WHERE (";
 			$liste="";
 			foreach ($chps as $i=>$chp) {
 				if ((eregi('int',$chp['Type'])) && ($types & 1)) {
@@ -304,44 +313,50 @@ if ($_GET['type']=="global") {
 		//supprimer les finales
 			if (preg_match("/_proprietaire/i",$ent[0]))
 				$liste.="identifiant, ";
+			if (preg_match("/_Message/i",$ent[0]))
+				$liste.="id_mess, ";
 			$liste=substr($liste,0,strlen($liste)-2);
 			$req=substr($req,0,strlen($req)-3);
+		//fermer la parenthèse protégeant les OR et prévenir d'une parenthèse vide
+			$req.="OR false)";
+		//inclure la liste des champs
+			$req=str_replace("*",$liste,$req);
 			if (!preg_match("/_lapin/i",$ent[0])) {
 		
 				if ($liste!="")
 					$req=controle_supp($req,$ent[0]);
 			}
-			//il existe au moins un champ interrogable : requête
-				if ($liste!="") {
-				//effectuer la recherche
-					$resultat=requete($req);
-					$nbRes=$nbRes+nbResultats();
-				//affichage
-					if ($resultat && preg_match("/_lapin/i",$ent[0])) {
-					//cas de lapins : voir leur fiche en paire
-						$compteur=0;
-						echo "<table>\n";
-						foreach ($resultat as $lapin) {
-							if( $compteur % 2 == 0 ) {
-								echo "<tr><td>\n";
-								affiche_lapin($lapin);
-								echo "</td>";
-							} else {
-								echo "<td>";
-								affiche_lapin($lapin);
-								echo "</td></tr>\n";
-							}
-							$compteur++;
+		//il existe au moins un champ interrogable : requête
+			if ($liste!="") {
+			//effectuer la recherche
+				$resultat=requete($req);
+				$nbRes=$nbRes+nbResultats();
+			//affichage
+				if ($resultat && preg_match("/_lapin/i",$ent[0])) {
+				//cas de lapins : voir leur fiche en paire
+					$compteur=0;
+					echo "<table>\n";
+					foreach ($resultat as $lapin) {
+						if ($compteur % 2 == 0 ) {
+							echo "<tr><td>\n";
+							affiche_lapin($lapin);
+							echo "</td>";
+						} else {
+							echo "<td>";
+							affiche_lapin($lapin);
+							echo "</td></tr>\n";
 						}
-						echo "</table>\n";
+						$compteur++;
+					}
+					echo "</table>\n";
+				} else
+				//autre cas
+					if (preg_match("/_proprietaire/i",$ent[0])) {
+					//propriétaire : lien vers leur fiche
+						afficheLienProprio($resultat,$ent[0]);
 					} else
-					//autre cas
-						if (preg_match("/_proprietaire/i",$ent[0])) {
-						//propriétaire : lien vers leur fiche
-							afficheLienProprio($resultat,$ent[0]);
-						} else
-						//tous le reste : affichage simple
-							afficheResultat($resultat,$ent[0]);
+					//tous le reste : affichage simple
+						afficheResultat($resultat,$ent[0]);
 			}
 		}
 	}

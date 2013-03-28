@@ -263,7 +263,7 @@ function afficheRecherche() {
 			if (param[1].match("disc")) {
 				ouvrir_fil(val[1]);
 			}
-		},1000);
+		},2500);
 	//extraire le numéro de la discussion (2nd paramètre pour la page)
 		setTimeout( function(){
 			if (param[2].match("mess")) {

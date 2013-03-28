@@ -311,5 +311,8 @@ footer a {
 #groupe {
 text-align:center;
 }
+.resultatRch td, .resultatRch tr {
+	width:auto;
+}
 
 	
