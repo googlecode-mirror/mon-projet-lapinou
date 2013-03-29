@@ -319,10 +319,10 @@ if ($_GET['type']=="global") {
 			$req=substr($req,0,strlen($req)-3);
 		//fermer la parenthèse protégeant les OR et prévenir d'une parenthèse vide
 			$req.="OR false)";
-		//inclure la liste des champs
-			$req=str_replace("*",$liste,$req);
 			if (!preg_match("/_lapin/i",$ent[0])) {
-		
+			//inclure la liste des champs
+				$req=str_replace("*",$liste,$req);
+				
 				if ($liste!="")
 					$req=controle_supp($req,$ent[0]);
 			}
