@@ -20,7 +20,7 @@
 	
 	if (isset($_POST) and isset($_POST['logout']) and isset($_SESSION['identifiant'])) {
 		unset($_SESSION['identifiant']);
-		$_SESSION['mesLogin'] = "Déconnexion réussie";
+		$_SESSION['mesLogin'] = "Deconnexion reussie";
 		header("location: ".$ch."index.php");
 		exit(0);
 	}
