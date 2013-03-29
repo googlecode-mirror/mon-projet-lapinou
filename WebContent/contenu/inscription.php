@@ -4,7 +4,7 @@
 <?php
 //protection
 //session_destroy();
-session_regenerate_id();
+//session_regenerate_id();
 ?>
 
 <!--formulaire inscription proprietaire-->
