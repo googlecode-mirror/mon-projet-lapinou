@@ -24,22 +24,84 @@
  <BR>
 <H1>
 1- Architecture de haut niveau</H1>
-<img src="cf uml">
-<UL>Description de l'architecture du syst&egrave;me / diagramme de flot : CF Jess (diagramme générale des modules du site) + blabla descriptif
-/ liste des modules.
-<BR> LE tout est descrire de manière cohérente ce qui est sur prototype + besoin </UL>
+<h2>Le site de rencontre pour lapin est composé de différents modules :</h2>
+<ul>
+	<li><b>Module des inscriptions : </b>
+	Le système doit permettre aux utilisateurs passionnés de lapin de pouvoir s’inscrire en toute sécurité sur ce site web.
+	</li>
+	<li><b>Module de gestion des fiches lapins : </b>
+	Le système doit permettre l’ajout, modification et suppression d’une fiche lapin. L'utilisateur a le contrôle sur les fiches lapins et sur les rencontres
+	que ses lapins font.
+	</li>
+	<li><b>Module de gestion des amis : </b>
+	Le système doit permettre l’ajout ou la suppression d’un ami. L'utilisateur peut, s'il trouve un profil de lapin intéressant, décider d'ajouter dans sa 
+	liste d'ami. Un ajout ne demande pas l'accord de l'autre utilisateur. Il s'agit plutôt d'un ajout à une liste favorite.
+	</li>
+	<li><b>Module de gestion des messages : </b>
+	Le système doit aussi permettre aux utilisateurs de communiquer entre eux. C'est pourquoi nous avons donné la possibilité de communiquer via un tchat 
+	ou via une	messagerie. Il n'est pas nécessaire d'être dans les amis pour communiquer. Seul impératif : être inscrit sur le site auparavant.
+	</li>
+	<li><b>Module de gestion des recherches : </b>
+	Le système permet à chacun des membres de faire une recherche de son âme soeur. Pour cela il dispose de deux manières de recherche : un formulaire de 
+	rencontre aupréalable qui permet d'affiner le profil qui correspond le plus aux attentes des lapins. Autre manière de recherche, un onglet "recherche" 
+	qui permette de retrouver un profil en fonction d'un mot  (de conversation : "coucou" si on avait eu une conversation avec quelqu'un auparavant), d'un
+	prénom de lapin ou encore un nom de propriétaire.
+	</li>
+</ul><br><br>
+
+<h2>Les différentes classes d’usagers du système sont : </h2>
+<ul>	
+	<li><b>Utilisateurs :</b>
+	Les utilisateurs permettent d’alimenter le système en fiches de lapin pour la recherche. Grâce à leur ajout de lapin ils vont permettent l'enrichissement
+	du site. 
+	</li>
+	<li><b>Administrateur : </b>
+	L’administrateur n'est pas prévu pour le moment. Ce sera une partie à développer. La partie "administrateur" serait la seule à avoir accès à 
+	l’information complète du système. 
+	</li>
+</ul><br>
+<h2>Description des modules du site : </h2>
+<ul>
+	<li><b>Module des inscriptions :</b>
+		<ul><li><b>Inscription au site : </b> Création d'un profil.</li>
+			<li><b>Création d'un identifiant et d'un mot de passe :</b> Pour l'authentification de l'utilisateur.</li>
+			<li><b>Création des fiches lapins :</b> inscription des lapins du propriétaire.</li>
+		</ul>
+	</li>
+	<li><b>Module de messagerie :</b>
+		<ul><li><b>Lancer une discussion : </b> Création d'une conversation sur le profil d'un autre propriétaire.</li>
+			<li><b>Répondre à un message :</b> Réception d'un message dans sa messagerie et possibilité d'y répondre.</li>
+			<li><b>Discussion Tchat :</b> Lancer / Répondre à un message instatané grâce au Lapiphone.</li>
+		</ul>
+	</li>
+</ul>
+<p><img src="../../documents/ArchitectureSiteGlobale.pdf"/></p>
 
 <H1>
 2- Justification de l'architecture</H1>
-<p>explication choix, pourquoi choix ça par rapport besoin client : ergonomie + simplicité navigation (connexion ex).Tel module répond à tel besoin. </p>
+<p>Nous avons décidé de créer un site simple, qui soit facile d'utilisation pour que l'utilisateur n'ai pas à chercher l'information.<br>
+Notre chartre graphique c'est faite en fonction des couleurs d'une carotte. Ce choix nous a permis de créer un logo dans les tons du site et de créer des 
+pages du site en harmonie avec les couleurs.<br>
+<b>L'inscription :</b>L'inscription se fait via l'onglet membre. Elle est claire et simple. L'utilisateur n'a qu'à se laisser guider par le formulaire.<br>
+<b>Les fiches lapins :</b> suivent l'inscription de l'utilisateur. Cela a été pensé selon une logique : inscription du membre => inscription de ses lapins. <br>
+<b>La connexion :</b>à droite dans un carré prévu à cet effet. l'utilisateur a l'information sans avoir à cliquer ailleurs. <br>
+<b>La messagerie :</b> La messagerie a été pensée et créée de manière à ce que l'utilisateur ne la cherche pas. Elle se situe dans l'onglet "membres" afin 
+qu'il est de rassemblé en un même onglet les informations qui l'intéressent (fiches lapins + fiche perso + messagerie). On ne peut pas envoyer directement de 
+message, seulement y répondre. Pour envoyer un message, il suffit d'aller sur la page d'un ami ou d'un profil qui nous intéresse afin de "lancer la discussion".<br>
+<b>Le Tchat :</b> il est possible de Tchater avec les personnes inscrites sur le site. Une personne connectée au même moment est indiquée par la présence de 
+son nom dans le "LAPIPHONE". Si elle me parle, son nom devient bleu. Si elle se déconnecte, son nom est indiqué en rouge. On peut parler avec chacune des personnes
+connectée de manière individuelle mais il n'est pas possible de faire de message groupé avec plusieurs personnes.<br>
+<b>Les amis : </b> Il est possible, si un profil nous intéresse, d'ajouter le profil à la liste de ses amis. En aucun cas celui-ci n'est tenu d'accepter l'invitation.
+Il faudrait mieux dire "ajout aux favoris". On garde les profils qui nous intéressent le plus.<br> 
+<b>La recherche : </b> L'onglet recherche permet de rechercher un profil de propriétaire grâce à une recherche avec son nom, la recherche d'une fiche de lapin.<br><br>
+Nos choix d'ergonomie s'explique dans une logique et un désir de simplicité à l'égard de l'utilisation que pourrait avoir les membres du groupe.<br>
+explication choix, pourquoi choix ça par rapport besoin client : ergonomie + simplicité navigation (connexion ex).Tel module répond à tel besoin. </p>
 
 <H1>
 3- Description des unit&eacute;s</H1>
 
-<UL>Structure de haut niveau de chaque modules (mod&egrave;le, interface) : CF COURS GL et traitement Jess
-<BR>Structure d&eacute;taill&eacute;e de chaque module (algorithmes) : Idem
 <br><p>Lien UML : <a href="archi.pdf">Cliquez-ici</a></p>
-</ul>
+<br>
 <H1>
 4- Description de l'interface utilisateur</H1>
 <p>Détail du prototype :
